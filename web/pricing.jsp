@@ -1,3 +1,9 @@
+<%@page import="java.sql.SQLException"%>
+<%@page import="group6.dao.ServiceTypeCoverageDAO"%>
+<%@page import="group6.entity.ServiceTypeCoverageDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="group6.entity.ServiceTypeDTO"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,6 +25,7 @@
         <link rel="stylesheet" href="assets/css/style.css">
 
     </head>
+
     <body>
 
         <div class="main-wrapper">
@@ -142,7 +149,7 @@
                                     <p class="text-muted mb-0">Administrator</p>
                                 </div>
                             </div>
-                            <a class="dropdown-item" href="profile.jsp">My Profile</a>
+                            <a class="dropdown-item" href="MainController?btAction=ViewProfile">My Profile</a>
                             <a class="dropdown-item" href="settings.jsp">Account Settings</a>
                             <a class="dropdown-item" href="login.jsp">Logout</a>
                         </div>
@@ -154,52 +161,52 @@
 
 
             <div class="sidebar" id="sidebar">
-			<div class="sidebar-inner slimscroll">
-				<div id="sidebar-menu" class="sidebar-menu">
-					<ul>
-						<li class="active"> <a href="index.jsp"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
-						<li class="list-divider"></li>
-						<li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Request </span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a href="MainController?btAction=ViewRequestList"> All Request </a></li>
-							</ul>
-						</li>
-						<li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a href="MainController?btAction=ViewCustomer"> All customers </a></li>
-								<li><a href="customer-edit.jsp"> Edit Customer </a></li>
-								<li><a href="customer-add.jsp"> Add Customer </a></li>
-							</ul>
-						</li>
-					
-						<li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Staff </span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a href="MainController?btAction=ViewStaff">All Staff </a></li>
-								<li><a href="staff-edit.jsp"> Edit Staff </a></li>
-								<li><a href="staff-add.jsp"> Add Staff </a></li>
-							</ul>
-						</li>
-						<li> <a href="pricing.jsp"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
-						
-						<li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a href="employees.jsp">Employees List </a></li>
-							</ul>
-						</li>
-						
-						<li class="submenu"> <a href="#"><i class="fe fe-table"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a href="expense-reports.jsp">Expense Report </a></li>
-								<li><a href="invoice-reports.jsp">Invoice Report </a></li>
-							</ul>
-						</li>
-						<li> <a href="settings.jsp"><i class="fas fa-cog"></i> <span>Settings</span></a> </li>
-						<li class="list-divider"></li>
-						<li class="list-divider"></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+                <div class="sidebar-inner slimscroll">
+                    <div id="sidebar-menu" class="sidebar-menu">
+                        <ul>
+                            <li class="active"> <a href="index.jsp"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
+                            <li class="list-divider"></li>
+                            <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Request </span> <span class="menu-arrow"></span></a>
+                                <ul class="submenu_class" style="display: none;">
+                                    <li><a href="request-all.jsp"> All Request </a></li>
+                                </ul>
+                            </li>
+                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
+                                <ul class="submenu_class" style="display: none;">
+                                    <li><a href="customer-all.jsp"> All customers </a></li>
+                                    <li><a href="customer-edit.jsp"> Edit Customer </a></li>
+                                    <li><a href="customer-add.jsp"> Add Customer </a></li>
+                                </ul>
+                            </li>
+
+                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Staff </span> <span class="menu-arrow"></span></a>
+                                <ul class="submenu_class" style="display: none;">
+                                    <li><a href="staff-all.jsp">All Staff </a></li>
+                                    <li><a href="staff-edit.jsp"> Edit Staff </a></li>
+                                    <li><a href="staff-add.jsp"> Add Staff </a></li>
+                                </ul>
+                            </li>
+                            <li> <a href="MainController?btAction=ViewService"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
+
+                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
+                                <ul class="submenu_class" style="display: none;">
+                                    <li><a href="employees.jsp">Employees List </a></li>
+                                </ul>
+                            </li>
+
+                            <li class="submenu"> <a href="#"><i class="fe fe-table"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
+                                <ul class="submenu_class" style="display: none;">
+                                    <li><a href="expense-reports.jsp">Expense Report </a></li>
+                                    <li><a href="invoice-reports.jsp">Invoice Report </a></li>
+                                </ul>
+                            </li>
+                            <li> <a href="settings.jsp"><i class="fas fa-cog"></i> <span>Settings</span></a> </li>
+                            <li class="list-divider"></li>
+                            <li class="list-divider"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
 
             <div class="page-wrapper">
@@ -220,101 +227,120 @@
                             <section class="pricing py-5">
                                 <div class="container">
                                     <div class="row  mt-5">
-
+                                        <%
+                                            List<ServiceTypeDTO> listService = (List<ServiceTypeDTO>) request.getAttribute("LISTSERVICE");
+                                            List<ServiceTypeCoverageDTO> listServiceTypeCoverage = new ArrayList();
+                                            ServiceTypeCoverageDAO dao = new ServiceTypeCoverageDAO();
+                                            for (ServiceTypeDTO service : listService) {
+                                                try {
+                                                    listServiceTypeCoverage = dao.serviceListCoverage(service.getServiceTypeID());
+                                                } catch (SQLException | ClassNotFoundException ex) {
+                                                    ex.printStackTrace();
+                                                }
+                                        %>    
                                         <div class="col-lg-3">
                                             <div class="card mb-5 mb-lg-0">
+                                             
                                                 <div class="card-body">
-                                                    <h5 class="card-title text-muted text-uppercase text-center">Single</h5>
-                                                    <h6 class="card-price text-center mt-3">$15<span class="period"></span>
+                                                    <h5 class="card-title text-muted text-uppercase text-center"><%=service.getServiceName()%></h5>
+                                                    <h6 class="card-price text-center mt-3">$<%=service.getServicePrice()%><span class="period"></span>
                                                     </h6>
                                                     <hr>
                                                     <ul class="fa-ul">
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Free
-                                                            Breakfast</li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Free Wifi
+                                                        <%
+                                                            for (ServiceTypeCoverageDTO serviceTypeCoverage : listServiceTypeCoverage) {
+                                                        %>   
+                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>
+                                                                <%=serviceTypeCoverage.getIncludedService()%>
                                                         </li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Air
-                                                            Conditioning</li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Laundry
-                                                        </li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Parking
-                                                        </li>
+                                                        <% } %>     
+                                                        <!--                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Free Wifi
+                                                                                                                </li>
+                                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Air
+                                                                                                                    Conditioning</li>
+                                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Laundry
+                                                                                                                </li>
+                                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Parking
+                                                                                                                </li>-->
                                                     </ul>
                                                     <a href="pricing-edit.jsp" class="btn btn-block btn-primary text-uppercase">Edit</a>
                                                 </div>
                                             </div>
                                         </div>
+                                        <% }%>
 
-                                        <div class="col-lg-3">
-                                            <div class="card mb-5 mb-lg-0">
-                                                <div class="card-body">
-                                                    <h5 class="card-title text-muted text-uppercase text-center">Double</h5>
-                                                    <h6 class="card-price text-center mt-3">$25<span class="period"></span>
-                                                    </h6>
-                                                    <hr>
-                                                    <ul class="fa-ul">
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Free
-                                                            Breakfast</li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Free Wifi
-                                                        </li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Air
-                                                            Conditioning</li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Laundry
-                                                        </li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Parking
-                                                        </li>
-                                                    </ul>
-                                                    <a href="pricing-edit.jsp" class="btn btn-block btn-primary text-uppercase">Edit</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <!--                                        <div class="col-lg-3">
+                                                                                    <div class="card mb-5 mb-lg-0">
+                                                                                        <div class="card-body">
+                                                                                            <h5 class="card-title text-muted text-uppercase text-center">Double</h5>
+                                                                                            <h6 class="card-price text-center mt-3">$25<span class="period"></span>
+                                                                                            </h6>
+                                                                                            <hr>
+                                                                                            <ul class="fa-ul">
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Free
+                                                                                                    Breakfast</li>
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Free Wifi
+                                                                                                </li>
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Air
+                                                                                                    Conditioning</li>
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Laundry
+                                                                                                </li>
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Parking
+                                                                                                </li>
+                                                                                            </ul>
+                                                                                            <a href="pricing-edit.jsp" class="btn btn-block btn-primary text-uppercase">Edit</a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>-->
 
-                                        <div class="col-lg-3">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="card-title text-muted text-uppercase text-center">Family</h5>
-                                                    <h6 class="card-price text-center mt-3">$35<span class="period"></span>
-                                                    </h6>
-                                                    <hr>
-                                                    <ul class="fa-ul">
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Free
-                                                            Breakfast</li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Free Wifi
-                                                        </li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Air
-                                                            Conditioning</li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Laundry
-                                                        </li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Parking
-                                                        </li>
-                                                    </ul>
-                                                    <a href="pricing-edit.jsp" class="btn btn-block btn-primary text-uppercase">Edit</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="card mb-5 mb-lg-0">
-                                                <div class="card-body">
-                                                    <h5 class="card-title text-muted text-uppercase text-center">Double</h5>
-                                                    <h6 class="card-price text-center mt-3">$25<span class="period"></span>
-                                                    </h6>
-                                                    <hr>
-                                                    <ul class="fa-ul">
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Free
-                                                            Breakfast</li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Free Wifi
-                                                        </li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Air
-                                                            Conditioning</li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Laundry
-                                                        </li>
-                                                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Parking
-                                                        </li>
-                                                    </ul>
-                                                    <a href="pricing-edit.jsp" class="btn btn-block btn-primary text-uppercase">Edit</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <!--                                        <div class="col-lg-3">
+                                                                                    <div class="card">
+                                                                                        <div class="card-body">
+                                                                                            <h5 class="card-title text-muted text-uppercase text-center">Family</h5>
+                                                                                            <h6 class="card-price text-center mt-3">$35<span class="period"></span>
+                                                                                            </h6>
+                                                                                            <hr>
+                                                                                            <ul class="fa-ul">
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Free
+                                                                                                    Breakfast</li>
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Free Wifi
+                                                                                                </li>
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Air
+                                                                                                    Conditioning</li>
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Laundry
+                                                                                                </li>
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Parking
+                                                                                                </li>
+                                                                                            </ul>
+                                                                                            <a href="pricing-edit.jsp" class="btn btn-block btn-primary text-uppercase">Edit</a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>-->
+
+                                        <!--                                        <div class="col-lg-3">
+                                                                                    <div class="card mb-5 mb-lg-0">
+                                                                                        <div class="card-body">
+                                                                                            <h5 class="card-title text-muted text-uppercase text-center">Double</h5>
+                                                                                            <h6 class="card-price text-center mt-3">$25<span class="period"></span>
+                                                                                            </h6>
+                                                                                            <hr>
+                                                                                            <ul class="fa-ul">
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Free
+                                                                                                    Breakfast</li>
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Free Wifi
+                                                                                                </li>
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Air
+                                                                                                    Conditioning</li>
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Laundry
+                                                                                                </li>
+                                                                                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Parking
+                                                                                                </li>
+                                                                                            </ul>
+                                                                                            <a href="pricing-edit.jsp" class="btn btn-block btn-primary text-uppercase">Edit</a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>-->
+
                                     </div>
                                 </div>
                             </section>

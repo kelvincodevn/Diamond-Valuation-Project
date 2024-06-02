@@ -5,6 +5,8 @@
  */
 package group6.dao;
 
+import group6.entity.RoleDTO;
+import group6.utils.DBUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,4 +54,62 @@ public class RoleDAO {
 //        }
 //        return null;
 //    }
+    
+    public RoleDTO getRoleByRoleName (String roleName) throws SQLException, ClassNotFoundException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        RoleDTO role = new RoleDTO();
+        try {
+            con=DBUtil.getConnection();
+            if(con!=null){
+                String query="Select * from Role where RoleName = ?";
+                stm = con.prepareStatement(query);
+                stm.setString(1, roleName);
+                rs=stm.executeQuery();
+                if(rs.next()){
+                    String roleID = rs.getString("RoleID");                   
+                    String roleDescription = rs.getString("RoleDescription");                   
+                    role = new RoleDTO(roleID, roleName, roleDescription);
+                    return role;
+                }
+                return null;
+            }
+            
+        } finally {
+            if (rs!=null) rs.close();
+            if(stm!=null) stm.close();
+            if(con!=null) con.close();
+         }
+        return null;
+    }
+    
+    public RoleDTO getRoleByRoleID (String roleID) throws SQLException, ClassNotFoundException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        RoleDTO role = new RoleDTO();
+        try {
+            con=DBUtil.getConnection();
+            if(con!=null){
+                String query="Select * from Role where RoleID = ?";
+                stm = con.prepareStatement(query);
+                stm.setString(1, roleID);
+                rs=stm.executeQuery();
+                if(rs.next()){
+                    String roleName = rs.getString("RoleName");
+                    String roleDescription = rs.getString("RoleDescription");                   
+                    role = new RoleDTO(roleID, roleName, roleDescription);
+                    return role;
+                }
+                return null;
+            }
+            
+        } finally {
+            if (rs!=null) rs.close();
+            if(stm!=null) stm.close();
+            if(con!=null) con.close();
+         }
+        return null;
+    }
 }

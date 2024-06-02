@@ -1,3 +1,8 @@
+<%@page import="group6.dao.ErrorRegistration"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="group6.dao.RoleDAO"%>
+<%@page import="group6.entity.RoleDTO"%>
+<%@page import="group6.entity.UsersDTO"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -142,7 +147,7 @@
                                     <p class="text-muted mb-0">Administrator</p>
                                 </div>
                             </div>
-                            <a class="dropdown-item" href="profile.jsp">My Profile</a>
+                            <a class="dropdown-item" href="MainController?btAction=ViewProfile">My Profile</a>
                             <a class="dropdown-item" href="settings.jsp">Account Settings</a>
                             <a class="dropdown-item" href="login.jsp">Logout</a>
                         </div>
@@ -153,53 +158,53 @@
             </div>
 
 
-            		<div class="sidebar" id="sidebar">
-			<div class="sidebar-inner slimscroll">
-				<div id="sidebar-menu" class="sidebar-menu">
-					<ul>
-						<li class="active"> <a href="index.jsp"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
-						<li class="list-divider"></li>
-						<li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Request </span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a href="MainController?btAction=ViewRequestList"> All Request </a></li>
-							</ul>
-						</li>
-						<li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a href="MainController?btAction=ViewCustomer"> All customers </a></li>
-								<li><a href="customer-edit.jsp"> Edit Customer </a></li>
-								<li><a href="customer-add.jsp"> Add Customer </a></li>
-							</ul>
-						</li>
-					
-						<li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Staff </span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a href="MainController?btAction=ViewStaff">All Staff </a></li>
-								<li><a href="staff-edit.jsp"> Edit Staff </a></li>
-								<li><a href="staff-add.jsp"> Add Staff </a></li>
-							</ul>
-						</li>
-						<li> <a href="pricing.jsp"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
-						
-						<li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a href="employees.jsp">Employees List </a></li>
-							</ul>
-						</li>
-						
-						<li class="submenu"> <a href="#"><i class="fe fe-table"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
-							<ul class="submenu_class" style="display: none;">
-								<li><a href="expense-reports.jsp">Expense Report </a></li>
-								<li><a href="invoice-reports.jsp">Invoice Report </a></li>
-							</ul>
-						</li>
-						<li> <a href="settings.jsp"><i class="fas fa-cog"></i> <span>Settings</span></a> </li>
-						<li class="list-divider"></li>
-						<li class="list-divider"></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+                    <div id="sidebar-menu" class="sidebar-menu">
+                        <ul>
+                            <li class="active"> <a href="index.jsp"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
+                            <li class="list-divider"></li>
+                            <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Request </span> <span class="menu-arrow"></span></a>
+                                <ul class="submenu_class" style="display: none;">
+                                    <li><a href="MainController?btAction=ViewRequestList"> All Request </a></li>
+                                </ul>
+                            </li>
+                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
+                                <ul class="submenu_class" style="display: none;">
+                                    <li><a href="MainController?btAction=ViewCustomer"> All customers </a></li>
+                                    <li><a href="customer-edit.jsp"> Edit Customer </a></li>
+                                    <li><a href="customer-add.jsp"> Add Customer </a></li>
+                                </ul>
+                            </li>
+
+                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Staff </span> <span class="menu-arrow"></span></a>
+                                <ul class="submenu_class" style="display: none;">
+                                    <li><a href="MainController?btAction=ViewStaff">All Staff </a></li>
+                                    <li><a href="staff-edit.jsp"> Edit Staff </a></li>
+                                    <li><a href="staff-add.jsp"> Add Staff </a></li>
+                                </ul>
+                            </li>
+                            <li> <a href="MainController?btAction=ViewService"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
+
+                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
+                                <ul class="submenu_class" style="display: none;">
+                                    <li><a href="employees.jsp">Employees List </a></li>
+                                </ul>
+                            </li>
+
+                            <li class="submenu"> <a href="#"><i class="fe fe-table"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
+                                <ul class="submenu_class" style="display: none;">
+                                    <li><a href="expense-reports.jsp">Expense Report </a></li>
+                                    <li><a href="invoice-reports.jsp">Invoice Report </a></li>
+                                </ul>
+                            </li>
+                            <li> <a href="settings.jsp"><i class="fas fa-cog"></i> <span>Settings</span></a> </li>
+                            <li class="list-divider"></li>
+                            <li class="list-divider"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
 
             <div class="page-wrapper">
@@ -213,84 +218,116 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <form>
+                            <%
+                                String userNameLenError = "";
+                                String passwordLenError = "";
+                                String confirmNotMatch = "";
+                                String fistNameLenError = "";
+                                String lastNameLenError = "";
+                                String accountExisted = "";
+                                String emailValidationError = "";
+                                String phoneValidationError = "";
+                                String roleValidationError = "";
+
+                                ErrorRegistration errors = (ErrorRegistration) request.getAttribute("ERRORS");
+                                if (errors != null) {
+                                    userNameLenError = errors.getUserNameLenError();
+                                    passwordLenError = errors.getPasswordLenError();
+                                    confirmNotMatch = errors.getConfirmNotMatch();
+                                    fistNameLenError = errors.getFirstNameLenError();
+                                    lastNameLenError = errors.getLastNameLenError();
+                                    accountExisted = errors.getAccountExisted();
+                                    emailValidationError = errors.getEmailValidationError();
+                                    phoneValidationError = errors.getPhoneValidationError();
+                                    roleValidationError = errors.getRoleValidationError();
+                                }
+                                
+                                
+                                UsersDTO staff = (UsersDTO) request.getAttribute("STAFFINFO");
+                                RoleDAO dao = new RoleDAO();
+                                RoleDTO role = new RoleDTO();
+                                try {
+                                    role = dao.getRoleByRoleID(staff.getRoleID());
+                                } catch (SQLException | ClassNotFoundException ex) {
+                                    ex.printStackTrace();
+                                }
+                            %>    
+                            <form action="MainController" method="post">
                                 <div class="row formtype">
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label>Staff ID</label>
+                                            <input class="form-control" type="text" name="txtStaffID" value="${requestScope.STAFFINFO.getUserID()}" readonly>                                           
+                                        </div>
+                                    </div>         
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <label>First Name</label>
-                                            <input class="form-control" type="text" value="BKG-0001">
+                                            <input class="form-control" name="txtFirstName"  type="text" value="${param.txtFirstName != null ? param.txtFirstName : (requestScope.STAFFINFO != null ? requestScope.STAFFINFO.getFirstName() : '')}">
+                                             <font color="red">${requestScope.ERRORS.firstNameLenError}</font>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input class="form-control" type="text" value="BKG-0001">
+                                            <input class="form-control" name="txtLastName" type="text"  value="${param.txtLastName != null ? param.txtLastName : (requestScope.STAFFINFO != null ? requestScope.STAFFINFO.getLastName() : '')}">
+                                             <font color="red">${requestScope.ERRORS.lastNameLenError}</font>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>User Name</label>
-                                            <input class="form-control" type="text" value="BKG-0001">
+                                            <input class="form-control" name="txtUserName" type="text" value="${param.txtUserName != null ? param.txtUserName : (requestScope.STAFFINFO != null ? requestScope.STAFFINFO.getUserName() : '')}">
+                                             <font color="red">${requestScope.ERRORS.userNameLenError}</font>
+                                             <font color="red"><p>${requestScope.ErrorMessage}</p></font>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Email ID</label>
-                                            <input class="form-control" type="text" value="BKG-0001">
+                                            <label>Email</label>
+                                            <input class="form-control" name="txtEmail" type="text" value="${param.txtEmail != null ? param.txtEmail : (requestScope.STAFFINFO != null ? requestScope.STAFFINFO.getEmail() : '')}">
+                                            <font color="red">${requestScope.ERRORS.emailValidationError}</font> 
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Password</label>
-                                            <input class="form-control" type="text" value="BKG-0001">
+                                            <input class="form-control" name="txtPassword" type="text" value="${param.txtPassword != null ? param.txtPassword : (requestScope.STAFFINFO != null ? requestScope.STAFFINFO.getPassword() : '')}">
+                                             <font color="red">${requestScope.ERRORS.passwordLenError}</font>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Confirm Password</label>
-                                            <input class="form-control" type="text" value="BKG-0001">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Staff ID</label>
-                                            <input class="form-control" type="text" value="BKG-0001">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Joining Date</label>
-                                            <div class="cal-icon">
-                                                <input type="text" class="form-control datetimepicker">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <!--                                    <div class="col-md-4">
+                                                                            <div class="form-group">
+                                                                                <label>Confirm Password</label>
+                                                                                <input class="form-control" name="txtConfirmPassword" type="text" value="">
+                                                                            </div>
+                                                                        </div>-->
+
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Phone Number</label>
-                                            <input class="form-control" type="text" value="BKG-0001">
+                                            <input class="form-control" name="txtPhoneNumber" type="text" value="${param.txtPhoneNumber != null ? param.txtPhoneNumber : (requestScope.STAFFINFO != null ? requestScope.STAFFINFO.getPhoneNumber() : '')}">
+                                             <font color="red">${requestScope.ERRORS.phoneValidationError}</font>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Role</label>
-                                            <select class="form-control" id="sel1" name="sellist1">
-                                                <option>Select</option>
-                                                <option>Admin</option>
-                                                <option>Manager</option>
-                                                <option>Staff</option>
-                                                <option>Room Cleaners</option>
-                                                <option>Servants</option>
-                                                <option>Accountant</option>
-                                                <option>Receiptionalist</option>
+                                            <select class="form-control" id="sel1" name="txtRole">
+                                                <option value="" ${param.txtRole == null && (requestScope.ROLE == null || requestScope.ROLE.getRoleName() == null) ? 'selected' : ''}>Select</option>
+                                                <option value="Consulting Staff" ${param.txtRole != null ? (param.txtRole == 'Consulting Staff' ? 'selected' : '') : (requestScope.ROLE != null && requestScope.ROLE.getRoleName() == 'Consulting Staff' ? 'selected' : '')}>Consulting Staff</option>
+                                                <option value="Valuation Staff" ${param.txtRole != null ? (param.txtRole == 'Valuation Staff' ? 'selected' : '') : (requestScope.ROLE != null && requestScope.ROLE.getRoleName() == 'Valuation Staff' ? 'selected' : '')}>Valuation Staff</option>
+                                                <option value="Manager"  ${param.txtRole != null ? (param.txtRole == 'Manager' ? 'selected' : '') : (requestScope.ROLE != null && requestScope.ROLE.getRoleName() == 'Manager' ? 'selected' : '')}>Manager</option>
                                             </select>
                                         </div>
+                                         <font color="red">${requestScope.ERRORS.roleValidationError}</font>    
                                     </div>
                                 </div>
-                            </form>
+
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary buttonedit ml-2">Save</button>
+                    <button type="submit" name="btAction" value="Edit Staff" class="btn btn-primary buttonedit ml-2">Save</button>
+                    </form>
                 </div>
             </div>
 

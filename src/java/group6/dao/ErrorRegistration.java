@@ -20,6 +20,7 @@ public class ErrorRegistration {
     private String lastNameLenError = "";
     private String emailValidationError = "";
     private String phoneValidationError = "";
+    private String roleValidationError = "";
     private String accountExisted = "";
 
     public ErrorRegistration() {
@@ -66,7 +67,7 @@ public class ErrorRegistration {
     public boolean checkConfirmNotMatch(String password, String confirm) {
         password = password.trim();
         confirm = confirm.trim();
-        if(password.isEmpty()) {
+        if (password.isEmpty()) {
             confirmNotMatch = "Password confirm is required";
             return false;
         }
@@ -107,7 +108,7 @@ public class ErrorRegistration {
 
     public boolean checkEmailValidation(String email) throws SQLException, ClassNotFoundException {
         email = email.trim();
-        if(email.isEmpty()) {
+        if (email.isEmpty()) {
             emailValidationError = "Email is required";
             return false;
         }
@@ -118,10 +119,32 @@ public class ErrorRegistration {
         return true;
     }
 
+    public boolean checkRole(String roleName) throws SQLException, ClassNotFoundException {
+        roleName = roleName.trim();
+        if (roleName.isEmpty()) {
+            roleValidationError = "Role is required";
+            return false;
+        }
+        if (roleName.equals("Select")) {
+            roleValidationError = "Role is required";
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkRole2(String roleName) throws SQLException, ClassNotFoundException {
+        roleName = roleName.trim();
+        if (roleName.isEmpty()) {
+            roleValidationError = "Role is required";
+            return false;
+        }     
+        return true;
+    }
+    
     public boolean checkPhoneNumberValidation(String phoneNumber) throws SQLException, ClassNotFoundException {
         int i = 0;
         phoneNumber = phoneNumber.trim();
-        if(phoneNumber.isEmpty()) {
+        if (phoneNumber.isEmpty()) {
             phoneValidationError = "Phonenumber is required";
             return false;
         }
@@ -168,6 +191,10 @@ public class ErrorRegistration {
 
     public String getPhoneValidationError() {
         return phoneValidationError;
+    }
+
+    public String getRoleValidationError() {
+        return roleValidationError;
     }
 
 }

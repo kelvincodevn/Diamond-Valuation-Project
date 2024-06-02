@@ -96,7 +96,7 @@
 								<h6>Soeng Souy</h6>
 								<p class="text-muted mb-0">Administrator</p>
 							</div>
-						</div> <a class="dropdown-item" href="profile.jsp">My Profile</a> <a class="dropdown-item" href="settings.jsp">Account Settings</a> <a class="dropdown-item" href="login.jsp">Logout</a> </div>
+						</div> <a class="dropdown-item" href="MainController?btAction=ViewProfile">My Profile</a> <a class="dropdown-item" href="settings.jsp">Account Settings</a> <a class="dropdown-item" href="login.jsp">Logout</a> </div>
 				</li>
 			</ul>
 		</div>
@@ -126,7 +126,7 @@
 								<li><a href="staff-add.jsp"> Add Staff </a></li>
 							</ul>
 						</li>
-						<li> <a href="pricing.jsp"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
+						<li> <a href="MainController?btAction=ViewService"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
 						
 						<li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
 							<ul class="submenu_class" style="display: none;">

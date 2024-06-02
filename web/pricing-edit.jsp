@@ -142,7 +142,7 @@
                                     <p class="text-muted mb-0">Administrator</p>
                                 </div>
                             </div>
-                            <a class="dropdown-item" href="profile.jsp">My Profile</a>
+                            <a class="dropdown-item" href="MainController?btAction=ViewProfile">My Profile</a>
                             <a class="dropdown-item" href="settings.jsp">Account Settings</a>
                             <a class="dropdown-item" href="login.jsp">Logout</a>
                         </div>
@@ -161,12 +161,12 @@
 						<li class="list-divider"></li>
 						<li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Request </span> <span class="menu-arrow"></span></a>
 							<ul class="submenu_class" style="display: none;">
-								<li><a href="MainController?btAction=ViewRequestList"> All Request </a></li>
+								<li><a href="request-all.jsp"> All Request </a></li>
 							</ul>
 						</li>
 						<li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
 							<ul class="submenu_class" style="display: none;">
-								<li><a href="MainController?btAction=ViewCustomer"> All customers </a></li>
+								<li><a href="customer-all.jsp"> All customers </a></li>
 								<li><a href="customer-edit.jsp"> Edit Customer </a></li>
 								<li><a href="customer-add.jsp"> Add Customer </a></li>
 							</ul>
@@ -174,12 +174,12 @@
 					
 						<li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Staff </span> <span class="menu-arrow"></span></a>
 							<ul class="submenu_class" style="display: none;">
-								<li><a href="MainController?btAction=ViewStaff">All Staff </a></li>
+								<li><a href="staff-all.jsp">All Staff </a></li>
 								<li><a href="staff-edit.jsp"> Edit Staff </a></li>
 								<li><a href="staff-add.jsp"> Add Staff </a></li>
 							</ul>
 						</li>
-						<li> <a href="pricing.jsp"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
+						<li> <a href="MainController?btAction=ViewService"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
 						
 						<li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
 							<ul class="submenu_class" style="display: none;">

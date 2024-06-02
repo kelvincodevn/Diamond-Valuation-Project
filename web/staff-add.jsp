@@ -1,3 +1,4 @@
+<%@page import="group6.dao.ErrorRegistration"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,7 +97,7 @@
                                     <h6>Soeng Souy</h6>
                                     <p class="text-muted mb-0">Administrator</p>
                                 </div>
-                            </div> <a class="dropdown-item" href="profile.jsp">My Profile</a> <a class="dropdown-item" href="settings.jsp">Account Settings</a> <a class="dropdown-item" href="login.jsp">Logout</a> </div>
+                            </div> <a class="dropdown-item" href="MainController?btAction=ViewProfile">My Profile</a> <a class="dropdown-item" href="settings.jsp">Account Settings</a> <a class="dropdown-item" href="login.jsp">Logout</a> </div>
                     </li>
                 </ul>
             </div>
@@ -126,7 +127,7 @@
                                     <li><a href="staff-add.jsp"> Add Staff </a></li>
                                 </ul>
                             </li>
-                            <li> <a href="pricing.jsp"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
+                            <li> <a href="MainController?btAction=ViewService"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
 
                             <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
@@ -157,53 +158,86 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
+                            <%
+                                String userNameLenError = "";
+                                String passwordLenError = "";
+                                String confirmNotMatch = "";
+                                String fistNameLenError = "";
+                                String lastNameLenError = "";
+                                String accountExisted = "";
+                                String emailValidationError = "";
+                                String phoneValidationError = "";
+                                String roleValidationError = "";
+
+                                ErrorRegistration errors = (ErrorRegistration) request.getAttribute("ERRORS");
+                                if (errors != null) {
+                                    userNameLenError = errors.getUserNameLenError();
+                                    passwordLenError = errors.getPasswordLenError();
+                                    confirmNotMatch = errors.getConfirmNotMatch();
+                                    fistNameLenError = errors.getFirstNameLenError();
+                                    lastNameLenError = errors.getLastNameLenError();
+                                    accountExisted = errors.getAccountExisted();
+                                    emailValidationError = errors.getEmailValidationError();
+                                    phoneValidationError = errors.getPhoneValidationError();
+                                    roleValidationError = errors.getRoleValidationError();
+                                }
+                            %>
                             <form action="MainController" method="post">
                                 <div class="row formtype">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>First Name</label>
-                                            <input class="form-control" type="text"> </div>
+                                            <input class="form-control" name="txtFirstName" type="text" value="${sessionScope.firstName}"> </div>
+                                        <font color="red">${requestScope.ERRORS.firstNameLenError}</font>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input class="form-control" type="text"> </div>
+                                            <input class="form-control" name="txtLastName" type="text" value="${sessionScope.lastName}"> </div>
+                                        <font color="red">${requestScope.ERRORS.lastNameLenError}</font>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>User Name</label>
-                                            <input class="form-control" type="text"> </div>
+                                            <input class="form-control" name="txtUserName" type="text" value="${sessionScope.username}"> </div>
+                                        <font color="red">${requestScope.ERRORS.userNameLenError}</font>
+                                        <font color="red"><p>${requestScope.ErrorMessage}</p></font>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input class="form-control" type="text"> </div>
+                                            <input class="form-control" name="txtEmail" type="text" value="${sessionScope.email}"> </div>
+                                        <font color="red">${requestScope.ERRORS.emailValidationError}</font> 
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Password</label>
-                                            <input class="form-control" type="text"> </div>
+                                            <input class="form-control" name="txtPassword" type="password" value="${sessionScope.password}"> </div>
+                                        <font color="red">${requestScope.ERRORS.passwordLenError}</font>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Confirm Password</label>
-                                            <input class="form-control" type="text"> </div>
+                                            <input class="form-control" name="txtConfirmPassword" type="password" value="${sessionScope.confirmPassword}"> </div>
+                                        <font color="red">${requestScope.ERRORS.confirmNotMatch}</font>
                                     </div>													
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Phone Number</label>
-                                            <input class="form-control" type="text"> </div>
+                                            <input class="form-control" name="txtPhoneNumber" type="text" value="${sessionScope.phoneNumber}"> </div>
+                                        <font color="red">${requestScope.ERRORS.phoneValidationError}</font>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Role</label>
-                                            <select class="form-control" id="sel1" name="sellist1">
-                                                <option>Select</option>											
-                                                <option>Manager</option>
-                                                <option>Consulting Staff</option>
-                                                <option>Valuation Staff</option>											
+                                            <select class="form-control" id="sel1" name="txtRole" value="${sessionScope.rolename}">                                            										                                              
+                                                 <option value="" ${sessionScope.rolename == null ? 'selected' : ''}>Select</option>	
+                                                <option value="Consulting Staff" ${sessionScope.rolename == 'Consulting Staff' ? 'selected' : ''}>Consulting Staff</option>
+                                                <option value="Valuation Staff" ${sessionScope.rolename == 'Valuation Staff' ? 'selected' : ''}>Valuation Staff</option>
+                                                 <option value="Manager" ${sessionScope.rolename == 'Manager' ? 'selected' : ''}>Manager</option>
                                             </select>
                                         </div>
+                                        <font color="red">${requestScope.ERRORS.roleValidationError}</font>
                                     </div>
                                 </div>
 

@@ -33,6 +33,12 @@ public class MainController extends HttpServlet {
     private String VIEW_STAFF_SERVLET = "ViewStaffServlet";
     private String DELETE_STAFF_SERVLET = "DeleteStaffServlet";
     private String ADD_STAFF_SERVLET = "AddStaffServlet";
+    private String EDIT_STAFF_SERVLET = "EditStaffServlet";
+    private String LOAD_STAFF_SERVLET = "LoadStaffServlet";
+    
+    //phần làm lại của Xuân Mai
+    private String VIEW_SERVICE_SERVLET = "ViewAllServiceServlet";
+    private String ADD_SERVICE_SERVLET = "AddServiceServlet";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -62,6 +68,14 @@ public class MainController extends HttpServlet {
                 url = DELETE_STAFF_SERVLET;
             }else if(btAction.equals("Add Staff")) {
                 url = ADD_STAFF_SERVLET;
+            }else if(btAction.equals("Edit Staff")) {
+                url = EDIT_STAFF_SERVLET;
+            }else if(btAction.equals("ViewService")) {
+                url = VIEW_SERVICE_SERVLET;
+            }else if(btAction.equals("Add Service")) {
+                url = ADD_SERVICE_SERVLET;
+            }else if(btAction.equals("LoadStaff")) {
+                url = LOAD_STAFF_SERVLET;
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

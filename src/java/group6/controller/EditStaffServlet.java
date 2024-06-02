@@ -25,16 +25,15 @@ import javax.servlet.http.HttpSession;
  *
  * @author DELL
  */
-public class AddStaffServlet extends HttpServlet {
+public class EditStaffServlet extends HttpServlet {
 
-    private String STAFF_ADD_PAGE = "staff-add.jsp";
+    private String STAFF_EDIT_PAGE = "staff-edit.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
-        String url = STAFF_ADD_PAGE;
+        String url = STAFF_EDIT_PAGE;
         RegistrationDAO dao = new RegistrationDAO();
         UsersDTO users = new UsersDTO();
         RoleDTO role = new RoleDTO();
@@ -45,35 +44,34 @@ public class AddStaffServlet extends HttpServlet {
         RoleDTO roleD = new RoleDTO();
         String message = null;
         try {
-            String userID = dao.createUserID();
+            String staffID = request.getParameter("txtStaffID");
             String firstName = request.getParameter("txtFirstName");
-            String lastName = request.getParameter("txtLastName");        
+            String lastName = request.getParameter("txtLastName");
             String email = request.getParameter("txtEmail");
             String phoneNumber = request.getParameter("txtPhoneNumber");
             String userName = request.getParameter("txtUserName");
-            String password = request.getParameter("txtPassword");
-            String confirmPassword = request.getParameter("txtConfirmPassword");
+            //String password = request.getParameter("txtPassword");           
             String roleName = request.getParameter("txtRole");
-            //lưu session tạm thời
+            UsersDTO staff = dao.viewProfile(staffID);
             HttpSession session = request.getSession();
             session.setAttribute("firstName", request.getParameter("txtFirstName"));
-            session.setAttribute("lastName", request.getParameter("txtLastName"));    
+            session.setAttribute("lastName", request.getParameter("txtLastName"));
             session.setAttribute("email", request.getParameter("txtEmail"));
             session.setAttribute("phoneNumber", request.getParameter("txtPhoneNumber"));
             session.setAttribute("username", request.getParameter("txtUserName"));
-            session.setAttribute("password", request.getParameter("txtPassword"));
-            session.setAttribute("confirmPassword", request.getParameter("txtConfirmPassword"));
+            //session.setAttribute("password", request.getParameter("txtPassword"));           
             session.setAttribute("rolename", request.getParameter("txtRole"));
-            
             checkErrors = errors.checkUserNameLen(userName, 6, 20) //ok
-                    & errors.checkPasswordLen(password, 8, 30) //ok 
-                    & errors.checkConfirmNotMatch(password, confirmPassword) //ok
+                    //& errors.checkPasswordLen(password, 8, 30) //ok                  
                     & errors.checkFirstNameLen(firstName, 4, 30) //ok
                     & errors.checkLastNameLen(lastName, 4, 30) //ok
                     & errors.checkEmailValidation(email) //ok
                     & errors.checkPhoneNumberValidation(phoneNumber)//ok
-                    & errors.checkRole(roleName); //ok
+                    & errors.checkRole2(roleName); //ok
             if (checkErrors) {
+                if(dao.viewProfile(staffID).getUserName().equals(userName)) {
+                    checkErrors = true;
+                } else {
                 checkErrors = dao.checkAccountExisted(userName);
                 if (checkErrors) {
                     checkErrors = false;
@@ -81,25 +79,30 @@ public class AddStaffServlet extends HttpServlet {
                     request.setAttribute("ErrorMessage", message);
                 } else {
                     checkErrors = true;
+                    }
                 }
             }
             if (checkErrors) {
-                password = PasswordHashing.toSHA1(password);
+                //password = PasswordHashing.toSHA1(password);
                 roleD = daoRole.getRoleByRoleName(roleName);
-                checkErrors = dao.createStaffAccount(userID, userName, password, firstName, lastName, email, phoneNumber, roleD.getRoleID());
+                checkErrors = dao.editStaffAccount(staffID, userName, firstName, lastName, email, phoneNumber, roleD.getRoleID());
                 checkErrors = true;
+                request.setAttribute("STAFFINFO", staff);  
+                request.setAttribute("ROLE", roleD);
                 //xóa session
                 HttpSession sessionNew = request.getSession(false);
-                if(sessionNew != null) {
+                if (sessionNew != null) {
                     sessionNew.invalidate();
                 }
-                url = STAFF_ADD_PAGE;
+                url = STAFF_EDIT_PAGE;
                 
-                request.setAttribute("SuccessMessage", "Staff " + userID + " is created successfully");
+                request.setAttribute("SuccessMessage", "Staff " + staffID + " is updated successfully");
             }
             if (!checkErrors) {
                 request.setAttribute("ERRORS", errors);
-                url = STAFF_ADD_PAGE;
+                request.setAttribute("STAFFINFO", staff);
+                request.setAttribute("ROLE", roleD);
+                url = STAFF_EDIT_PAGE;
             }
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
@@ -110,18 +113,17 @@ public class AddStaffServlet extends HttpServlet {
         }
     }
 
-
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-/**
- * Handles the HTTP <code>GET</code> method.
- *
- * @param request servlet request
- * @param response servlet response
- * @throws ServletException if a servlet-specific error occurs
- * @throws IOException if an I/O error occurs
- */
-@Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -135,7 +137,7 @@ public class AddStaffServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -146,7 +148,7 @@ public class AddStaffServlet extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

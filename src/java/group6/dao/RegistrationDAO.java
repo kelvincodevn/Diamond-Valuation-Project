@@ -430,4 +430,67 @@ public class RegistrationDAO {
         }
         return false;
     }
+      
+      public boolean createStaffAccount(String userID, String userName, String password, String firstName, String lastName, String email, String phoneNumber, String roleID) throws SQLException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBUtil.getConnection();
+            if (con != null) {
+                String query = "INSERT INTO Users (UserID, UserName, Email, Password, FirstName, LastName, PhoneNumber, Status, RoleID) VALUES\n"
+                        + "(?, ?, ?, ?, ?, ?, ?, 1, ?)";
+                stm = con.prepareStatement(query);
+                stm.setString(1, userID);
+                stm.setString(2, userName);
+                stm.setString(3, email);
+                stm.setString(4, password);
+                stm.setString(5, firstName);
+                stm.setString(6, lastName);
+                stm.setString(7, phoneNumber);              
+                stm.setString(8, roleID);
+                int affectedRow = stm.executeUpdate();
+                return affectedRow == 1;
+            }
+
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return false;
+    }
+      
+     public boolean editStaffAccount(String staffID, String username, String firstName, String lastName, String email, String phoneNumber, String roleID) throws SQLException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBUtil.getConnection();
+            if (con != null) {
+                String query = "Update Users set UserName = ?, Email = ?, FirstName = ?, LastName = ?, PhoneNumber = ?, RoleID = ? where UserID = ?";
+                stm = con.prepareStatement(query);
+                stm.setString(1, username);
+                stm.setString(2, email);
+                //stm.setString(3, password);
+                stm.setString(3, firstName);
+                stm.setString(4, lastName);
+                stm.setString(5, phoneNumber);
+                stm.setString(6, roleID);
+                stm.setString(7, staffID);
+                int affectedRow = stm.executeUpdate();
+                return affectedRow == 1;
+            }
+
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return false;
+    }  
 }

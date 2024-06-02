@@ -132,7 +132,7 @@
 								<li><a href="staff-add.jsp"> Add Staff </a></li>
 							</ul>
 						</li>
-						<li> <a href="pricing.jsp"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
+						<li> <a href="MainController?btAction=ViewService"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
 						
 						<li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
 							<ul class="submenu_class" style="display: none;">
