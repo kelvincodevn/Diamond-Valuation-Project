@@ -96,7 +96,7 @@
         
                     <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
                       <ul class="navbar-nav  ">
-                        <li class="nav-link" href="#">
+                        <li class="nav-item">
                           <a class="nav-link" href="HomePage.jsp">Home</a>
                         </li>
                         <li class="nav-item">
