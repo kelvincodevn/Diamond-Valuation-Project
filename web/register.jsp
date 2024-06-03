@@ -49,7 +49,7 @@
         }
     %>
 
-    <body>
+    <body class="sub_page">
         <div class="hero_area">
             <div class="hero_bg_box">
               <div class="img-box">
