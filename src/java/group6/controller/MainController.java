@@ -28,6 +28,7 @@ public class MainController extends HttpServlet {
     private String COOKIE_SERVLET = "CookieServlet";
     private String VIEW_PROFILE_SERVLET = "ViewProfileServlet";
     private String EDIT_PROFILE_SERVLET = "EditProfileServlet";
+    private String EDIT_PASSWORD_SERVLET = "EditPasswordServlet";
     private String VIEW_REQUEST_SERVLET = "ViewRequestServlet";
     private String VIEW_CUSTOMER_SERVLET = "ViewCustomerServlet";
     private String VIEW_STAFF_SERVLET = "ViewStaffServlet";
@@ -35,6 +36,7 @@ public class MainController extends HttpServlet {
     private String ADD_STAFF_SERVLET = "AddStaffServlet";
     private String EDIT_STAFF_SERVLET = "EditStaffServlet";
     private String LOAD_STAFF_SERVLET = "LoadStaffServlet";
+    
     
     //phần làm lại của Xuân Mai
     private String VIEW_SERVICE_SERVLET = "ViewAllServiceServlet";
@@ -58,6 +60,8 @@ public class MainController extends HttpServlet {
                 url = VIEW_PROFILE_SERVLET;
             } else if(btAction.equals("Save")) {
                 url = EDIT_PROFILE_SERVLET;
+            }else if(btAction.equals("Change Password")) {
+                url = EDIT_PASSWORD_SERVLET;
             }else if(btAction.equals("ViewRequestList")) {
                 url = VIEW_REQUEST_SERVLET;
             }else if(btAction.equals("ViewCustomer")) {

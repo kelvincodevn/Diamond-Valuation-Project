@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="group6.entity.CommitmentPaperDTO"%>
+<%@page import="group6.dao.CommitmentPaperDAO"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.util.List"%>
 <%@page import="group6.entity.ValuationRequestDTO"%>
@@ -125,10 +128,11 @@
                                 <ul class="submenu_class" style="display: none;">
                                     <li><a href="CommitmentPaper.jsp">Commitment Paper </a></li>
                                     <li><a href="SealingRecord.jsp">Sealing Record </a></li>
-                                    <li><a href="ValuationReceipt.jsp">Sealing Receipt </a></li>
+                                    <li><a href="ValuationReceipt.jsp">Valuation Receipt </a></li>
                                     <li><a href="ValuationReport.jsp">Valuation Report </a></li>
                                 </ul>
                             </li>
+
                         </ul>
                     </div>
                 </div>
@@ -139,7 +143,7 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <div class="mt-5">
-                                    <h4 class="card-title float-left mt-2">Request List</h4>
+                                    <h4 class="card-title float-left mt-2">Commitment Paper</h4>
                                 </div>
                             </div>
                         </div>
@@ -151,55 +155,70 @@
                                     <div class="table-responsive">
                                         <table class="datatable table table-stripped table table-hover table-center mb-0">
                                             <%
-                                                UsersDTO user = new UsersDTO();
+                                                UsersDTO manager = new UsersDTO();
+                                                UsersDTO customer = new UsersDTO();
                                                 ServiceTypeDTO service = new ServiceTypeDTO();
+                                                CommitmentPaperDAO daoCommitment = new CommitmentPaperDAO();
                                                 ServiceTypeDAO daoService = new ServiceTypeDAO();
                                                 RegistrationDAO daoRegis = new RegistrationDAO();
-                                                List<ValuationRequestDTO> listRequest = (List<ValuationRequestDTO>) request.getAttribute("LISTREQUEST");
+                                                List<CommitmentPaperDTO> commitmentPaperList = new ArrayList();
+                                                try {
+                                                    commitmentPaperList = daoCommitment.printAllCommitmentPaper();
+                                                } catch (SQLException | ClassNotFoundException ex) {
+                                                    ex.printStackTrace();
+                                                }
+                                                //List<ValuationRequestDTO> listRequest = (List<ValuationRequestDTO>) request.getAttribute("LISTREQUEST");
                                                 //if(listRequest.size() != 0 && listRequest)
                                             %>   
                                             <thead>
                                                 <tr>
-                                                    <th>Request ID</th>
-                                                    <th>Name</th>
-                                                    <th>Email</th>
-                                                    <th>Ph.Number</th>
+                                                    <th>Commitment ID</th>
+                                                    <th>Customer Name</th>
+                                                    <th>Phone Number</th>
                                                     <th>Date</th>
-                                                    <th>Service Type</th>
+                                                    <th>Manager Name</th>
                                                     <th>Status</th>
                                                     <th class="text-right">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <%
-                                                    for (ValuationRequestDTO requestValuation : listRequest) {
+                                                    for (CommitmentPaperDTO commitmentPaper : commitmentPaperList) {
                                                         try {
-                                                            user = daoRegis.viewProfile(requestValuation.getCustomerID());
-                                                            service = daoService.viewService(requestValuation.getServiceTypeID());
+                                                            customer = daoRegis.viewProfile(commitmentPaper.getCustomerID());
+                                                            manager = daoRegis.viewProfile(commitmentPaper.getManagerID());
+                                                            //service = daoService.viewService(commitmentPaper.getServiceTypeID());
                                                         } catch (SQLException | ClassNotFoundException ex) {
                                                             ex.printStackTrace();
                                                         }
                                                 %>   
                                                 <tr>
-                                                    <td><%=requestValuation.getRequestID()%></td>
-                                                    <td><%=user.getFirstName()%> <%=user.getLastName()%></td>                                                                                       
-                                                    <td><%=user.getEmail()%></td>
-                                                    <td><%=user.getPhoneNumber()%></td>                                                                                      
-                                                    <td><%=requestValuation.getSignedDate()%></td>
-                                                    <td><%=service.getServiceName()%></td>
-                                                    <td><%=requestValuation.getStatus()%></td>
+                                                    <td><%=commitmentPaper.getCommitmentID()%></td>
+                                                    <td><%=customer.getFirstName()%> <%=customer.getLastName()%></td>
+                                                    <td><%=customer.getPhoneNumber()%></td>
+                                                    <td><%=commitmentPaper.getCreateDate()%></td>
+                                                    <td><%=manager.getFirstName()%> <%=manager.getLastName()%></td>
+                                                    <td>
+                                                        <%
+                                                            if (commitmentPaper.isStatusOfApprove()) {
+                                                        %>
+                                                        <div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">Approved</a> </div>
+                                                        <%
+                                                        } else {
+                                                        %>
+                                                        <div class="actions"> <a href="#" class="btn btn-sm bg-danger-light mr-2">Not Approved</a> </div>
+                                                        <%
+                                                            }
+                                                        %>
+                                                    </td>
                                                     <td class="text-right">
-                                                        <div class="dropdown dropdown-action"> <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right"> <a class="dropdown-item" href="edit-request.jsp"><i class="fas fa-pencil-alt m-r-5"></i> Edit</a> <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fas fa-trash-alt m-r-5"></i> Delete</a> </div>
-                                                        </div>
+                                                        <a href="viewDetail.jsp?commitmentID=<%=commitmentPaper.getCommitmentID()%>" class="btn btn-sm btn-success">View detail</a>
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                            <% }
-
+                                            <% 
+                                                    }
                                             %>
-
-
 
                                             <!--	backend									<tbody>
                                                                                                                                     <tr>
@@ -263,7 +282,3 @@
     </body>
 
 </html>
-
-
-
-

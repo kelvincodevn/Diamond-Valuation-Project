@@ -22,6 +22,9 @@ public class ErrorRegistration {
     private String phoneValidationError = "";
     private String roleValidationError = "";
     private String accountExisted = "";
+    private String oldPasswordError = "";
+    private String newPasswordError = "";
+    private String confirmPasswordError = "";
 
     public ErrorRegistration() {
     }
@@ -52,6 +55,33 @@ public class ErrorRegistration {
         return true;
     }
 
+    public boolean checkOldPasswordInput(String password) {
+        password = password.trim();
+        if (password.isEmpty()) {
+            oldPasswordError = "Old password is required";
+            return false;
+        }
+        return true;
+    }
+
+     public boolean checkNewPasswordInput(String password) {
+        password = password.trim();
+        if (password.isEmpty()) {
+            newPasswordError = "New password is required";
+            return false;
+        }
+        return true;
+    }
+     
+      public boolean checkConfirmPasswordInput(String password) {
+        password = password.trim();
+        if (password.isEmpty()) {
+            confirmPasswordError = "Confirm password is required";
+            return false;
+        }
+        return true;
+    }
+            
     public boolean checkPasswordLen(String password, int min, int max) {
         password = password.trim();
         if (password.isEmpty()) {
@@ -137,10 +167,10 @@ public class ErrorRegistration {
         if (roleName.isEmpty()) {
             roleValidationError = "Role is required";
             return false;
-        }     
+        }
         return true;
     }
-    
+
     public boolean checkPhoneNumberValidation(String phoneNumber) throws SQLException, ClassNotFoundException {
         int i = 0;
         phoneNumber = phoneNumber.trim();
@@ -197,4 +227,15 @@ public class ErrorRegistration {
         return roleValidationError;
     }
 
+    public String getOldPasswordError() {
+        return oldPasswordError;
+    }
+
+    public String getNewPasswordError() {
+        return newPasswordError;
+    }
+
+    public String getConfirmPasswordError() {
+        return confirmPasswordError;
+    }
 }
