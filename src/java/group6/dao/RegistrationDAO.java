@@ -493,4 +493,51 @@ public class RegistrationDAO {
         }
         return false;
     }  
+     
+     //hàm check password này có đúng với account user ko
+     //trả về account nếu password đúng
+      public UsersDTO checkAccountPassword(String userID, String oldPassword) throws SQLException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        UsersDTO userInfo = new UsersDTO();
+        try {
+            con = DBUtil.getConnection();
+            if (con != null) {
+                String query = "Select * from users where Password = ? And userID = ?";
+                stm = con.prepareStatement(query);
+                stm.setString(1, oldPassword);
+                stm.setString(2, userID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    String userName = rs.getString("UserName");
+                    String firstName = rs.getString("FirstName");
+                    String lastName = rs.getString("LastName");
+                    String email = rs.getString("Email");
+                    String password = rs.getString("Password");
+                    String phoneNumber = rs.getString("PhoneNumber");
+                    String gender = rs.getString("Gender");
+                    String roleID = rs.getString("RoleID");
+                    boolean status = rs.getBoolean("Status");
+                    userInfo = new UsersDTO(userID, userName, email, password, firstName, lastName, phoneNumber, status, roleID);
+                    return userInfo;
+                }
+                return null;
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return null;
+    }
+      
+      
 }

@@ -147,7 +147,7 @@
                                     <p class="text-muted mb-0">Administrator</p>
                                 </div>
                             </div>
-                            <a class="dropdown-item" href="MainController?btAction=ViewProfile">My Profile</a>
+                            <a class="dropdown-item" href="profile.jsp">My Profile</a>
                             <a class="dropdown-item" href="settings.jsp">Account Settings</a>
                             <a class="dropdown-item" href="login.jsp">Logout</a>
                         </div>
@@ -164,43 +164,19 @@
                         <ul>
                             <li class="active"> <a href="index.jsp"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
                             <li class="list-divider"></li>
-                            <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Request </span> <span class="menu-arrow"></span></a>
-                                <ul class="submenu_class" style="display: none;">
-                                    <li><a href="MainController?btAction=ViewRequestList"> All Request </a></li>
-                                </ul>
-                            </li>
-                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
-                                <ul class="submenu_class" style="display: none;">
-                                    <li><a href="MainController?btAction=ViewCustomer"> All customers </a></li>
-                                    <li><a href="customer-edit.jsp"> Edit Customer </a></li>
-                                    <li><a href="customer-add.jsp"> Add Customer </a></li>
-                                </ul>
-                            </li>
-
-                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Staff </span> <span class="menu-arrow"></span></a>
-                                <ul class="submenu_class" style="display: none;">
-                                    <li><a href="MainController?btAction=ViewStaff">All Staff </a></li>
-                                    <li><a href="staff-edit.jsp"> Edit Staff </a></li>
-                                    <li><a href="staff-add.jsp"> Add Staff </a></li>
-                                </ul>
-                            </li>
+                            <li> <a href="MainController?btAction=ViewRequestList"><i class="fas fa-suitcase"></i> <span>Request</span></a> </li>
+                            <li> <a href="MainController?btAction=ViewCustomer"><i class="fas fa-user"></i> <span>Customers</span></a> </li>
+                            <li> <a href="MainController?btAction=ViewStaff"><i class="fas fa-user"></i> <span>Employees</span></a> </li>
                             <li> <a href="MainController?btAction=ViewService"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
-
-                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
-                                <ul class="submenu_class" style="display: none;">
-                                    <li><a href="employees.jsp">Employees List </a></li>
-                                </ul>
-                            </li>
 
                             <li class="submenu"> <a href="#"><i class="fe fe-table"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
-                                    <li><a href="expense-reports.jsp">Expense Report </a></li>
-                                    <li><a href="invoice-reports.jsp">Invoice Report </a></li>
+                                    <li><a href="CommitmentPaper.jsp">Commitment Paper </a></li>
+                                    <li><a href="SealingRecord.jsp">Sealing Record </a></li>
+                                    <li><a href="ValuationReceipt.jsp">Sealing Receipt </a></li>
+                                    <li><a href="ValuationReport.jsp">Valuation Report </a></li>
                                 </ul>
                             </li>
-                            <li> <a href="settings.jsp"><i class="fas fa-cog"></i> <span>Settings</span></a> </li>
-                            <li class="list-divider"></li>
-                            <li class="list-divider"></li>
                         </ul>
                     </div>
                 </div>
@@ -212,16 +188,16 @@
                     <div class="page-header">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="page-title mt-5">Edit Staff</h3>
+                                <h3 class="page-title mt-5">Edit Staff</h3>                               
                             </div>
-                        </div>
-                    </div>
+                        </div>                       
+                    </div>                                 
                     <div class="row">
                         <div class="col-lg-12">
                             <%
                                 String userNameLenError = "";
-                                String passwordLenError = "";
-                                String confirmNotMatch = "";
+                                //String passwordLenError = "";
+                                //String confirmNotMatch = "";
                                 String fistNameLenError = "";
                                 String lastNameLenError = "";
                                 String accountExisted = "";
@@ -232,8 +208,8 @@
                                 ErrorRegistration errors = (ErrorRegistration) request.getAttribute("ERRORS");
                                 if (errors != null) {
                                     userNameLenError = errors.getUserNameLenError();
-                                    passwordLenError = errors.getPasswordLenError();
-                                    confirmNotMatch = errors.getConfirmNotMatch();
+                                    //passwordLenError = errors.getPasswordLenError();
+                                    //confirmNotMatch = errors.getConfirmNotMatch();
                                     fistNameLenError = errors.getFirstNameLenError();
                                     lastNameLenError = errors.getLastNameLenError();
                                     accountExisted = errors.getAccountExisted();
@@ -241,8 +217,7 @@
                                     phoneValidationError = errors.getPhoneValidationError();
                                     roleValidationError = errors.getRoleValidationError();
                                 }
-                                
-                                
+
                                 UsersDTO staff = (UsersDTO) request.getAttribute("STAFFINFO");
                                 RoleDAO dao = new RoleDAO();
                                 RoleDTO role = new RoleDTO();
@@ -264,22 +239,22 @@
                                         <div class="form-group">
                                             <label>First Name</label>
                                             <input class="form-control" name="txtFirstName"  type="text" value="${param.txtFirstName != null ? param.txtFirstName : (requestScope.STAFFINFO != null ? requestScope.STAFFINFO.getFirstName() : '')}">
-                                             <font color="red">${requestScope.ERRORS.firstNameLenError}</font>
+                                            <font color="red">${requestScope.ERRORS.firstNameLenError}</font>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Last Name</label>
                                             <input class="form-control" name="txtLastName" type="text"  value="${param.txtLastName != null ? param.txtLastName : (requestScope.STAFFINFO != null ? requestScope.STAFFINFO.getLastName() : '')}">
-                                             <font color="red">${requestScope.ERRORS.lastNameLenError}</font>
+                                            <font color="red">${requestScope.ERRORS.lastNameLenError}</font>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>User Name</label>
                                             <input class="form-control" name="txtUserName" type="text" value="${param.txtUserName != null ? param.txtUserName : (requestScope.STAFFINFO != null ? requestScope.STAFFINFO.getUserName() : '')}">
-                                             <font color="red">${requestScope.ERRORS.userNameLenError}</font>
-                                             <font color="red"><p>${requestScope.ErrorMessage}</p></font>
+                                            <font color="red">${requestScope.ERRORS.userNameLenError}</font>
+                                            <font color="red"><p>${requestScope.ErrorMessage}</p></font>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -288,14 +263,7 @@
                                             <input class="form-control" name="txtEmail" type="text" value="${param.txtEmail != null ? param.txtEmail : (requestScope.STAFFINFO != null ? requestScope.STAFFINFO.getEmail() : '')}">
                                             <font color="red">${requestScope.ERRORS.emailValidationError}</font> 
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input class="form-control" name="txtPassword" type="text" value="${param.txtPassword != null ? param.txtPassword : (requestScope.STAFFINFO != null ? requestScope.STAFFINFO.getPassword() : '')}">
-                                             <font color="red">${requestScope.ERRORS.passwordLenError}</font>
-                                        </div>
-                                    </div>
+                                    </div>                                 
                                     <!--                                    <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label>Confirm Password</label>
@@ -307,7 +275,7 @@
                                         <div class="form-group">
                                             <label>Phone Number</label>
                                             <input class="form-control" name="txtPhoneNumber" type="text" value="${param.txtPhoneNumber != null ? param.txtPhoneNumber : (requestScope.STAFFINFO != null ? requestScope.STAFFINFO.getPhoneNumber() : '')}">
-                                             <font color="red">${requestScope.ERRORS.phoneValidationError}</font>
+                                            <font color="red">${requestScope.ERRORS.phoneValidationError}</font>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -320,7 +288,7 @@
                                                 <option value="Manager"  ${param.txtRole != null ? (param.txtRole == 'Manager' ? 'selected' : '') : (requestScope.ROLE != null && requestScope.ROLE.getRoleName() == 'Manager' ? 'selected' : '')}>Manager</option>
                                             </select>
                                         </div>
-                                         <font color="red">${requestScope.ERRORS.roleValidationError}</font>    
+                                        <font color="red">${requestScope.ERRORS.roleValidationError}</font>    
                                     </div>
                                 </div>
 
@@ -328,6 +296,7 @@
                     </div>
                     <button type="submit" name="btAction" value="Edit Staff" class="btn btn-primary buttonedit ml-2">Save</button>
                     </form>
+
                 </div>
             </div>
 

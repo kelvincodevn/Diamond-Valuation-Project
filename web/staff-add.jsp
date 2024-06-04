@@ -97,7 +97,7 @@
                                     <h6>Soeng Souy</h6>
                                     <p class="text-muted mb-0">Administrator</p>
                                 </div>
-                            </div> <a class="dropdown-item" href="MainController?btAction=ViewProfile">My Profile</a> <a class="dropdown-item" href="settings.jsp">Account Settings</a> <a class="dropdown-item" href="login.jsp">Logout</a> </div>
+                            </div> <a class="dropdown-item" href="profile.jsp">My Profile</a> <a class="dropdown-item" href="settings.jsp">Account Settings</a> <a class="dropdown-item" href="login.jsp">Logout</a> </div>
                     </li>
                 </ul>
             </div>
@@ -107,43 +107,19 @@
                         <ul>
                             <li class="active"> <a href="index.jsp"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
                             <li class="list-divider"></li>
-                            <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Request </span> <span class="menu-arrow"></span></a>
-                                <ul class="submenu_class" style="display: none;">
-                                    <li><a href="MainController?btAction=ViewRequestList"> All Request </a></li>
-                                </ul>
-                            </li>
-                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
-                                <ul class="submenu_class" style="display: none;">
-                                    <li><a href="MainController?btAction=ViewCustomer"> All customers </a></li>
-                                    <li><a href="customer-edit.jsp"> Edit Customer </a></li>
-                                    <li><a href="customer-add.jsp"> Add Customer </a></li>
-                                </ul>
-                            </li>
-
-                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Staff </span> <span class="menu-arrow"></span></a>
-                                <ul class="submenu_class" style="display: none;">
-                                    <li><a href="MainController?btAction=ViewStaff">All Staff </a></li>
-                                    <li><a href="staff-edit.jsp"> Edit Staff </a></li>
-                                    <li><a href="staff-add.jsp"> Add Staff </a></li>
-                                </ul>
-                            </li>
+                            <li> <a href="MainController?btAction=ViewRequestList"><i class="fas fa-suitcase"></i> <span>Request</span></a> </li>
+                            <li> <a href="MainController?btAction=ViewCustomer"><i class="fas fa-user"></i> <span>Customers</span></a> </li>
+                            <li> <a href="MainController?btAction=ViewStaff"><i class="fas fa-user"></i> <span>Employees</span></a> </li>
                             <li> <a href="MainController?btAction=ViewService"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
-
-                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
-                                <ul class="submenu_class" style="display: none;">
-                                    <li><a href="employees.jsp">Employees List </a></li>
-                                </ul>
-                            </li>
 
                             <li class="submenu"> <a href="#"><i class="fe fe-table"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
-                                    <li><a href="expense-reports.jsp">Expense Report </a></li>
-                                    <li><a href="invoice-reports.jsp">Invoice Report </a></li>
+                                    <li><a href="CommitmentPaper.jsp">Commitment Paper </a></li>
+                                    <li><a href="SealingRecord.jsp">Sealing Record </a></li>
+                                    <li><a href="ValuationReceipt.jsp">Sealing Receipt </a></li>
+                                    <li><a href="ValuationReport.jsp">Valuation Report </a></li>
                                 </ul>
-                            </li>
-                            <li> <a href="settings.jsp"><i class="fas fa-cog"></i> <span>Settings</span></a> </li>
-                            <li class="list-divider"></li>
-                            <li class="list-divider"></li>
+                            </li>                          
                         </ul>
                     </div>
                 </div>
@@ -231,10 +207,10 @@
                                         <div class="form-group">
                                             <label>Role</label>
                                             <select class="form-control" id="sel1" name="txtRole" value="${sessionScope.rolename}">                                            										                                              
-                                                 <option value="" ${sessionScope.rolename == null ? 'selected' : ''}>Select</option>	
+                                                <option value="" ${sessionScope.rolename == null ? 'selected' : ''}>Select</option>	
                                                 <option value="Consulting Staff" ${sessionScope.rolename == 'Consulting Staff' ? 'selected' : ''}>Consulting Staff</option>
                                                 <option value="Valuation Staff" ${sessionScope.rolename == 'Valuation Staff' ? 'selected' : ''}>Valuation Staff</option>
-                                                 <option value="Manager" ${sessionScope.rolename == 'Manager' ? 'selected' : ''}>Manager</option>
+                                                <option value="Manager" ${sessionScope.rolename == 'Manager' ? 'selected' : ''}>Manager</option>
                                             </select>
                                         </div>
                                         <font color="red">${requestScope.ERRORS.roleValidationError}</font>
