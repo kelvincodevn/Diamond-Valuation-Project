@@ -15,12 +15,12 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <title>Guarder</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
     <link href="css/home-style.css" rel="stylesheet" />
     <link href="css/responsive.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -35,20 +35,20 @@
       <div class="header_top">
         <div class="container-fluid">
           <div class="contact_link-container">
-            <a href="" class="contact_link1">
-              <img src="images/map.jpg">
-              <span>
-                Lorem ipsum dolor sit amet,
+            <a href="https://www.google.com/maps/place/Trường+Đại+học+FPT+TP.+HCM/@10.8411276,106.809883,15z/data=!4m6!3m5!1s0x31752731176b07b1:0xb752b24b379bae5e!8m2!3d10.8411276!4d106.809883!16s%2Fg%2F11j2zx_fz_?entry=ttu" class="contact_link1" target="_blank">
+                <img src="images/map.jpg" width="30px" height="30px">
+              <span>  
+                Đại học FPT HCM
               </span>
             </a>
             <a href="" class="contact_link2">
-              <img src="images/phone.jpg">
+              <img src="images/phone.jpg" width="30px" height="30px">
               <span>
                 Call : +01 1234567890
               </span>
             </a>
             <a href="" class="contact_link3">
-              <img src="images/mail.jpg">
+              <img src="images/mail.jpg" width="30px" height="30px">
               <span>
                 demo@gmail.com
               </span>
@@ -77,7 +77,7 @@
                   <a class="nav-link" href="#"> About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"> Services </a>
+                  <a class="nav-link" href="ValuationHome.jsp"> Services </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#"> Calculator </a>
@@ -117,7 +117,7 @@
                     </p>
                     <div class="btn-box">
                       <a href="" class="btn-1"> Read more </a>
-                      <a href="" class="btn-2">Valuate</a>
+                      <a href="ValuationHome.jsp" class="btn-2">Valuate</a>
                     </div>
                   </div>
                 </div>
@@ -141,7 +141,7 @@
                     </p>
                     <div class="btn-box">
                       <a href="" class="btn-1"> Read more </a>
-                      <a href="" class="btn-2">Valuate</a>
+                      <a href="ValuationHome.jsp" class="btn-2">Valuate</a>
                     </div>
                   </div>
                 </div>
@@ -165,7 +165,7 @@
                     </p>
                     <div class="btn-box">
                       <a href="" class="btn-1"> Read more </a>
-                      <a href="" class="btn-2">Valuate</a>
+                      <a href="ValuationHome.jsp" class="btn-2">Valuate</a>
                     </div>
                   </div>
                 </div>

@@ -41,20 +41,20 @@
           <div class="header_top">
             <div class="container-fluid">
               <div class="contact_link-container">
-                <a href="" class="contact_link1">
-                  <img src="images/map.jpg">
-                  <span>
-                    Lorem ipsum dolor sit amet,
-                  </span>
-                </a>
+                <a href="https://www.google.com/maps/place/Trường+Đại+học+FPT+TP.+HCM/@10.8411276,106.809883,15z/data=!4m6!3m5!1s0x31752731176b07b1:0xb752b24b379bae5e!8m2!3d10.8411276!4d106.809883!16s%2Fg%2F11j2zx_fz_?entry=ttu" class="contact_link1" target="_blank">
+                    <img src="images/map.jpg" width="30px" height="30px">
+                    <span>  
+                      Đại học FPT HCM
+                    </span>
+                  </a>
                 <a href="" class="contact_link2">
-                  <img src="images/phone.jpg">
+                  <img src="images/phone.jpg" width="30px" height="30px">
                   <span>
                     Call : +01 1234567890
                   </span>
                 </a>
                 <a href="" class="contact_link3">
-                  <img src="images/mail.jpg">
+                  <img src="images/mail.jpg" width="30px" height="30px">
                   <span>
                     demo@gmail.com
                   </span>
