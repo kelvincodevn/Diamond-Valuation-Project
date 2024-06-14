@@ -10,19 +10,19 @@ package group6.entity;
  * @author DELL
  */
 public class ServiceTypeDTO {
+
     private String serviceTypeID;
     private String serviceName;
-    private String serviceDescription;
+    //private String serviceDescription;
     private float servicePrice;
     private int executionTime;
 
     public ServiceTypeDTO() {
     }
 
-    public ServiceTypeDTO(String serviceTypeID, String serviceName, String serviceDescription, float servicePrice, int executionTime) {
+    public ServiceTypeDTO(String serviceTypeID, String serviceName, float servicePrice, int executionTime) {
         this.serviceTypeID = serviceTypeID;
         this.serviceName = serviceName;
-        this.serviceDescription = serviceDescription;
         this.servicePrice = servicePrice;
         this.executionTime = executionTime;
     }
@@ -43,14 +43,6 @@ public class ServiceTypeDTO {
         this.serviceName = serviceName;
     }
 
-    public String getServiceDescription() {
-        return serviceDescription;
-    }
-
-    public void setServiceDescription(String serviceDescription) {
-        this.serviceDescription = serviceDescription;
-    }
-
     public float getServicePrice() {
         return servicePrice;
     }
@@ -66,6 +58,5 @@ public class ServiceTypeDTO {
     public void setExecutionTime(int executionTime) {
         this.executionTime = executionTime;
     }
-    
-    
+
 }

@@ -10,19 +10,19 @@ package group6.entity;
  * @author DELL
  */
 public class ServiceTypeCoverageDTO {
+
     private String serviceTypeCoverageID;
     private String serviceTypeID;
     private String includedService;
-    private String detailedDescitption;
+    //private String detailedDescitption;
 
     public ServiceTypeCoverageDTO() {
     }
-    
-    public ServiceTypeCoverageDTO(String serviceTypeCoverageID, String serviceTypeID, String includedService, String detailedDescitption) {
+
+    public ServiceTypeCoverageDTO(String serviceTypeCoverageID, String serviceTypeID, String includedService) {
         this.serviceTypeCoverageID = serviceTypeCoverageID;
         this.serviceTypeID = serviceTypeID;
         this.includedService = includedService;
-        this.detailedDescitption = detailedDescitption;
     }
 
     public String getServiceTypeCoverageID() {
@@ -49,13 +49,4 @@ public class ServiceTypeCoverageDTO {
         this.includedService = includedService;
     }
 
-    public String getDetailedDescitption() {
-        return detailedDescitption;
-    }
-
-    public void setDetailedDescitption(String detailedDescitption) {
-        this.detailedDescitption = detailedDescitption;
-    }
-    
-    
 }

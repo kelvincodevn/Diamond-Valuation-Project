@@ -80,6 +80,14 @@
         <servlet-name>EditPasswordServlet</servlet-name>
         <servlet-class>group6.controller.EditPasswordServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewPricingServlet</servlet-name>
+        <servlet-class>group6.controller.ViewPricingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckDiamondServlet</servlet-name>
+        <servlet-class>group6.controller.CheckDiamondServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -151,6 +159,14 @@
     <servlet-mapping>
         <servlet-name>EditPasswordServlet</servlet-name>
         <url-pattern>/EditPasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewPricingServlet</servlet-name>
+        <url-pattern>/ViewPricingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckDiamondServlet</servlet-name>
+        <url-pattern>/CheckDiamondServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
