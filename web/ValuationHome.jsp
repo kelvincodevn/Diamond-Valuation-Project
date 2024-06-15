@@ -74,7 +74,7 @@
                   <a class="nav-link" href="HomePage.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"> About</a>
+                    <a class="nav-link" href="AboutUs.jsp"> About</a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link" href="ValuationHome.jsp"> Services <span class="sr-only">(current)</span></a>
@@ -364,17 +364,17 @@
             </h5>
             <ul>
               <li>
-                <a href="">
+                  <a href="HomePage.jsp">
                   Home
                 </a>
               </li>
               <li>
-                <a href="">
+                  <a href="AboutUs.jsp">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="">
+                  <a href="ValuationHome.jsp">
                   Services
                 </a>
               </li>

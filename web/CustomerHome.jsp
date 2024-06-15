@@ -1,10 +1,21 @@
 <%-- 
-    Document   : HomePage
-    Created on : May 24, 2024, 2:22:47 PM
-    Author     : DELL
+    Document   : CustomerHome
+    Created on : Jun 15, 2024, 1:22:28 PM
+    Author     : Admin
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Cookie[] cookies = request.getCookies();
+    String userName = "Username";
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("USERNAME")) {
+                userName = cookie.getValue();
+            }
+        }
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +32,7 @@
     <link href="css/home-style.css" rel="stylesheet" />
     <link href="css/responsive.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/profile-style.css">
 </head>
 
 <body>
@@ -74,7 +86,7 @@
                   <a class="nav-link" href="HomePage.jsp">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="AboutUs.jsp"> About</a>
+                    <a class="nav-link" href="AboutUs.jsp"> About</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="ValuationHome.jsp"> Services </a>
@@ -87,9 +99,16 @@
                 </li>
               </ul>
                 
-            <div class="auth-buttons">
-                <button class="signup" onclick="location.href='register.jsp'">Sign Up</button>
-                <button class="signin" onclick="location.href='login.jsp'">Sign in</button>
+            <div class="profile-dropdown">
+                <button class="profile-button">
+                    <img src="assets/img/profiles/avatar-13.jpg" alt="Profile Picture">
+                    <span style="color: white"><%= userName %></span>
+                </button>
+                <div class="profile-dropdown-content">
+                    <a href="CustomerDashboard-Profile.jsp">Edit Profile</a>
+                    <a href="#">Settings & Privacy</a>
+                    <a href="login.jsp">Logout</a>
+                </div>
             </div>
             </div>
           </nav>
@@ -421,5 +440,3 @@
   <script src="js/custom.js"></script>
 </body>
 </html>
-
-
