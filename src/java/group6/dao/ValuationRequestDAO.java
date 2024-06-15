@@ -87,6 +87,70 @@ public class ValuationRequestDAO {
         return false;
     }
 
+    // kiem tra step dang o buoc nao va CHUYEN ID sang buoc tiep theo
+    public String checkStep(String rqID) throws SQLException, SQLException, ClassNotFoundException {
+        Connection con = null;
+        String step = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBUtil.getConnection();
+            if (con != null) {
+                String query = "SELECT * FROM ValuationRequest "
+                        + "Where RequestID = ? ";
+                stm = con.prepareStatement(query);
+                stm.setString(1, rqID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    int stepNo = Integer.parseInt(rs.getString("processId").substring(1));
+                    stepNo++;
+                    if (stepNo >= 1 && stepNo <= 8) {
+                        step = "P0" + stepNo;
+                    } else {
+                        step = rs.getString("processId");
+                    }
+                }
+
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return step;
+    }
+
+    //chuyen buoc tiep theo
+    public boolean nextProcess(String rqID) throws SQLException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        String nextStep = checkStep(rqID);
+        boolean result = false;
+        try {
+            con = DBUtil.getConnection();
+            if (con != null) {
+                String query = "Update ValuationRequest set processId  = ? "
+                        + "where RequestID = ? ";
+                stm = con.prepareStatement(query);
+                stm.setString(1, nextStep);
+                stm.setString(2, rqID);
+                int affectedRow = stm.executeUpdate();
+                result = affectedRow == 1;
+            }
+
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
 //    public List<ValuationRequestDTO> printAllValuationRequest() throws SQLException, ClassNotFoundException {
 //        Connection con = null;
 //        PreparedStatement stm = null;

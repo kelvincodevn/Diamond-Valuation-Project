@@ -27,25 +27,14 @@ import javax.servlet.http.HttpServletResponse;
 public class ViewRequestServlet extends HttpServlet {
 
     private String LIST_REQUEST_PAGE = "request-all.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         ValuationRequestDAO dao = new ValuationRequestDAO();
-//        ValuationRequestDTO requestValuation = new ValuationRequestDTO();
-        RegistrationDAO daoRes = new RegistrationDAO();
-        List<ValuationRequestDTO> listRequest = new ArrayList();
-        List<UsersDTO> listCustomer = new ArrayList();
         String url = "";
         try {
-            listRequest = dao.printAllValuationRequest();
-//            for (ValuationRequestDTO requestVa : listRequest) {
-//                listCustomer.add()
-//            }
-            request.setAttribute("LISTREQUEST", listRequest);
-            url = LIST_REQUEST_PAGE;
-        } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
