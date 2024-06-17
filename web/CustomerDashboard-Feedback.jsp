@@ -72,7 +72,7 @@
       <div class="header_bottom">
         <div class="container-fluid">
           <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href="HomePage.jsp">
+              <a class="navbar-brand" href="CustomerHome.jsp">
               <span>
                 DVS
               </span>
@@ -84,13 +84,13 @@
             <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
               <ul class="navbar-nav  ">
                 <li class="nav-item">
-                    <a class="nav-link" href="HomePage.jsp">Home</a>
+                    <a class="nav-link" href="CustomerHome.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="AboutUs.jsp"> About</a>
+                    <a class="nav-link" href="CustomerAbout.jsp"> About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="ValuationHome.jsp"> Services </a>
+                    <a class="nav-link" href="CustomerValuation.jsp"> Services </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#"> Calculator </a>
@@ -196,7 +196,7 @@
       <div class="row">
         <div class="col-md-3">
           <div class="info_logo">
-            <a class="navbar-brand" href="HomePage.jsp">
+              <a class="navbar-brand" href="CustomerHome.jsp">
               <span>
                 DVS
               </span>
@@ -213,17 +213,17 @@
             </h5>
             <ul>
               <li>
-                  <a href="HomePage.jsp">
+                  <a href="CustomerHome.jsp">
                   Home
                 </a>
               </li>
               <li>
-                  <a href="AboutUs.jsp">
+                  <a href="CustomerAbout.jsp">
                   About Us
                 </a>
               </li>
               <li>
-                  <a href="ValuationHome.jsp">
+                  <a href="CustomerValuation.jsp">
                   Services
                 </a>
               </li>

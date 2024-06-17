@@ -83,13 +83,13 @@
             <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
               <ul class="navbar-nav  ">
                 <li class="nav-item active">
-                  <a class="nav-link" href="HomePage.jsp">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="CustomerHome.jsp">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="AboutUs.jsp"> About</a>
+                    <a class="nav-link" href="CustomerAbout.jsp"> About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="ValuationHome.jsp"> Services </a>
+                    <a class="nav-link" href="CustomerValuation.jsp"> Services </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#"> Calculator </a>
@@ -135,8 +135,8 @@
                       sed do eiusmod magna aliqua. Ut enim ad minim veniam
                     </p>
                     <div class="btn-box">
-                        <a href="AboutUs.jsp" class="btn-1"> Read more </a>
-                      <a href="ValuationHome.jsp" class="btn-2">Valuate</a>
+                        <a href="CustomerAbout.jsp" class="btn-1"> Read more </a>
+                        <a href="CustomerValuation.jsp" class="btn-2">Valuate</a>
                     </div>
                   </div>
                 </div>
@@ -159,8 +159,8 @@
                       sed do eiusmod magna aliqua. Ut enim ad minim veniam
                     </p>
                     <div class="btn-box">
-                        <a href="AboutUs.jsp" class="btn-1"> Read more </a>
-                      <a href="ValuationHome.jsp" class="btn-2">Valuate</a>
+                        <a href="CustomerAbout.jsp" class="btn-1"> Read more </a>
+                      <a href="CustomerValuation.jsp" class="btn-2">Valuate</a>
                     </div>
                   </div>
                 </div>
@@ -183,8 +183,8 @@
                       sed do eiusmod magna aliqua. Ut enim ad minim veniam
                     </p>
                     <div class="btn-box">
-                        <a href="AboutUs.jsp" class="btn-1"> Read more </a>
-                      <a href="ValuationHome.jsp" class="btn-2">Valuate</a>
+                        <a href="CustomerAbout.jsp" class="btn-1"> Read more </a>
+                      <a href="CustomerValuation.jsp" class="btn-2">Valuate</a>
                     </div>
                   </div>
                 </div>
@@ -228,7 +228,7 @@
               in reprehenderit in voluptate velit
             </p>
             <div class="btn-box">
-                <a href="AboutUs.jsp">
+                <a href="CustomerAbout.jsp">
                 Read More
               </a>
             </div>
@@ -354,7 +354,7 @@
       <div class="row">
         <div class="col-md-3">
           <div class="info_logo">
-            <a class="navbar-brand" href="HomePage.jsp">
+              <a class="navbar-brand" href="CustomerHome.jsp">
               <span>
                 DVS
               </span>
@@ -371,17 +371,17 @@
             </h5>
             <ul>
               <li>
-                  <a href="HomePage.jsp">
+                  <a href="CustomerHome.jsp">
                   Home
                 </a>
               </li>
               <li>
-                  <a href="AboutUs.jsp">
+                  <a href="CustomerAbout.jsp">
                   About Us
                 </a>
               </li>
               <li>
-                  <a href="ValuationHome.jsp">
+                  <a href="CustomerValuation.jsp">
                   Services
                 </a>
               </li>
