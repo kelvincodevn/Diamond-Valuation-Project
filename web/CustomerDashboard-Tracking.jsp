@@ -4,7 +4,7 @@
     Author     : Admin
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     Cookie[] cookies = request.getCookies();
     String userName = "Username";
@@ -13,6 +13,14 @@
             if (cookie.getName().equals("USERNAME")) {
                 userName = cookie.getValue();
             }
+        }
+    }
+    
+    String[] statuses = new String[7];
+    for (int i = 0; i < statuses.length; i++) {
+        statuses[i] = (String) request.getSession().getAttribute("stepStatus" + i);
+        if (statuses[i] == null) {
+            statuses[i] = ""; // Default to an empty string if not set
         }
     }
 %>
@@ -33,6 +41,8 @@
     <link href="css/responsive.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/profile-style.css">
     <link rel="stylesheet" href="css/customer-style.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/progess-bar.css">
 </head>
 
 <body class="sub_page">
@@ -118,27 +128,64 @@
     </div>
     
     <div class="main-container">
-    <div class="content">
-        <!-- User Profile Sidebar -->
-        <div class="profile-sidebar">
-            <img src="assets/img/profiles/avatar-13.jpg" alt="Profile Picture">
-            <h5 class="text-center"><%= userName %></h5>
-            <a href="CustomerDashboard-Profile.jsp">Profile</a>
-            <a class="active" href="CustomerDashboard-Tracking.jsp">Valuation Tracking</a>
-            <a href="CustomerDashboard-History.jsp">Valuation History</a>
-            <a href="CustomerDashboard-Feedback.jsp">Services Feedback</a>
+        <div class="content">
+            <!-- User Profile Sidebar -->
+            <div class="profile-sidebar">
+                <img src="assets/img/profiles/avatar-13.jpg" alt="Profile Picture">
+                <h5 class="text-center"><%= userName %></h5>
+                <a href="CustomerDashboard-Profile.jsp">Profile</a>
+                <a class="active" href="CustomerDashboard-Tracking.jsp">Valuation Tracking</a>
+                <a href="CustomerDashboard-History.jsp">Valuation History</a>
+                <a href="CustomerDashboard-Feedback.jsp">Services Feedback</a>
+            </div>
+            
+            <div class="progress-container">
+                <div id="progress-bar" class="progressbar">
+                    <div class="step <%= statuses[0] %>">
+                        <div class="icon"><i class="fas fa-hourglass-start"></i></div>
+                        <div class="step-title">Submitted</div>
+                    </div>
+                    <div class="step <%= statuses[1] %>">
+                        <div class="icon"><i class="fas fa-comments"></i></div>
+                        <div class="step-title">Consulting</div>
+                    </div>
+                    <div class="step <%= statuses[2] %>">
+                        <div class="icon"><i class="fas fa-credit-card"></i></div>
+                        <div class="step-title">Payment</div>
+                    </div>
+                    <div class="step <%= statuses[3] %>">
+                        <div class="icon"><i class="fas fa-vial"></i></div>
+                        <div class="step-title">Sample Received</div>
+                    </div>
+                    <div class="step <%= statuses[4] %>">
+                        <div class="icon"><i class="fas fa-cogs"></i></div>
+                        <div class="step-title">Valuation in Progress</div>
+                    </div>
+                    <div class="step <%= statuses[5] %>">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <div class="step-title">Result Sent</div>
+                    </div>
+                    <div class="step <%= statuses[6] %>">
+                        <div class="icon"><i class="fas fa-info-circle"></i></div>
+                        <div class="step-title">Order Status</div>
+                    </div>
+                </div>
+                <div id="timestamps-container" class="timestamps-container p-3 border border-success rounded bg-light">
+                    <% 
+                        for (int i = 0; i < 7; i++) {
+                            String timestamp = (String) request.getSession().getAttribute("timestamp" + i);
+                            if (timestamp != null) {
+                    %>
+                                <div class="timestamp">Step <%= i + 1 %>: <%= timestamp %></div>
+                    <% 
+                            }
+                        }
+                    %>
+                </div>
+            </div>
+
         </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
     </div>
-</div>
 
     
     
@@ -228,6 +275,7 @@
     </p>
   </footer>
           
+  <script src="js/progressbar.js"></script>
   <script src="js/update-img.js"></script>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.js"></script>
