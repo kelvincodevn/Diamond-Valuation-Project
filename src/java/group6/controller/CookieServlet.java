@@ -25,7 +25,7 @@ public class CookieServlet extends HttpServlet {
 
     private String HOME_PAGE = "HomePage.jsp";
     private String ADMIN_PAGE = "index.jsp";
-    private String MAIN_PAGE = "MainPage.jsp";
+    private String MAIN_PAGE = "HomePage.jsp";
     private String CONSULTING_PAGE = "ConsultingHome.jsp";
     private String VALUATION_PAGE = "ValuationHome.jsp";
     private String MANAGER_PAGE = "ManagerHome.jsp";

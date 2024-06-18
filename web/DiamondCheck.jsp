@@ -54,7 +54,8 @@
         <meta property="og:url" content="https://www.stonealgo.com/diamond-details/">
         <meta property="og:type" content="website">
         <meta property="og:image" content="https://stonealgo-3.b-cdn.net/static/dist/images/og/diamond_check_og.png" />
-
+        <link rel="stylesheet" href="css/profile-style.css">
+        <link rel="stylesheet" href="css/customer-style.css">
         <style>
             /* Custom styles to avoid conflicts */
             .header_bottom {
@@ -379,10 +380,10 @@
                 <div class="mx-auto px-4 md:px-8 lg-med:px-12 max-w-[2024px] uppercase">
                     <div class="relative flex-1 flex items-center justify-start ">
 
-                        <div class="flex justify-start lg:w-0 lg:flex-1 ">
-                            <a href="HomePage.jsp" data-link_name='home page' class="sa-nav_link"><span class="sr-only">DVS</span><img class="block lg:hidden h-7 w-auto rounded sm:h-10" width="104" height="24" src="https://stonealgo-3.b-cdn.net/static/dist/next/images/StoneAlgo%20Logo.svg?width=104&height=24" alt="StoneAlgo Logo" /></a>
-                            <a href="HomePage.jsp" data-link_name='home page' class="sa-nav_link"><span class="sr-only">DVS</span><img class="hidden lg:block h-8 w-auto rounded sm:h-8" width="138" height="32" src="https://stonealgo-3.b-cdn.net/static/dist/next/images/logo.svg?width=138&height=32" alt="StoneAlgo Logo" /></a>
-                        </div>
+                        <!--                        <div class="flex justify-start lg:w-0 lg:flex-1 ">
+                                                    <a href="HomePage.jsp" data-link_name='home page' class="sa-nav_link"><span class="sr-only">DVS</span><img class="block lg:hidden h-7 w-auto rounded sm:h-10" width="104" height="24" src="https://stonealgo-3.b-cdn.net/static/dist/next/images/StoneAlgo%20Logo.svg?width=104&height=24" alt="StoneAlgo Logo" /></a>
+                                                    <a href="HomePage.jsp" data-link_name='home page' class="sa-nav_link"><span class="sr-only">DVS</span><img class="hidden lg:block h-8 w-auto rounded sm:h-8" width="138" height="32" src="https://stonealgo-3.b-cdn.net/static/dist/next/images/logo.svg?width=138&height=32" alt="StoneAlgo Logo" /></a>
+                                                </div>-->
 
                         <nav class="relative">
                             <ul class="nav-list hidden lg:flex space-x-6 xl:space-x-10 m-0">
@@ -393,11 +394,56 @@
 
                                 <li><a class="sa-nav_link" data-link_name='free check' href="DiamondCheck.jsp">Diamond Check</a></li>
                                 <li><a class="sa-nav_link" data-link_name='calculator' href="#">Calculator</a></li>
+                                <li><a class="sa-nav_link" data-link_name='calculator' href="ValuationHome.jsp">Valuation Request</a></li>
                                 <li><a class="sa-nav_link" data-link_name='prices' href="#">Contact Us</a></li>
+                                    <%
+                                      String logOut = (String) request.getAttribute("LOGOUT"); // check if logout is requested
+                                      String userNameID = (String) request.getAttribute("USERNAMEID"); // check if user is logged in
+                                      String userName = (String) request.getAttribute("USERNAME"); 
+                                      Cookie[] checkCookies = request.getCookies();
+                                      String checkUserNameID = null;
+                                      String checkUsername = null;
+
+                                      if (checkCookies != null) {
+                                          for (Cookie cookie : checkCookies) {
+                                              String k = cookie.getName();
+                                              String v = cookie.getValue();
+                                              if (k.equals("USERNAMEID")) {
+                                                  checkUserNameID = v;
+                                              } else if (k.equals("USERNAME")) {
+                                                  checkUsername = v;
+                                              }
+                                          }
+                                      }
+
+                                      // Check if user is logged in via session or cookies
+                                      if ((userNameID != null || checkUserNameID != null) && logOut == null) {
+                                          if (userNameID != null && userName !=null) {
+                                              checkUserNameID = userNameID;
+                                              checkUsername = userName;
+                                          }
+                                    %>
+                                <div class="profile-dropdown">
+                                    <button class="profile-button">
+                                        <img src="assets/img/profiles/avatar-13.jpg" alt="Profile Picture">
+                                        <span style="color: white"><%= checkUsername%></span>
+                                    </button>
+                                    <div class="profile-dropdown-content">
+                                        <a href="CustomerDashboard-Profile.jsp">Edit Profile</a>
+                                        <a href="#">Settings & Privacy</a>
+                                        <a href="MainController?btAction=Logout">Logout</a>
+                                    </div>
+                                </div>
+                                <%
+                                } else {
+                                %>
                                 <div class="auth-buttons">
                                     <button class="signup" onclick="location.href = 'register.jsp'">Sign Up</button>
                                     <button class="signin" onclick="location.href = 'login.jsp'">Sign in</button>
                                 </div>
+                                <%
+                                    }
+                                %>    
                             </ul>
 
                         </nav>
@@ -620,7 +666,7 @@
 
                                                 </div>
                                                 <font color="red"><p>${requestScope.INVALID}</p></font>
-                                                
+
                                             </form>
 
 

@@ -1,10 +1,21 @@
 <%-- 
-    Document   : HomePage
-    Created on : May 24, 2024, 2:22:47 PM
-    Author     : DELL
+    Document   : CustomerHome
+    Created on : Jun 15, 2024, 1:22:28 PM
+    Author     : Admin
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Cookie[] cookies = request.getCookies();
+    String userName = "Username";
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("USERNAME")) {
+                userName = cookie.getValue();
+            }
+        }
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,19 +26,16 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-        <title>Guarder</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
         <link href="css/home-style.css" rel="stylesheet" />
         <link href="css/responsive.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/profile-style.css">
-        <link rel="stylesheet" href="css/customer-style.css">
-
     </head>
 
-    <body><!--        <link rel="stylesheet" href="css/profile-style.css">
-        <link rel="stylesheet" href="css/customer-style.css">-->
+    <body>
         <div class="hero_area">
             <div class="hero_bg_box">
                 <div class="img-box">
@@ -46,13 +54,13 @@
                                 </span>
                             </a>
                             <a href="" class="contact_link2">
-                                <img src="images/phone.jpg">
+                                <img src="images/phone.jpg" width="30px" height="30px">
                                 <span>
                                     Call : +01 1234567890
                                 </span>
                             </a>
                             <a href="" class="contact_link3">
-                                <img src="images/mail.jpg">
+                                <img src="images/mail.jpg" width="30px" height="30px">
                                 <span>
                                     demo@gmail.com
                                 </span>
@@ -71,8 +79,6 @@
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class=""></span>
                             </button>
-
-
 
                             <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
                                 <ul class="navbar-nav  ">
@@ -98,54 +104,18 @@
                                         <a class="nav-link" href="#">Contact us</a>
                                     </li>
                                 </ul>
-                                <%
-                                    String logOut = (String) request.getAttribute("LOGOUT"); // check if logout is requested
-                                    String userNameID = (String) request.getAttribute("USERNAMEID"); // check if user is logged in
-                                    String userName = (String) request.getAttribute("USERNAME"); 
-                                    Cookie[] checkCookies = request.getCookies();
-                                    String checkUserNameID = null;
-                                    String checkUsername = null;
 
-                                    if (checkCookies != null) {
-                                        for (Cookie cookie : checkCookies) {
-                                            String k = cookie.getName();
-                                            String v = cookie.getValue();
-                                            if (k.equals("USERNAMEID")) {
-                                                checkUserNameID = v;
-                                            } else if (k.equals("USERNAME")) {
-                                                checkUsername = v;
-                                            }
-                                        }
-                                    }
-
-                                    // Check if user is logged in via session or cookies
-                                    if ((userNameID != null || checkUserNameID != null) && logOut == null) {
-                                        if (userNameID != null && userName !=null) {
-                                            checkUserNameID = userNameID;
-                                            checkUsername = userName;
-                                        }
-                                %>
                                 <div class="profile-dropdown">
                                     <button class="profile-button">
                                         <img src="assets/img/profiles/avatar-13.jpg" alt="Profile Picture">
-                                        <span style="color: white"><%= checkUsername%></span>
+                                        <span style="color: white"><%= userName%></span>
                                     </button>
                                     <div class="profile-dropdown-content">
                                         <a href="CustomerDashboard-Profile.jsp">Edit Profile</a>
                                         <a href="#">Settings & Privacy</a>
-                                        <a href="MainController?btAction=Logout">Logout</a>
+                                        <a href="login.jsp">Logout</a>
                                     </div>
                                 </div>
-                                <%
-                                } else {
-                                %>
-                                <div class="auth-buttons">
-                                    <button class="signup" onclick="location.href = 'register.jsp'">Sign Up</button>
-                                    <button class="signin" onclick="location.href = 'login.jsp'">Sign in</button>
-                                </div>
-                                <%
-                                    }
-                                %> 
                             </div>
                         </nav>
                     </div>
@@ -171,8 +141,8 @@
                                                 sed do eiusmod magna aliqua. Ut enim ad minim veniam
                                             </p>
                                             <div class="btn-box">
-                                                <a href="" class="btn-1"> Read more </a>
-                                                <a href="" class="btn-2">Valuate</a>
+                                                <a href="AboutUs.jsp" class="btn-1"> Read more </a>
+                                                <a href="ValuationHome.jsp" class="btn-2">Valuate</a>
                                             </div>
                                         </div>
                                     </div>
@@ -195,8 +165,8 @@
                                                 sed do eiusmod magna aliqua. Ut enim ad minim veniam
                                             </p>
                                             <div class="btn-box">
-                                                <a href="" class="btn-1"> Read more </a>
-                                                <a href="" class="btn-2">Valuate</a>
+                                                <a href="AboutUs.jsp" class="btn-1"> Read more </a>
+                                                <a href="ValuationHome.jsp" class="btn-2">Valuate</a>
                                             </div>
                                         </div>
                                     </div>
@@ -219,8 +189,8 @@
                                                 sed do eiusmod magna aliqua. Ut enim ad minim veniam
                                             </p>
                                             <div class="btn-box">
-                                                <a href="" class="btn-1"> Read more </a>
-                                                <a href="" class="btn-2">Valuate</a>
+                                                <a href="AboutUs.jsp" class="btn-1"> Read more </a>
+                                                <a href="ValuationHome.jsp" class="btn-2">Valuate</a>
                                             </div>
                                         </div>
                                     </div>
@@ -264,7 +234,7 @@
                                 in reprehenderit in voluptate velit
                             </p>
                             <div class="btn-box">
-                                <a href="">
+                                <a href="AboutUs.jsp">
                                     Read More
                                 </a>
                             </div>
@@ -407,17 +377,17 @@
                             </h5>
                             <ul>
                                 <li>
-                                    <a href="">
+                                    <a href="HomePage.jsp">
                                         Home
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="AboutUs.jsp">
                                         About Us
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="ValuationHome.jsp">
                                         Services
                                     </a>
                                 </li>
@@ -476,5 +446,3 @@
         <script src="js/custom.js"></script>
     </body>
 </html>
-
-

@@ -45,6 +45,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
         <link href="css/home-style.css" rel="stylesheet" />
         <link href="css/responsive.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/profile-style.css">
+        <link rel="stylesheet" href="css/customer-style.css">
 
     </head>
     <style>
@@ -71,10 +73,10 @@
                 <div class="header_top">
                     <div class="container-fluid">
                         <div class="contact_link-container">
-                            <a href="" class="contact_link1">
-                                <img src="images/map.jpg">
-                                <span>
-                                    Lorem ipsum dolor sit amet,
+                            <a href="https://www.google.com/maps/place/Trường+Đại+học+FPT+TP.+HCM/@10.8411276,106.809883,15z/data=!4m6!3m5!1s0x31752731176b07b1:0xb752b24b379bae5e!8m2!3d10.8411276!4d106.809883!16s%2Fg%2F11j2zx_fz_?entry=ttu" class="contact_link1" target="_blank">
+                                <img src="images/map.jpg" width="30px" height="30px">
+                                <span>  
+                                    Đại học FPT HCM
                                 </span>
                             </a>
                             <a href="" class="contact_link2">
@@ -110,10 +112,10 @@
                                         <a class="nav-link" href="HomePage.jsp">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#"> About</a>
+                                        <a class="nav-link" href="AboutUs.jsp"> About</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="MainController?btAction=ViewPricing"> Services </a>
+                                        <a class="nav-link" href="MainController?btAction=ViewPricing">Services<span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="DiamondCheck.jsp"> Diamond Check </a>
@@ -122,14 +124,61 @@
                                         <a class="nav-link" href="#"> Calculator </a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link" href="ValuationHome.jsp"> Valuation Request </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link" href="#">Contact us</a>
                                     </li>
                                 </ul>
 
+                                <%
+                                    String logOut = (String) request.getAttribute("LOGOUT"); // check if logout is requested
+                                    String userNameID = (String) request.getAttribute("USERNAMEID"); // check if user is logged in
+                                    String userName = (String) request.getAttribute("USERNAME");
+                                    Cookie[] checkCookies = request.getCookies();
+                                    String checkUserNameID = null;
+                                    String checkUsername = null;
+
+                                    if (checkCookies != null) {
+                                        for (Cookie cookie : checkCookies) {
+                                            String k = cookie.getName();
+                                            String v = cookie.getValue();
+                                            if (k.equals("USERNAMEID")) {
+                                                checkUserNameID = v;
+                                            } else if (k.equals("USERNAME")) {
+                                                checkUsername = v;
+                                            }
+                                        }
+                                    }
+
+                                    // Check if user is logged in via session or cookies
+                                    if ((userNameID != null || checkUserNameID != null) && logOut == null) {
+                                        if (userNameID != null && userName != null) {
+                                            checkUserNameID = userNameID;
+                                            checkUsername = userName;
+                                        }
+                                %>
+                                <div class="profile-dropdown">
+                                    <button class="profile-button">
+                                        <img src="assets/img/profiles/avatar-13.jpg" alt="Profile Picture">
+                                        <span style="color: white"><%= checkUsername%></span>
+                                    </button>
+                                    <div class="profile-dropdown-content">
+                                        <a href="CustomerDashboard-Profile.jsp">Edit Profile</a>
+                                        <a href="#">Settings & Privacy</a>
+                                        <a href="MainController?btAction=Logout">Logout</a>
+                                    </div>
+                                </div>
+                                <%
+                                } else {
+                                %>
                                 <div class="auth-buttons">
                                     <button class="signup" onclick="location.href = 'register.jsp'">Sign Up</button>
                                     <button class="signin" onclick="location.href = 'login.jsp'">Sign in</button>
                                 </div>
+                                <%
+                                    }
+                                %>  
                             </div>
                         </nav>
                     </div>

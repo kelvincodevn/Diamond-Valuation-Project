@@ -1,53 +1,40 @@
 <%-- 
-    Document   : register
-    Created on : May 30, 2024, 7:45:18 AM
-    Author     : DELL
+    Document   : CustomerDashboard-Feedback
+    Created on : Jun 11, 2024, 3:17:27 PM
+    Author     : Admin
 --%>
 
-<%@page import="group6.dao.ErrorRegistration"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Cookie[] cookies = request.getCookies();
+    String userName = "Username";
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("USERNAME")) {
+                userName = cookie.getValue();
+            }
+        }
+    }
+%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Diamond Valuation System</title>
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
-        <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-        <link rel="stylesheet" href="assets/css/feathericon.min.css">
-        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
-        <link rel="stylesheet" href="assets/css/style.css"> 
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
         <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
         <link href="css/home-style.css" rel="stylesheet" />
         <link href="css/responsive.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/profile-style.css">
+        <link rel="stylesheet" href="css/customer-style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-    <%
-        String userNameLenError = "";
-        String passwordLenError = "";
-        String confirmNotMatch = "";
-        String fistNameLenError = "";
-        String lastNameLenError = "";
-        String accountExisted = "";
-        String emailValidationError = "";
-        String phoneValidationError = "";
-
-        ErrorRegistration errors = (ErrorRegistration) request.getAttribute("ERRORS");
-        if (errors != null) {
-            userNameLenError = errors.getUserNameLenError();
-            passwordLenError = errors.getPasswordLenError();
-            confirmNotMatch = errors.getConfirmNotMatch();
-            fistNameLenError = errors.getFirstNameLenError();
-            lastNameLenError = errors.getLastNameLenError();
-            accountExisted = errors.getAccountExisted();
-            emailValidationError = errors.getEmailValidationError();
-            phoneValidationError = errors.getPhoneValidationError();
-        }
-    %>
 
     <body class="sub_page">
         <div class="hero_area">
@@ -68,13 +55,13 @@
                                 </span>
                             </a>
                             <a href="" class="contact_link2">
-                                <img src="images/phone.jpg">
+                                <img src="images/phone.jpg" width="30px" height="30px">
                                 <span>
                                     Call : +01 1234567890
                                 </span>
                             </a>
                             <a href="" class="contact_link3">
-                                <img src="images/mail.jpg">
+                                <img src="images/mail.jpg" width="30px" height="30px">
                                 <span>
                                     demo@gmail.com
                                 </span>
@@ -111,7 +98,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="#"> Calculator </a>
                                     </li>
-                                     <li class="nav-item">
+                                    <li class="nav-item">
                                         <a class="nav-link" href="ValuationHome.jsp"> Valuation Request </a>
                                     </li>
                                     <li class="nav-item">
@@ -119,9 +106,16 @@
                                     </li>
                                 </ul>
 
-                                <div class="auth-buttons">
-                                    <button class="signup" onclick="location.href = 'register.jsp'">Sign Up</button>
-                                    <button class="signin" onclick="location.href = 'login.jsp'">Sign in</button>
+                                <div class="profile-dropdown">
+                                    <button class="profile-button">
+                                        <img src="assets/img/profiles/avatar-13.jpg" alt="Profile Picture">
+                                        <span style="color: white"><%= userName%></span>
+                                    </button>
+                                    <div class="profile-dropdown-content">
+                                        <a href="CustomerDashboard-Profile.jsp">Edit Profile</a>
+                                        <a href="#">Settings & Privacy</a>
+                                        <a href="MainController?btAction=Logout">Logout</a>
+                                    </div>
                                 </div>
                             </div>
                         </nav>
@@ -130,71 +124,78 @@
             </header>
         </div>
 
-        <div class="main-wrapper login-body">
-            <div class="login-wrapper">
-                <div class="container">
-                    <div class="loginbox">
-                        <div class="login-left"> 
-                            <h3>Welcome to DVS!</h3>
-                            <p>The best diamond valuation partner you can find out there!</p>
-                            <img class="img-fluid" src="images/Image-2-1.png" alt="Logo"> 
-                        </div>
-                        <div class="login-right">
-                            <div class="login-right-wrap">
-                                <h1 class="mb-3">Register</h1>
-                                <form action="MainController" method="post">    
-                                    <div class="form-group">
-                                        <input class="form-control" id="firstname" type="text" name="txtFirstName" value="${sessionScope.firstName}"  placeholder="Firstname"> 
-                                        <font color="red">${requestScope.ERRORS.firstNameLenError}</font>
-                                        <div class="error"></div>
-                                    </div>  
+        <div class="main-container">
+            <div class="content">
+                <!-- User Profile Sidebar -->
+                <div class="profile-sidebar">
+                    <img src="assets/img/profiles/avatar-13.jpg" alt="Profile Picture">
+                    <h5 class="text-center"><%= userName%></h5>
+                    <a href="CustomerDashboard-Profile.jsp">Profile</a>
+                    <a href="CustomerDashboard-Tracking.jsp">Valuation Tracking</a>
+                    <a href="CustomerDashboard-History.jsp">Valuation History</a>
+                    <a class="active" href="CustomerDashboard-Feedback.jsp">Services Feedback</a>
+                </div>
+                <div class="detail-container">
+                    <div class="detail-box">
+                        <h4>
+                            <%= userName%>
+                        </h4>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <p>
+                            I am VERY grateful to DVS for saving me from a would-be terrible purchase. Highly recommend!
+                        </p>
 
-                                    <div class="form-group">
-                                        <input class="form-control" id="lastname" type="text" name="txtLastName" value="${sessionScope.lastName}" placeholder="Lastname"> 
-                                        <font color="red">${requestScope.ERRORS.lastNameLenError}</font>
-                                        <div class="error"></div>
-                                    </div>  
+                    </div>
+                    <div class="detail-box">
+                        <h4>
+                            <%= userName%>
+                        </h4>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <p>
+                            The cut score was a terrific way to hone in on the best candidates when faced with the overwhelming number of options available online.
+                        </p>
 
-                                    <div class="form-group">
-                                        <input class="form-control" id="phonenumber" type="text" name="txtPhoneNumber" value="${sessionScope.phoneNumber}" placeholder="Phonenumber"> 
-                                        <font color="red">${requestScope.ERRORS.phoneValidationError}</font>
-                                        <div class="error"></div>
-                                    </div>  
+                    </div>
+                    <div class="detail-box">
+                        <h4>
+                            <%= userName%>
+                        </h4>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <p>
+                            By using the DVS calculator, I was able to find the best cut diamond at the best price. My diamond is breathtaking.
+                        </p>
 
-                                    <div class="form-group">
-                                        <input class="form-control" id="username" type="text" name="txtUserName" value="${sessionScope.username}" placeholder="Username"> 
-                                        <div class="error"></div>
-                                        <font color="red">${requestScope.ERRORS.userNameLenError}</font>
-                                        <font color="red"><p>${requestScope.ErrorMessage}</p></font>
-                                    </div>                 
-                                    <div class="form-group">
-                                        <input class="form-control" id="email" type="text" name="txtEmail" value="${sessionScope.email}" placeholder="Email"> 
-                                        <font color="red">${requestScope.ERRORS.emailValidationError}</font> 
-                                        <div class="error"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control"  id="password" type="password" name="txtPassword" value="${sessionScope.password}" placeholder="Password"> 
-                                        <font color="red">${requestScope.ERRORS.passwordLenError}</font>
-                                        <div class="error"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" id="password2" type="password" name="txtConfirmPassword" value="${sessionScope.confirmPassword}" placeholder="Confirm Password"> 
-                                        <font color="red">${requestScope.ERRORS.confirmNotMatch}</font>
-                                        <div class="error"></div>
-                                    </div>
-                                    <div class="form-group mb-0">
-                                        <button class="btn btn-primary btn-block" name = "btAction" type="submit" value="Signup">Register</button>
-                                    </div>
-                                </form>
-                                <div class="login-or"> <span class="or-line"></span> <span class="span-or">or</span> </div>
-                                <div class="social-login"> <span>Register with</span> <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a><a href="#" class="google"><i class="fab fa-google"></i></a> </div>
-                                <div class="text-center dont-have">Already have an account? <a href="MainController?btAction=Signin">Login</a> </div>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="detail-box">
+                        <h4>
+                            <%= userName%>
+                        </h4>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <p>
+                            One of the best diamond valuation system you can find out there. Definitely recommend it!
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+
+
 
         <section class="info_section ">
             <div class="container">
@@ -218,17 +219,17 @@
                             </h5>
                             <ul>
                                 <li>
-                                    <a href="">
+                                    <a href="HomePage.jsp">
                                         Home
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="AboutUs.jsp">
                                         About Us
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="ValuationHome.jsp">
                                         Services
                                     </a>
                                 </li>
@@ -282,15 +283,9 @@
             </p>
         </footer>
 
+        <script src="js/update-img.js"></script>
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src="js/custom.js"></script>
-        <script defer src="assets/js/index.js"></script> 
-        <script src="assets/js/jquery-3.5.1.min.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-        <script src="assets/js/script.js"></script>
     </body>
-
 </html>

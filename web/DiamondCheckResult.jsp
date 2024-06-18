@@ -47,7 +47,8 @@
         <link rel="icon" type="image/png" sizes="32x32" href="https://stonealgo-3.b-cdn.net/static/dist/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="https://stonealgo-3.b-cdn.net/static/dist/favicon/favicon-16x16.png">
 
-
+        <link rel="stylesheet" href="css/profile-style.css">
+        <link rel="stylesheet" href="css/customer-style.css">
 
 
         <meta property="og:title" content="Free Diamond Check">
@@ -394,10 +395,54 @@
                                 <li><a class="sa-nav_link" data-link_name='free check' href="DiamondCheck.jsp">Diamond Check</a></li>
                                 <li><a class="sa-nav_link" data-link_name='calculator' href="#">Calculator</a></li>
                                 <li><a class="sa-nav_link" data-link_name='prices' href="#">Contact Us</a></li>
+                                    <%
+                                        String logOut = (String) request.getAttribute("LOGOUT"); // check if logout is requested
+                                        String userNameID = (String) request.getAttribute("USERNAMEID"); // check if user is logged in
+                                        String userName = (String) request.getAttribute("USERNAME");
+                                        Cookie[] checkCookies = request.getCookies();
+                                        String checkUserNameID = null;
+                                        String checkUsername = null;
+
+                                        if (checkCookies != null) {
+                                            for (Cookie cookie : checkCookies) {
+                                                String k = cookie.getName();
+                                                String v = cookie.getValue();
+                                                if (k.equals("USERNAMEID")) {
+                                                    checkUserNameID = v;
+                                                } else if (k.equals("USERNAME")) {
+                                                    checkUsername = v;
+                                                }
+                                            }
+                                        }
+
+                                        // Check if user is logged in via session or cookies
+                                        if ((userNameID != null || checkUserNameID != null) && logOut == null) {
+                                            if (userNameID != null && userName != null) {
+                                                checkUserNameID = userNameID;
+                                                checkUsername = userName;
+                                            }
+                                    %>
+                                <div class="profile-dropdown">
+                                    <button class="profile-button">
+                                        <img src="assets/img/profiles/avatar-13.jpg" alt="Profile Picture">
+                                        <span style="color: white"><%= checkUsername%></span>
+                                    </button>
+                                    <div class="profile-dropdown-content">
+                                        <a href="CustomerDashboard-Profile.jsp">Edit Profile</a>
+                                        <a href="#">Settings & Privacy</a>
+                                        <a href="MainController?btAction=Logout">Logout</a>
+                                    </div>
+                                </div>
+                                <%
+                                } else {
+                                %>
                                 <div class="auth-buttons">
                                     <button class="signup" onclick="location.href = 'register.jsp'">Sign Up</button>
                                     <button class="signin" onclick="location.href = 'login.jsp'">Sign in</button>
                                 </div>
+                                <%
+                                    }
+                                %>  
                             </ul>
 
                         </nav>
@@ -568,49 +613,49 @@
                             </svg>
                             <rect width="50%" height="50%" stroke-width="0" fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)" />
                             </svg>
-                           
-                               
-                                    <!--                                    <p class="mt-4 text-6xl text-center lg:text-left tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
-                                                                            <span class="block text-gray-900">Check any diamond's</span>
-                                                                            <span class="block text-indigo-400">price & quality</span>
-                                                                        </p>-->
-
-                                    <!--                                    <p class="mt-6 text-lg leading-8 text-gray-600 text-center lg:text-left font-normal">Transact with confidence ? get fair price, cut score, visual carat and more <span class="underline underline-offset-4 font-medium decoration-indigo-400 decoration-2">for free</span></p>-->
-                                    <!--                                    <div class="mt-10 flex items-center gap-x-6 hidden">
-                                                                            <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get started</a>
-                                                                            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">?</span></a>
-                                                                        </div>-->
 
 
-                                   
-                                        
+                            <!--                                    <p class="mt-4 text-6xl text-center lg:text-left tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
+                                                                    <span class="block text-gray-900">Check any diamond's</span>
+                                                                    <span class="block text-indigo-400">price & quality</span>
+                                                                </p>-->
 
-                                            <!--                                            <div id="sa-check_fail" style="display: none; color: salmon; padding-bottom: 10px;">We could not locate this report number. If you're sure it is correct give us a <a href="javascript:void(0)" id="sa-check_fail_chat">chat</a> and we will look into it.</div>
-                                                                                        <div id="sa-service_down" style="display: none; color: salmon; padding-bottom: 10px;">Hmmm...there may be an issue. We couldn't look up this report number. Give us a <a href="javascript:void(0)" id="sa-service_down_chat">chat</a> and we will look into it.</div>-->                                            
-                                                    <input id="sa-cert_id" type="hidden">                                                      
-                                <!--                                <div class="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
-                                                                    <div class="mx-auto w-[22.875rem] max-w-full drop-shadow-xl">
-                                                                        <img class="" src="https://stonealgo-3.b-cdn.net/static/dist/img/dd_2.webp" alt="StoneAlgo diamond produce page example" />
-                                                                    </div>
+                            <!--                                    <p class="mt-6 text-lg leading-8 text-gray-600 text-center lg:text-left font-normal">Transact with confidence ? get fair price, cut score, visual carat and more <span class="underline underline-offset-4 font-medium decoration-indigo-400 decoration-2">for free</span></p>-->
+                            <!--                                    <div class="mt-10 flex items-center gap-x-6 hidden">
+                                                                    <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get started</a>
+                                                                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">?</span></a>
                                                                 </div>-->
-                          
+
+
+
+
+
+                            <!--                                            <div id="sa-check_fail" style="display: none; color: salmon; padding-bottom: 10px;">We could not locate this report number. If you're sure it is correct give us a <a href="javascript:void(0)" id="sa-check_fail_chat">chat</a> and we will look into it.</div>
+                                                                        <div id="sa-service_down" style="display: none; color: salmon; padding-bottom: 10px;">Hmmm...there may be an issue. We couldn't look up this report number. Give us a <a href="javascript:void(0)" id="sa-service_down_chat">chat</a> and we will look into it.</div>-->                                            
+                            <input id="sa-cert_id" type="hidden">                                                      
+                            <!--                                <div class="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
+                                                                <div class="mx-auto w-[22.875rem] max-w-full drop-shadow-xl">
+                                                                    <img class="" src="https://stonealgo-3.b-cdn.net/static/dist/img/dd_2.webp" alt="StoneAlgo diamond produce page example" />
+                                                                </div>
+                                                            </div>-->
+
                         </div>
                     </main>
                 </div>
 
-                
-                
+
+
                 <!-- Main Product Info -->
                 <%
                     DiamondInfoDTO dia = (DiamondInfoDTO) request.getAttribute("DIAMOND");
-                    
+
                 %>   
                 <div class="mt-4 lg:mt-0 col-span-2">
 
                     <div class="max-w-3xl mx-auto px-2 sm:px-0 text-xl font-medium tracking-tight text-gray-700 flex flex-wrap justify-start items-center">
                         <h1 class="text-left text-xl font-medium sm:tracking-tight text-gray-700">
-                            
-                           GIA ID <%=dia.getDiaID()%>
+
+                            GIA ID <%=dia.getDiaID()%>
 
                         </h1>
 
@@ -658,13 +703,13 @@
                                 </div>
                             </div>
 
-<!--                            <div class="mt-1 flex items-center gap-x-2.5 text-sm leading-5 text-gray-400 font-normal">
-                                <p class="truncate italic">Not currently listed on StoneAlgo</p>
-                                <svg viewBox="0 0 2 2" class="h-1 w-1 flex-none fill-gray-400">
-                                <circle cx="1" cy="1" r="1" />
-                                </svg>
-                                <a href="/diamond-search/s/3e7d434e2818c5b6c93395caa67ef2f1" target="_blank" data-source="d_details_see_similar" data-search_similar="true" class="whitespace-nowrap cursor-pointer">See similar ?</a>
-                            </div>-->
+                            <!--                            <div class="mt-1 flex items-center gap-x-2.5 text-sm leading-5 text-gray-400 font-normal">
+                                                            <p class="truncate italic">Not currently listed on StoneAlgo</p>
+                                                            <svg viewBox="0 0 2 2" class="h-1 w-1 flex-none fill-gray-400">
+                                                            <circle cx="1" cy="1" r="1" />
+                                                            </svg>
+                                                            <a href="/diamond-search/s/3e7d434e2818c5b6c93395caa67ef2f1" target="_blank" data-source="d_details_see_similar" data-search_similar="true" class="whitespace-nowrap cursor-pointer">See similar ?</a>
+                                                        </div>-->
                         </div>
 
                     </div>
@@ -753,7 +798,7 @@
                                                 </dt>
                                                 <dd>
                                                     <div class="text-base leading-6 font-medium text-indigo-600 text-center">
-                                                            <%=dia.getCarat()%> ct.
+                                                        <%=dia.getCarat()%> ct.
                                                     </div>
                                                 </dd>
                                             </dl>
@@ -954,7 +999,7 @@
                                 </div>
                             </div>
                         </div>
-<!--                        <div data-page_nav="true" data-nav_target="2" data-nav_source="2_2" class="w-fit mx-auto underline underline-offset-1 text-blue-600 text-sm mt-0 mb-2 text-center font-normal cursor-pointer">View Interactive Certificate</div>-->
+                        <!--                        <div data-page_nav="true" data-nav_target="2" data-nav_source="2_2" class="w-fit mx-auto underline underline-offset-1 text-blue-600 text-sm mt-0 mb-2 text-center font-normal cursor-pointer">View Interactive Certificate</div>-->
                     </div>
 
                     <!-- Primary Btn -->
@@ -1011,18 +1056,18 @@
                                         <div class="bg-secondary-700 uppercase text-white py-1.5 pl-3 text-left">GIA Report Details</div>
                                         <div class="grid grid-cols-2 gap-x-2 text-sm lg:text-base">
                                             <div class="pl-2 font-normal text-gray-500">
-<!--                                                <div class="pt-2 text-left">
-                                                    <div data-tooltip="true" data-tooltip_id="110" class="dropdown-wrap relative">
-                                                        <button class="block relative">
-                                                            <span class="">Certificate Date</span>
-                                                            <span class="inline-block absolute top-0 -right-[16px] ">
-                                                                <svg fill="none" viewBox="0 0 24 24" width="14" height="14" stroke-width="1.5" stroke="currentColor" class="text-gray-500">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-                                                                </svg>
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                </div>-->
+                                                <!--                                                <div class="pt-2 text-left">
+                                                                                                    <div data-tooltip="true" data-tooltip_id="110" class="dropdown-wrap relative">
+                                                                                                        <button class="block relative">
+                                                                                                            <span class="">Certificate Date</span>
+                                                                                                            <span class="inline-block absolute top-0 -right-[16px] ">
+                                                                                                                <svg fill="none" viewBox="0 0 24 24" width="14" height="14" stroke-width="1.5" stroke="currentColor" class="text-gray-500">
+                                                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                                                                                                                </svg>
+                                                                                                            </span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                </div>-->
                                                 <div class="pt-2 text-left">
                                                     <div data-tooltip="true" data-tooltip_id="111" class="dropdown-wrap relative">
                                                         <button class="block relative">
@@ -1061,7 +1106,7 @@
                                                 </div>
                                             </div>
                                             <div class="pr-2">
-<!--                                                <div class="text-gray-900 pt-2 text-right">09/01/2023</div> -->
+                                                <!--                                                <div class="text-gray-900 pt-2 text-right">09/01/2023</div> -->
                                                 <div class="text-gray-900 pt-2 text-right"><%=dia.getDiaID()%></div>
                                                 <div class="text-gray-900 pt-2 text-right ">
 
@@ -1125,18 +1170,18 @@
                                                     </div>
                                                 </div>
 
-<!--                                                <div class="pt-2 text-left">
-                                                    <div data-tooltip="true" data-tooltip_id="15" class="dropdown-wrap relative">
-                                                        <button class="block relative">
-                                                            <span class="">Cut Score®</span>
-                                                            <span class="inline-block absolute top-0 -right-[16px] ">
-                                                                <svg fill="none" viewBox="0 0 24 24" width="14" height="14" stroke-width="1.5" stroke="currentColor" class="text-gray-500">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-                                                                </svg>
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                </div>-->
+                                                <!--                                                <div class="pt-2 text-left">
+                                                                                                    <div data-tooltip="true" data-tooltip_id="15" class="dropdown-wrap relative">
+                                                                                                        <button class="block relative">
+                                                                                                            <span class="">Cut Score®</span>
+                                                                                                            <span class="inline-block absolute top-0 -right-[16px] ">
+                                                                                                                <svg fill="none" viewBox="0 0 24 24" width="14" height="14" stroke-width="1.5" stroke="currentColor" class="text-gray-500">
+                                                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                                                                                                                </svg>
+                                                                                                            </span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                </div>-->
 
                                             </div>
                                             <div class="pr-2">
@@ -1155,12 +1200,12 @@
                                                 </div>
                                                 <div class="text-gray-900 pt-2 text-right"> <%=dia.getCut()%> </div>
 
-<!--
-                                                <div class="text-gray-900 pt-2 text-right ">
-
-                                                    <span class="text-gray-900 pt-2 text-right">9.4</span>
-
-                                                </div>-->
+                                                <!--
+                                                                                                <div class="text-gray-900 pt-2 text-right ">
+                                                
+                                                                                                    <span class="text-gray-900 pt-2 text-right">9.4</span>
+                                                
+                                                                                                </div>-->
 
                                             </div>
                                         </div>
@@ -1225,23 +1270,23 @@
                                                     </div>  
 
                                                 </div>
-<!--                                                <div class="grid grid-cols-2 gap-x-2">
-                                                    <div data-tooltip="true" data-tooltip_id="103" class="dropdown-wrap relative pt-2">
-                                                        <button class="block relative">
-                                                            <span class="">Clarity Characteristics</span>
-                                                            <span class="inline-block absolute top-0 -right-[16px] ">
-                                                                <svg fill="none" viewBox="0 0 24 24" width="14" height="14" stroke-width="1.5" stroke="currentColor" class="text-gray-500">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-                                                                </svg>
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="text-gray-900 pt-2 text-right font-medium ">
-
-                                                        Crystal,  Feather,  Needle,  Pinpoint
-
-                                                    </div>
-                                                </div>-->
+                                                <!--                                                <div class="grid grid-cols-2 gap-x-2">
+                                                                                                    <div data-tooltip="true" data-tooltip_id="103" class="dropdown-wrap relative pt-2">
+                                                                                                        <button class="block relative">
+                                                                                                            <span class="">Clarity Characteristics</span>
+                                                                                                            <span class="inline-block absolute top-0 -right-[16px] ">
+                                                                                                                <svg fill="none" viewBox="0 0 24 24" width="14" height="14" stroke-width="1.5" stroke="currentColor" class="text-gray-500">
+                                                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                                                                                                                </svg>
+                                                                                                            </span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="text-gray-900 pt-2 text-right font-medium ">
+                                                
+                                                                                                        Crystal,  Feather,  Needle,  Pinpoint
+                                                
+                                                                                                    </div>
+                                                                                                </div>-->
                                                 <div class="grid grid-cols-2 gap-x-2">
                                                     <div data-tooltip="true" data-tooltip_id="104" class="dropdown-wrap relative pt-2">
                                                         <button class="block relative">
@@ -1255,19 +1300,19 @@
                                                     </div>
                                                     <div class="text-gray-900 pt-2 text-right font-medium">GIA <%=dia.getDiaID()%></div>
                                                 </div>
-<!--                                                <div class="grid grid-cols-2 gap-x-2">
-                                                    <div data-tooltip="true" data-tooltip_id="105" class="dropdown-wrap relative pt-2">
-                                                        <button class="block relative">
-                                                            <span class="">Comments</span>
-                                                            <span class="inline-block absolute top-0 -right-[16px] ">
-                                                                <svg fill="none" viewBox="0 0 24 24" width="14" height="14" stroke-width="1.5" stroke="currentColor" class="text-gray-500">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-                                                                </svg>
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="text-gray-900 pt-2 text-right font-medium">Clouds are not shown.</div>
-                                                </div>                  -->
+                                                <!--                                                <div class="grid grid-cols-2 gap-x-2">
+                                                                                                    <div data-tooltip="true" data-tooltip_id="105" class="dropdown-wrap relative pt-2">
+                                                                                                        <button class="block relative">
+                                                                                                            <span class="">Comments</span>
+                                                                                                            <span class="inline-block absolute top-0 -right-[16px] ">
+                                                                                                                <svg fill="none" viewBox="0 0 24 24" width="14" height="14" stroke-width="1.5" stroke="currentColor" class="text-gray-500">
+                                                                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                                                                                                                </svg>
+                                                                                                            </span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="text-gray-900 pt-2 text-right font-medium">Clouds are not shown.</div>
+                                                                                                </div>                  -->
                                             </div>
                                         </div>
                                     </div>
