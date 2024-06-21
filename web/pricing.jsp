@@ -240,7 +240,7 @@
                                                     ex.printStackTrace();
                                                 }
                                         %>    
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="card mb-5 mb-lg-0">
 
                                                 <div class="card-body">

@@ -244,44 +244,49 @@
                                                 }
                                         %>    
 
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="card mb-5 mb-lg-0">
-
                                                 <div class="card-body">
                                                     <form action="MainController" method="get">
-
-                                                        <h5 class="card-title text-muted text-uppercase text-center">
+                                                        <div class="form-group">
                                                             <input type="hidden" name="txtServiceID" value="<%=service.getServiceTypeID()%>" />
-                                                            <input type="text" name="txtServiceName" value="<%=service.getServiceName()%>" />
-                                                            Execution time
-                                                            <input type="text" name="intExecuteTime" value="<%=service.getExecutionTime()%>" />
-
-                                                        </h5>
-                                                        <h6 class="card-price text-center mt-3">$<span class="period"></span>
-                                                            <input type="text" name="floatPrice" value="<%=service.getServicePrice()%>" />
-                                                        </h6>
+                                                            <label for="serviceName" class="card-title text-muted text-uppercase text-center">Service Name</label>
+                                                            <input type="text" class="form-control" id="serviceName" name="txtServiceName" value="<%=service.getServiceName()%>" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="executionTime" class="card-title text-muted text-uppercase text-center">Execution Time</label>
+                                                            <input type="text" class="form-control" id="executionTime" name="intExecuteTime" value="<%=service.getExecutionTime()%>" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="price" class="card-title text-muted text-uppercase text-center">Price</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">$</span>
+                                                                </div>
+                                                                <input type="text" class="form-control" id="price" name="floatPrice" value="<%=service.getServicePrice()%>" />
+                                                            </div>
+                                                        </div>
                                                         <hr>
                                                         <ul class="fa-ul">
                                                             <%
                                                                 int count = 1;
-
                                                                 for (ServiceTypeCoverageDTO serviceTypeCoverage : listServiceTypeCoverage) {
-                                                            %>   
-
-                                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>
-
-                                                                <input type="hidden" name="txtCoverID<%=count%>" value="<%=serviceTypeCoverage.getServiceTypeCoverageID()%>" />
-                                                                <input type="text" name="txtServiceCover<%=count%>" value="<%=serviceTypeCoverage.getIncludedService()%>" />
-
-
+                                                            %>
+                                                            <li>
+                                                                <span class="fa-li"><i class="fas fa-check"></i></span>
+                                                                <div class="form-group">
+                                                                    <input type="hidden" name="txtCoverID<%=count%>" value="<%=serviceTypeCoverage.getServiceTypeCoverageID()%>" />
+                                                                    <input type="text" class="form-control" name="txtServiceCover<%=count%>" value="<%=serviceTypeCoverage.getIncludedService()%>" />
+                                                                </div>
                                                             </li>
-                                                            <% count++;
-                                                                } %>     
-
-
+                                                            <%
+                                                                count++;
+                                                                }
+                                                            %>
                                                         </ul>
-                                                        <!--                                                    <a href="pricing-edit.jsp" class="btn btn-block btn-primary text-uppercase">Edit</a>-->
-                                                        <input type="submit" name="btAction" value ="SaveServiceChange" />
+                                                        <div class="text-center">
+                                                            <input type="submit" name="btAction" value="Save Service Change" class="btn btn-primary text-uppercase" />
+                                                        </div>
                                                     </form>
                                                 </div>
                                             </div>
