@@ -72,7 +72,7 @@
       <div class="header_bottom">
         <div class="container-fluid">
           <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href="HomePage.jsp">
+              <a class="navbar-brand" href="CustomerHome.jsp">
               <span>
                 DVS
               </span>
@@ -96,7 +96,7 @@
                   <a class="nav-link" href="#"> Calculator </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Contact us</a>
+                    <a class="nav-link" href="CustomerContact.jsp">Contact us</a>
                 </li>
               </ul>
                 

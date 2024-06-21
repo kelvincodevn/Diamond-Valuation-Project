@@ -1,6 +1,6 @@
 <%-- 
-    Document   : CustomerAbout
-    Created on : Jun 17, 2024, 12:07:40 PM
+    Document   : CustomerContact
+    Created on : Jun 21, 2024, 12:39:16 PM
     Author     : Admin
 --%>
 
@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
     <link href="css/home-style.css" rel="stylesheet" />
     <link href="css/responsive.css" rel="stylesheet" />
+    <link href="css/contact.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/profile-style.css">
 </head>
@@ -85,8 +86,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="CustomerHome.jsp">Home</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="CustomerAbout.jsp"> About <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="CustomerAbout.jsp"> About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="CustomerValuation.jsp"> Services</a>
@@ -94,8 +95,8 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#"> Calculator </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="CustomerContact.jsp">Contact us</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="CustomerContact.jsp">Contact us <span class="sr-only">(current)</span></a>
                 </li>
               </ul>
                 
@@ -117,100 +118,33 @@
     </header>
   </div> 
     
-    <div>
-        <div class="container mt-5">
-    <h1 class="text-center mb-4">About Diamond Valuation System (DVS)</h1>
-
-    <section id="introduction">
-        <h2 class="section-title">Introduction</h2>
-        <p>Welcome to the Diamond Valuation System (DVS), where we revolutionize the way diamonds are valued. Our state-of-the-art system leverages advanced technology and expert knowledge to provide accurate, reliable, and transparent diamond valuations.</p>
-        <p><strong>Mission:</strong> To provide the most accurate and trustworthy diamond valuations, empowering both buyers and sellers to make informed decisions.</p>
-    </section>
-    <hr>
-    <section id="history" class="mt-5">
-        <h2 class="section-title">Our History</h2>
-        <p>DVS was founded in 20XX by a team of gemologists and tech enthusiasts who saw a need for a more reliable diamond valuation process. Over the years, we have continually improved our algorithms and expanded our database, making DVS a leader in the diamond valuation industry.</p>
-    </section>
-
-    <section id="team" class="mt-5">
-        <h2 class="section-title">Meet the Team</h2>
-        <div class="row">
-            <div class="col-md-4 text-center team-member">
-                <img src="images/client1.jpg" alt="Jane Doe" class="img-fluid rounded-circle mb-2">
-                <h3>Jane Doe</h3>
-                <p>CEO & Founder</p>
-                <p>Jane has over 20 years of experience in the diamond industry and a passion for innovation.</p>
-            </div>
-            <div class="col-md-4 text-center team-member">
-                <img src="images/client2.jpg" alt="John Smith" class="img-fluid rounded-circle mb-2">
-                <h3>John Smith</h3>
-                <p>CTO</p>
-                <p>John leads the tech team, ensuring that DVS remains at the forefront of diamond valuation technology.</p>
-            </div>
-            <div class="col-md-4 text-center team-member">
-                <img src="images/client3.jpg" alt="Alice Johnson" class="img-fluid rounded-circle mb-2">
-                <h3>Alice Johnson</h3>
-                <p>Chief Gemologist</p>
-                <p>Alice brings her extensive knowledge of diamonds to ensure the highest standards of accuracy in our valuations.</p>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2 class="mt-5 text-center">Contact Us</h2>
+                <p class="text-center mb-5">We'd love to hear from you! Please fill out the form below to get in touch.</p>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" rows="5" placeholder="Enter your message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
+                <br>
             </div>
         </div>
-    </section>
-    <hr>
-    <section id="values" class="mt-5">
-        <h2 class="section-title">Our Values</h2>
-        <p>At DVS, we are committed to:</p>
-        <ul>
-            <li>Accuracy: Providing the most precise valuations using cutting-edge technology.</li>
-            <li>Transparency: Ensuring all valuations are clear and understandable.</li>
-            <li>Integrity: Upholding the highest ethical standards in all our operations.</li>
-            <li>Innovation: Continuously improving our system to stay ahead of industry trends.</li>
-        </ul>
-    </section>
-
-    <section id="services" class="mt-5">
-        <h2 class="section-title">What We Offer</h2>
-        <p>DVS provides a comprehensive suite of services designed to meet the needs of both diamond buyers and sellers, including:</p>
-        <ul>
-            <li>Accurate Diamond Valuations: Utilizing advanced algorithms and extensive databases.</li>
-            <li>Certification: Issuing trusted certificates for diamond authenticity and quality.</li>
-            <li>Market Analysis: Offering insights into current market trends and pricing.</li>
-            <li>Consultation: Providing expert advice to help you make informed decisions.</li>
-        </ul>
-    </section>
-
-    <section id="impact" class="mt-5">
-        <h2 class="section-title">Our Impact</h2>
-        <p>Since our inception, DVS has helped thousands of clients achieve fair valuations for their diamonds. Our success stories include:</p>
-        <ul>
-            <li>Aiding sellers in getting top market prices for their diamonds.</li>
-            <li>Assisting buyers in finding diamonds that offer the best value for their investment.</li>
-            <li>Supporting industry professionals with reliable valuation tools and data.</li>
-        </ul>
-    </section>
-    <hr>
-    <section id="contact" class="mt-5">
-        <h2 class="section-title">Contact Us</h2>
-        <p>We are here to help you with all your diamond valuation needs. Reach out to us at:</p>
-        <p>Address: FPTU HCM</p>
-        <p>Email: <a href="#">demo@gmail.com</a></p>
-        <p>Phone: +01 1234567890</p>
-        <p>Follow us on <a href="#" target="_blank">Twitter</a>, <a href="#" target="_blank">Facebook</a>, and <a href="#" target="_blank">LinkedIn</a>.</p>
-    </section>
-
-    <section id="media" class="mt-5">
-        <h2 class="section-title">Media & Press</h2>
-        <p>DVS has been featured in numerous publications and has received several industry awards, including:</p>
-        <ul>
-            <li>Best Diamond Valuation Service 20XX - Gem Awards</li>
-            <li>Innovator of the Year 20XX - Diamond Industry Magazine</li>
-        </ul>
-    </section>
-    <hr>
-    <section id="cta" class="mt-5 text-center">
-        <h2 class="section-title">Get Involved</h2>
-        <p><a href="CustomerContact.jsp" class="btn btn-primary">Contact Us</a></p>
-    </section>
-</div>
     </div>
     
 <section class="info_section ">
@@ -300,7 +234,7 @@
   </footer>
     
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.js"></script>

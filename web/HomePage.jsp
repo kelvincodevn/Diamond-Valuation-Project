@@ -83,7 +83,7 @@
                   <a class="nav-link" href="#"> Calculator </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Contact us</a>
+                    <a class="nav-link" href="ContactUs.jsp">Contact us</a>
                 </li>
               </ul>
                 
@@ -305,16 +305,16 @@
               <div class="contact_form-container">
                 <div>
                   <div>
-                    <input type="text" placeholder="Full Name" />
+                    <input type="text"" id="name" placeholder="Name">
                   </div>
                   <div>
-                    <input type="email" placeholder="Email " />
+                    <input type="email" id="email" placeholder="Email">
                   </div>
                   <div>
-                    <input type="text" placeholder="Phone Number" />
+                    <input type="tel" id="phone" placeholder="Enter your phone number">
                   </div>
                   <div class="">
-                    <input type="text" placeholder="Message" class="message_input" />
+                    <input type="text" id="message" placeholder="Message" class="message_input" />
                   </div>
                   <div class="btn-box ">
                     <button type="submit">

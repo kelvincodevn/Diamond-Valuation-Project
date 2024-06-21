@@ -95,7 +95,7 @@
                   <a class="nav-link" href="#"> Calculator </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Contact us</a>
+                    <a class="nav-link" href="CustomerContact.jsp">Contact us</a>
                 </li>
               </ul>
                 
@@ -157,7 +157,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="phoneNumber">Phone</label>
-                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone number">
+                <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone number">
             </div>
             <div class="form-group col-md-6">
                 <label for="email">Email</label>
