@@ -86,7 +86,7 @@
                                         <a class="nav-link" href="DiamondCheck.jsp"> Diamond Check </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#"> Calculator </a>
+                                        <a class="nav-link" href="Calculate.jsp"> Calculator </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="ValuationHome.jsp"> Valuation Request</a>

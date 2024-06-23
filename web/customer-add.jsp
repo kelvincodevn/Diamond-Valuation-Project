@@ -12,8 +12,8 @@
         <link rel="stylesheet" href="assets/css/feathericon.min.css">
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datetimepicker.min.css">
-        <link rel="stylesheet" href="assets/css/style.css"> </head>
-
+        <link rel="stylesheet" href="assets/css/style.css"> 
+    </head>
     <body>
         <div class="main-wrapper">
             <div class="header">

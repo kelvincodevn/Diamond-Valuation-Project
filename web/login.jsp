@@ -89,11 +89,37 @@
                                     <a class="nav-link" href="DiamondCheck.jsp"> Diamond Check </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"> Calculator </a>
+                                    <a class="nav-link" href="Calculate.jsp"> Calculator </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="ValuationHome.jsp"> Valuation Request </a>
-                                </li>
+                               <%
+                                        String logOut = (String) request.getAttribute("LOGOUT"); // check if logout is requested
+                                        String userNameID = (String) request.getAttribute("USERNAMEID"); // check if user is logged in
+                                        String userName = (String) request.getAttribute("USERNAME");
+                                        Cookie[] checkCookies = request.getCookies();
+                                        String checkUserNameID = null;
+                                        String checkUsername = null;
+
+                                        if (checkCookies != null) {
+                                            for (Cookie cookie : checkCookies) {
+                                                String k = cookie.getName();
+                                                String v = cookie.getValue();
+                                                if (k.equals("USERNAMEID")) {
+                                                    checkUserNameID = v;
+                                                } else if (k.equals("USERNAME")) {
+                                                    checkUsername = v;
+                                                }
+                                            }
+                                        }
+                                        if ((userNameID != null || checkUserNameID != null) && logOut == null) {
+                                            if (userNameID != null && userName != null) {
+                                                checkUserNameID = userNameID;
+                                                checkUsername = userName;
+                                            }
+                                    %>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="MainController?btAction=ViewRequestForm"> Valuation Request </a>
+                                    </li>
+                                    <% } %>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Contact us</a>
                                 </li>

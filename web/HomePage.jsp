@@ -22,7 +22,11 @@
         <link href="css/home-style.css" rel="stylesheet" />
         <link href="css/responsive.css" rel="stylesheet" />
         <link rel="stylesheet" href="css/profile-style.css">
-        <link rel="stylesheet" href="css/customer-style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--        <link rel="stylesheet" href="css/customer-style.css">-->
+        
+        
+        
 
     </head>
 
@@ -89,38 +93,45 @@
                                         <a class="nav-link" href="DiamondCheck.jsp"> Diamond Check </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#"> Calculator </a>
+                                        <a class="nav-link" href="Calculate.jsp"> Calculator </a>
                                     </li>
+                                    <%
+                                        String logOut = (String) request.getAttribute("LOGOUT"); // check if logout is requested
+                                        String userNameID = (String) request.getAttribute("USERNAMEID"); // check if user is logged in
+                                        String userName = (String) request.getAttribute("USERNAME");
+                                        Cookie[] checkCookies = request.getCookies();
+                                        String checkUserNameID = null;
+                                        String checkUsername = null;
+
+                                        if (checkCookies != null) {
+                                            for (Cookie cookie : checkCookies) {
+                                                String k = cookie.getName();
+                                                String v = cookie.getValue();
+                                                if (k.equals("USERNAMEID")) {
+                                                    checkUserNameID = v;
+                                                } else if (k.equals("USERNAME")) {
+                                                    checkUsername = v;
+                                                }
+                                            }
+                                        }
+                                        if ((userNameID != null || checkUserNameID != null) && logOut == null) {
+                                            if (userNameID != null && userName != null) {
+                                                checkUserNameID = userNameID;
+                                                checkUsername = userName;
+                                            }
+                                    %>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="ValuationHome.jsp"> Valuation Request </a>
+                                        <a class="nav-link" href="MainController?btAction=ViewRequestForm"> Valuation Request </a>
                                     </li>
+                                    <% } %>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Contact us</a>
                                     </li>
                                 </ul>
-                                <%
-                                    String logOut = (String) request.getAttribute("LOGOUT"); // check if logout is requested
-                                    String userNameID = (String) request.getAttribute("USERNAMEID"); // check if user is logged in
-                                    String userName = (String) request.getAttribute("USERNAME"); 
-                                    Cookie[] checkCookies = request.getCookies();
-                                    String checkUserNameID = null;
-                                    String checkUsername = null;
 
-                                    if (checkCookies != null) {
-                                        for (Cookie cookie : checkCookies) {
-                                            String k = cookie.getName();
-                                            String v = cookie.getValue();
-                                            if (k.equals("USERNAMEID")) {
-                                                checkUserNameID = v;
-                                            } else if (k.equals("USERNAME")) {
-                                                checkUsername = v;
-                                            }
-                                        }
-                                    }
-
-                                    // Check if user is logged in via session or cookies
+                                <%                                          // Check if user is logged in via session or cookies
                                     if ((userNameID != null || checkUserNameID != null) && logOut == null) {
-                                        if (userNameID != null && userName !=null) {
+                                        if (userNameID != null && userName != null) {
                                             checkUserNameID = userNameID;
                                             checkUsername = userName;
                                         }

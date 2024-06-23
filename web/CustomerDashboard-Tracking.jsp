@@ -4,7 +4,7 @@
     Author     : Admin
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     Cookie[] cookies = request.getCookies();
     String userName = "Username";
@@ -13,6 +13,14 @@
             if (cookie.getName().equals("USERNAME")) {
                 userName = cookie.getValue();
             }
+        }
+    }
+
+    String[] statuses = new String[7];
+    for (int i = 0; i < statuses.length; i++) {
+        statuses[i] = (String) request.getSession().getAttribute("stepStatus" + i);
+        if (statuses[i] == null) {
+            statuses[i] = ""; // Default to an empty string if not set
         }
     }
 %>
@@ -33,6 +41,8 @@
         <link href="css/responsive.css" rel="stylesheet" />
         <link rel="stylesheet" href="css/profile-style.css">
         <link rel="stylesheet" href="css/customer-style.css">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/progress-bar.css">
     </head>
 
     <body class="sub_page">
@@ -71,7 +81,7 @@
                 <div class="header_bottom">
                     <div class="container-fluid">
                         <nav class="navbar navbar-expand-lg custom_nav-container">
-                            <a class="navbar-brand" href="HomePage.jsp">
+                            <a class="navbar-brand" href="CustomerHome.jsp">
                                 <span>
                                     DVS
                                 </span>
@@ -83,10 +93,10 @@
                             <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
                                 <ul class="navbar-nav  ">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="HomePage.jsp">Home</a>
+                                        <a class="nav-link" href="CustomerHome.jsp">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="AboutUs.jsp"> About</a>
+                                        <a class="nav-link" href="CustomerAbout.jsp"> About</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="MainController?btAction=ViewPricing"> Services </a>
@@ -95,11 +105,37 @@
                                         <a class="nav-link" href="DiamondCheck.jsp"> Diamond Check </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#"> Calculator </a>
+                                        <a class="nav-link" href="Calculate.jsp"> Calculator </a>
                                     </li>
+                                    <%
+                                        String logOut = (String) request.getAttribute("LOGOUT"); // check if logout is requested
+                                        String userNameID = (String) request.getAttribute("USERNAMEID"); // check if user is logged in
+                                        String UserName = (String) request.getAttribute("USERNAME");
+                                        Cookie[] checkCookies = request.getCookies();
+                                        String checkUserNameID = null;
+                                        String checkUsername = null;
+
+                                        if (checkCookies != null) {
+                                            for (Cookie cookie : checkCookies) {
+                                                String k = cookie.getName();
+                                                String v = cookie.getValue();
+                                                if (k.equals("USERNAMEID")) {
+                                                    checkUserNameID = v;
+                                                } else if (k.equals("USERNAME")) {
+                                                    checkUsername = v;
+                                                }
+                                            }
+                                        }
+                                        if ((userNameID != null || checkUserNameID != null) && logOut == null) {
+                                            if (userNameID != null && UserName != null) {
+                                                checkUserNameID = userNameID;
+                                                checkUsername = UserName;
+                                            }
+                                    %>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="ValuationHome.jsp"> Valuation Request </a>
+                                        <a class="nav-link" href="MainController?btAction=ViewRequestForm"> Valuation Request </a>
                                     </li>
+                                    <% } %>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Contact us</a>
                                     </li>
@@ -135,13 +171,50 @@
                     <a href="CustomerDashboard-Feedback.jsp">Services Feedback</a>
                 </div>
 
-
-
-
-
-
-
-
+                <div class="progress-container">
+                    <div id="progress-bar" class="progressbar">
+                        <div class="step <%= statuses[0]%>">
+                            <div class="icon"><i class="fas fa-hourglass-start"></i></div>
+                            <div class="step-title">Submitted</div>
+                        </div>
+                        <div class="step <%= statuses[1]%>">
+                            <div class="icon"><i class="fas fa-comments"></i></div>
+                            <div class="step-title">Consulting</div>
+                        </div>
+                        <div class="step <%= statuses[2]%>">
+                            <div class="icon"><i class="fas fa-credit-card"></i></div>
+                            <div class="step-title">Payment</div>
+                        </div>
+                        <div class="step <%= statuses[3]%>">
+                            <div class="icon"><i class="fas fa-vial"></i></div>
+                            <div class="step-title">Sample Received</div>
+                        </div>
+                        <div class="step <%= statuses[4]%>">
+                            <div class="icon"><i class="fas fa-cogs"></i></div>
+                            <div class="step-title">Valuation in Progress</div>
+                        </div>
+                        <div class="step <%= statuses[5]%>">
+                            <div class="icon"><i class="fas fa-envelope"></i></div>
+                            <div class="step-title">Result Sent</div>
+                        </div>
+                        <div class="step <%= statuses[6]%>">
+                            <div class="icon"><i class="fas fa-info-circle"></i></div>
+                            <div class="step-title">Order Status</div>
+                        </div>
+                    </div>
+                    <div id="timestamps-container" class="timestamps-container p-3 border border-success rounded bg-light">
+                        <%
+                            for (int i = 0; i < 7; i++) {
+                                String timestamp = (String) request.getSession().getAttribute("timestamp" + i);
+                                if (timestamp != null) {
+                        %>
+                        <div class="timestamp">Step <%= i + 1%>: <%= timestamp%></div>
+                        <%
+                                }
+                            }
+                        %>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -153,7 +226,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="info_logo">
-                            <a class="navbar-brand" href="HomePage.jsp">
+                            <a class="navbar-brand" href="CustomerHome.jsp">
                                 <span>
                                     DVS
                                 </span>
@@ -170,17 +243,17 @@
                             </h5>
                             <ul>
                                 <li>
-                                    <a href="HomePage.jsp">
+                                    <a href="CustomerHome.jsp">
                                         Home
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="AboutUs.jsp">
+                                    <a href="CustomerAbout.jsp">
                                         About Us
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="ValuationHome.jsp">
+                                    <a href="CustomerValuation.jsp">
                                         Services
                                     </a>
                                 </li>
@@ -234,6 +307,7 @@
             </p>
         </footer>
 
+        <script src="js/progressbar.js"></script>
         <script src="js/update-img.js"></script>
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/bootstrap.js"></script>

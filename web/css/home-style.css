@@ -4,6 +4,9 @@ body {
   color: #0c0c0c;
   background-color: #ffffff;
 }
+.checked {
+  color: orange;
+}
 
 .layout_padding {
   padding-top: 90px;
