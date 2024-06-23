@@ -1,0 +1,66 @@
+       .main-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content {
+            display: flex;
+            flex: 1;
+        }
+        .profile-sidebar {
+            width: 250px;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+        .profile-sidebar img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .profile-sidebar a {
+            padding: 10px;
+            text-align: left;
+            display: block;
+            color: #000;
+            text-decoration: none;
+        }
+        .profile-sidebar a:hover {
+            background-color: #ddd;
+        }
+        .profile-content {
+            flex: 1;
+            padding: 20px;
+        }
+        .profile-content h2 {
+            margin-bottom: 20px;
+        }
+        .profile-sidebar a.active {
+            background-color: #A19F9F; /* Change to the desired highlight color */
+            font-weight: bold; /* Optionally make the text bold */
+            /* Add any other styles you want to apply to the active link */
+        }
+        .comment-container {
+            margin-bottom: 20px;
+        }
+        .detail-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-left: 100px;
+            padding-top: 50px;
+        }
+
+        .detail-box {
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .checked {
+            color: orange;
+        }
+
+

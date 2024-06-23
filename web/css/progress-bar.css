@@ -1,0 +1,107 @@
+body {
+    background-color: #f3f3f3;
+}
+
+.progress-container {
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    margin-left: 200px;
+    position: relative;
+}
+
+.progressbar {
+    counter-reset: step;
+    padding: 0;
+}
+
+.step {
+    float: left;
+    list-style: none;
+    position: relative;
+    text-align: center;
+    width: calc(100% / 7);
+}
+
+/* Hide the number steps */
+.step:before {
+    display: none;
+}
+
+.step:after {
+    background: #979797;
+    content: '';
+    height: 3px;
+    left: -50%;
+    position: absolute;
+    top: 20px;  /* Adjusted to align with icon */
+    width: 100%;
+    z-index: -1;
+}
+
+.step:first-child:after {
+    content: none;
+}
+
+.step .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #d3d3d3;
+    display: inline-block;
+    line-height: 40px;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.step.active .icon {
+    background-color: #007bff;
+}
+
+.step.completed .icon {
+    background-color: #28a745;
+}
+
+.step.cancelled .icon {
+    background-color: #dc3545; /* Red color for cancelled */
+}
+
+.step-title {
+    margin-top: 10px;
+    font-weight: bold;
+}
+.controls {
+    margin: 20px;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+label, select {
+    margin: 5px;
+    padding: 5px;
+}
+.timestamps-container {
+    margin-top: 100px;
+}
+
+.timestamp {
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border: 1px solid black;
+    background-color: #d4edda;
+    border-radius: 5px;
+}
