@@ -26,13 +26,14 @@ import javax.servlet.http.HttpSession;
  */
 public class LoginServlet extends HttpServlet {
 
-    private String SIGNIN_PAGE="login.jsp";
-    private String HOME_PAGE="HomePage.jsp";
-    private String ADMIN_PAGE = "index.jsp"; 
-    private String MAIN_PAGE = "MainPage.jsp";
+    private String SIGNIN_PAGE = "login.jsp";
+    private String HOME_PAGE = "HomePage.jsp";
+    private String ADMIN_PAGE = "index.jsp";
+    private String MAIN_PAGE = "HomePage.jsp";
     private String CONSULTING_PAGE = "ConsultingHome.jsp";
-    private String VALUATION_PAGE = "ValuationHome.jsp"; 
+    private String VALUATION_PAGE = "ValuationHome.jsp";
     private String MANAGER_PAGE = "ManagerHome.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -44,21 +45,20 @@ public class LoginServlet extends HttpServlet {
         RoleDTO role = new RoleDTO();
         try {
             String username = request.getParameter("txtUsername");
-            String password = request.getParameter("txtPassword"); 
+            String password = request.getParameter("txtPassword");
             password = PasswordHashing.toSHA1(password); //trc khi check login mã hóa password r so sánh hai chuỗi đã mã hóa
             userInfo = dao.checkLogin(username, password); //nên trả về
-            if(userInfo == null) {
+            if (userInfo == null) {
                 invalid = "Invalid username or password";
-                request.setAttribute("INVALID",invalid);
-            }else {
+                request.setAttribute("INVALID", invalid);
+            } else {
                 //check if the role ò the user
                 //1. Goi DAO check role cua user
                 //2. Lay roleName tu DAO gui ve va kiem tra xem ung voi role nao thi gui response la chuyen huong
                 //sang trang ung voi role cua ho
-                
+
 //                HttpSession session = request.getSession();
 //                session.setAttribute("account", userInfo);
-                
                 Cookie userNameIDCookie = new Cookie("USERNAMEID", userInfo.getUserID());
                 Cookie userNameCookie = new Cookie("USERNAME", userInfo.getUserName());
                 Cookie passwordCookie = new Cookie("PASSWORD", userInfo.getPassword());
@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
                 Cookie phoneNumCookie = new Cookie("PHONENUMBER", userInfo.getPhoneNumber());
                 Cookie roleIDCookie = new Cookie("ROLEID", userInfo.getRoleID());
                 Cookie emailCookie = new Cookie("EMAIL", userInfo.getEmail());
-                
+
                 userNameIDCookie.setMaxAge(1800);
                 userNameCookie.setMaxAge(1800);
                 passwordCookie.setMaxAge(1800);
@@ -76,17 +76,17 @@ public class LoginServlet extends HttpServlet {
                 phoneNumCookie.setMaxAge(1800);
                 roleIDCookie.setMaxAge(1800);
                 emailCookie.setMaxAge(1800);
-                
+
                 role = dao.checkUserRole(userInfo.getRoleID());
-                if(role.getRoleName().equals("Admin")) {
+                if (role.getRoleName().equals("Admin")) {
                     url = ADMIN_PAGE;
-                }else if(role.getRoleName().equals("Customer")) {
+                } else if (role.getRoleName().equals("Customer")) {
                     url = MAIN_PAGE;
-                } else if(role.getRoleName().equals("Consulting Staff")) {
-                    url = CONSULTING_PAGE;               
-                }else if(role.getRoleName().equals("Valuation Staff")) {
+                } else if (role.getRoleName().equals("Consulting Staff")) {
+                    url = CONSULTING_PAGE;
+                } else if (role.getRoleName().equals("Valuation Staff")) {
                     url = VALUATION_PAGE;
-                } else if(role.getRoleName().equals("Manager")) {
+                } else if (role.getRoleName().equals("Manager")) {
                     url = MANAGER_PAGE;
                 }
                 response.addCookie(userNameIDCookie);
@@ -97,8 +97,11 @@ public class LoginServlet extends HttpServlet {
                 response.addCookie(emailCookie);
                 response.addCookie(phoneNumCookie);
                 response.addCookie(roleIDCookie);
+
+                request.setAttribute("USERNAMEID", userInfo.getUserID());
+                request.setAttribute("USERNAME", userInfo.getUserName());
             }
-        }catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

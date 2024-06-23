@@ -36,7 +36,8 @@ public class MainController extends HttpServlet {
     private String ADD_STAFF_SERVLET = "AddStaffServlet";
     private String EDIT_STAFF_SERVLET = "EditStaffServlet";
     private String LOAD_STAFF_SERVLET = "LoadStaffServlet";
-    
+    private String VIEW_PRICING_SERVLET = "ViewPricingServlet";
+    private String CHECK_DIAMOND_SERVLET = "CheckDiamondServlet";
     
     //phần làm lại của Xuân Mai
     private String VIEW_SERVICE_SERVLET = "ViewAllServiceServlet";
@@ -80,6 +81,10 @@ public class MainController extends HttpServlet {
                 url = ADD_SERVICE_SERVLET;
             }else if(btAction.equals("LoadStaff")) {
                 url = LOAD_STAFF_SERVLET;
+            }else if(btAction.equals("ViewPricing")) {
+                url = VIEW_PRICING_SERVLET;
+            }else if(btAction.equals("CheckDiamond")) {
+                url = CHECK_DIAMOND_SERVLET;
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

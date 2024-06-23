@@ -81,8 +81,32 @@
         <servlet-class>group6.controller.EditPasswordServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ProgressStatusServlet</servlet-name>
-        <servlet-class>group6.controller.ProgressStatusServlet</servlet-class>
+        <servlet-name>ViewPricingServlet</servlet-name>
+        <servlet-class>group6.controller.ViewPricingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckDiamondServlet</servlet-name>
+        <servlet-class>group6.controller.CheckDiamondServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OnlineCheckServlet</servlet-name>
+        <servlet-class>group6.controller.OnlineCheckServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OnlineValuationServlet</servlet-name>
+        <servlet-class>group6.controller.OnlineValuationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckRedirectServlet</servlet-name>
+        <servlet-class>group6.controller.CheckRedirectServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewRequestFormServlet</servlet-name>
+        <servlet-class>group6.controller.ViewRequestFormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubmitRequestFormServlet</servlet-name>
+        <servlet-class>group6.controller.SubmitRequestFormServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -157,8 +181,32 @@
         <url-pattern>/EditPasswordServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ProgressStatusServlet</servlet-name>
-        <url-pattern>/ProgressStatusServlet</url-pattern>
+        <servlet-name>ViewPricingServlet</servlet-name>
+        <url-pattern>/ViewPricingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckDiamondServlet</servlet-name>
+        <url-pattern>/CheckDiamondServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OnlineCheckServlet</servlet-name>
+        <url-pattern>/OnlineCheckServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OnlineValuationServlet</servlet-name>
+        <url-pattern>/OnlineValuationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckRedirectServlet</servlet-name>
+        <url-pattern>/CheckRedirectServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewRequestFormServlet</servlet-name>
+        <url-pattern>/ViewRequestFormServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubmitRequestFormServlet</servlet-name>
+        <url-pattern>/SubmitRequestFormServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

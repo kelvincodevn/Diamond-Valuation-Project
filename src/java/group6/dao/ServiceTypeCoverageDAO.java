@@ -39,8 +39,8 @@ public class ServiceTypeCoverageDAO {
                 while (rs.next()) {
                     String serviceTypeCoverageID = rs.getString("ServiceTypeCoverageID");
                     String includedService = rs.getString("IncludedService");
-                    String detailedDescription = rs.getString("DetailedDescription");                
-                    serviceListTypeCoverage.add(new ServiceTypeCoverageDTO(serviceTypeCoverageID, serviceTypeID, includedService, detailedDescription));
+                    //String detailedDescription = rs.getString("DetailedDescription");                
+                    serviceListTypeCoverage.add(new ServiceTypeCoverageDTO(serviceTypeCoverageID, serviceTypeID, includedService));
                 }              
             }
         } finally {

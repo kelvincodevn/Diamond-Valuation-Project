@@ -25,6 +25,7 @@ public class ErrorRegistration {
     private String oldPasswordError = "";
     private String newPasswordError = "";
     private String confirmPasswordError = "";
+    private String diamondCheckError = "";
 
     public ErrorRegistration() {
     }
@@ -190,6 +191,23 @@ public class ErrorRegistration {
         }
         return true;
     }
+    
+   public boolean checkDiamondInputCheckValidation(String diamond) throws SQLException, ClassNotFoundException {
+    // Trim the input to remove any leading or trailing whitespace
+    diamond = diamond.trim();
+    
+    // Check if the input is empty
+    if (diamond.isEmpty()) {
+         diamondCheckError = "Certificate ID is required";
+        // Return false if the input is empty
+        return false;
+    }
+    
+    // Check if the input only contains numbers
+    
+    // Return true if the input is valid (not empty and only contains numbers)
+    return true;
+}
 
     public String getUserNameLenError() {
         return userNameLenError;
@@ -238,4 +256,13 @@ public class ErrorRegistration {
     public String getConfirmPasswordError() {
         return confirmPasswordError;
     }
+
+    public String getDiamondCheckError() {
+        return diamondCheckError;
+    }
+
+    public void setDiamondCheckError(String diamondCheckError) {
+        this.diamondCheckError = diamondCheckError;
+    }
+    
 }

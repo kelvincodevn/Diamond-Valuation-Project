@@ -43,58 +43,58 @@ public class AddServiceServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String url = ERROR_PAGE;
-        RegistrationErrors error = new RegistrationErrors();
-//        UsersDTO users = new UsersDTO();
-        boolean foundErr = false;
-        String serviceTypeID = request.getParameter("txtsvID");
-            String serviceName = request.getParameter("txtsvName");
-            String serviceDescription = request.getParameter("txtsvDescription");
-            float servicePrice = 0;
-            int executionTime = 0;
-        try {
-            
-            try{
-             servicePrice = Float.parseFloat(request.getParameter("floatPrice"));}
-            catch (NumberFormatException ex){
-                    foundErr = true;
-                    error.setPhoneNumberInvalid("invalid input");
-                    }
-            try{
-             executionTime = Integer.parseInt(request.getParameter("intTime"));}
-            catch (NumberFormatException ex){
-                    foundErr = true;
-                    error.setPhoneNumberInvalid("invalid input");
-                    }
-        
-            if (foundErr) {
-                //catching to attribute and transfer to error page
-                request.setAttribute("CREATE_ERROR", error);
-            } else {
-                //3. Call DAO
-                ServiceTypeDAO dao = new ServiceTypeDAO();
-                ServiceTypeDTO service = new ServiceTypeDTO(serviceTypeID, serviceName, serviceDescription, servicePrice, executionTime);
-                boolean result = dao.addService(service);
-                if (result) {
-                    url = SUCCESS_PAGE;
-                }
-            }//end no users' error
-//        } catch (NamingException ex) {
-//            log("CreateAccountServlet_Naming: " + ex.getMessage());
-        } catch (SQLException ex) {
-            String msg = ex.getMessage();
-            log("AddServiceServlet_SQL: " + msg);
-            if (msg.contains("duplicate")) {
-                error.setUsernameLengthError(serviceTypeID + " is existed");
-                request.setAttribute("CREATE_ERROR", error);
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddServiceServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
-            out.close();
-        }
+//        String url = ERROR_PAGE;
+//        RegistrationErrors error = new RegistrationErrors();
+////        UsersDTO users = new UsersDTO();
+//        boolean foundErr = false;
+//        String serviceTypeID = request.getParameter("txtsvID");
+//            String serviceName = request.getParameter("txtsvName");
+//            String serviceDescription = request.getParameter("txtsvDescription");
+//            float servicePrice = 0;
+//            int executionTime = 0;
+//        try {
+//            
+//            try{
+//             servicePrice = Float.parseFloat(request.getParameter("floatPrice"));}
+//            catch (NumberFormatException ex){
+//                    foundErr = true;
+//                    error.setPhoneNumberInvalid("invalid input");
+//                    }
+//            try{
+//             executionTime = Integer.parseInt(request.getParameter("intTime"));}
+//            catch (NumberFormatException ex){
+//                    foundErr = true;
+//                    error.setPhoneNumberInvalid("invalid input");
+//                    }
+//        
+//            if (foundErr) {
+//                //catching to attribute and transfer to error page
+//                request.setAttribute("CREATE_ERROR", error);
+//            } else {
+//                //3. Call DAO
+//                ServiceTypeDAO dao = new ServiceTypeDAO();
+//                ServiceTypeDTO service = new ServiceTypeDTO(serviceTypeID, serviceName, serviceDescription, servicePrice, executionTime);
+//                boolean result = dao.addService(service);
+//                if (result) {
+//                    url = SUCCESS_PAGE;
+//                }
+//            }//end no users' error
+////        } catch (NamingException ex) {
+////            log("CreateAccountServlet_Naming: " + ex.getMessage());
+//        } catch (SQLException ex) {
+//            String msg = ex.getMessage();
+//            log("AddServiceServlet_SQL: " + msg);
+//            if (msg.contains("duplicate")) {
+//                error.setUsernameLengthError(serviceTypeID + " is existed");
+//                request.setAttribute("CREATE_ERROR", error);
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(AddServiceServlet.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            RequestDispatcher rd = request.getRequestDispatcher(url);
+//            rd.forward(request, response);
+//            out.close();
+//        }
 
     }
 

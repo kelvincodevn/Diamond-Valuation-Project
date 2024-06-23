@@ -52,75 +52,107 @@
     <body class="sub_page">
         <div class="hero_area">
             <div class="hero_bg_box">
-              <div class="img-box">
-                  <img src="images/background1.jpg" alt="">
-              </div>
+                <div class="img-box">
+                    <img src="images/background1.jpg" alt="">
+                </div>
             </div>
-        
+
             <header class="header_section">
-              <div class="header_top">
-                <div class="container-fluid">
-                  <div class="contact_link-container">
-                    <a href="https://www.google.com/maps/place/Trường+Đại+học+FPT+TP.+HCM/@10.8411276,106.809883,15z/data=!4m6!3m5!1s0x31752731176b07b1:0xb752b24b379bae5e!8m2!3d10.8411276!4d106.809883!16s%2Fg%2F11j2zx_fz_?entry=ttu" class="contact_link1" target="_blank">
-                        <img src="images/map.jpg" width="30px" height="30px">
-                        <span>  
-                          Đại học FPT HCM
-                        </span>
-                      </a>
-                    <a href="" class="contact_link2">
-                      <img src="images/phone.jpg" width="30px" height="30px">
-                      <span>
-                        Call : +01 1234567890
-                      </span>
-                    </a>
-                    <a href="" class="contact_link3">
-                      <img src="images/mail.jpg" width="30px" height="30px">
-                      <span>
-                        demo@gmail.com
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="header_bottom">
-                <div class="container-fluid">
-                  <nav class="navbar navbar-expand-lg custom_nav-container">
-                    <a class="navbar-brand" href="HomePage.jsp">
-                      <span>
-                        DVS
-                      </span>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class=""></span>
-                    </button>
-        
-                    <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
-                      <ul class="navbar-nav  ">
-                        <li class="nav-item">
-                          <a class="nav-link" href="HomePage.jsp">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="AboutUs.jsp"> About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="ValuationHome.jsp"> Services </a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#"> Calculator </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="ContactUs.jsp">Contact us</a>
-                        </li>
-                      </ul>
-                        
-                    <div class="auth-buttons">
-                        <button class="signup" onclick="location.href='register.jsp'">Sign Up</button>
-                        <button class="signin" onclick="location.href='login.jsp'">Sign in</button>
+                <div class="header_top">
+                    <div class="container-fluid">
+                        <div class="contact_link-container">
+                            <a href="https://www.google.com/maps/place/Trường+Đại+học+FPT+TP.+HCM/@10.8411276,106.809883,15z/data=!4m6!3m5!1s0x31752731176b07b1:0xb752b24b379bae5e!8m2!3d10.8411276!4d106.809883!16s%2Fg%2F11j2zx_fz_?entry=ttu" class="contact_link1" target="_blank">
+                                <img src="images/map.jpg" width="30px" height="30px">
+                                <span>  
+                                    Đại học FPT HCM
+                                </span>
+                            </a>
+                            <a href="" class="contact_link2">
+                                <img src="images/phone.jpg">
+                                <span>
+                                    Call : +01 1234567890
+                                </span>
+                            </a>
+                            <a href="" class="contact_link3">
+                                <img src="images/mail.jpg">
+                                <span>
+                                    demo@gmail.com
+                                </span>
+                            </a>
+                        </div>
                     </div>
-                    </div>
-                  </nav>
                 </div>
-              </div>
+                <div class="header_bottom">
+                    <div class="container-fluid">
+                        <nav class="navbar navbar-expand-lg custom_nav-container">
+                            <a class="navbar-brand" href="HomePage.jsp">
+                                <span>
+                                    DVS
+                                </span>
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class=""></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+                                <ul class="navbar-nav  ">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="HomePage.jsp">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="AboutUs.jsp"> About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="MainController?btAction=ViewPricing"> Services </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="DiamondCheck.jsp"> Diamond Check </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="Calculate.jsp"> Calculator </a>
+                                    </li>
+                                   <%
+                                        String logOut = (String) request.getAttribute("LOGOUT"); // check if logout is requested
+                                        String userNameID = (String) request.getAttribute("USERNAMEID"); // check if user is logged in
+                                        String userName = (String) request.getAttribute("USERNAME");
+                                        Cookie[] checkCookies = request.getCookies();
+                                        String checkUserNameID = null;
+                                        String checkUsername = null;
+
+                                        if (checkCookies != null) {
+                                            for (Cookie cookie : checkCookies) {
+                                                String k = cookie.getName();
+                                                String v = cookie.getValue();
+                                                if (k.equals("USERNAMEID")) {
+                                                    checkUserNameID = v;
+                                                } else if (k.equals("USERNAME")) {
+                                                    checkUsername = v;
+                                                }
+                                            }
+                                        }
+                                        if ((userNameID != null || checkUserNameID != null) && logOut == null) {
+                                            if (userNameID != null && userName != null) {
+                                                checkUserNameID = userNameID;
+                                                checkUsername = userName;
+                                            }
+                                    %>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="MainController?btAction=ViewRequestForm"> Valuation Request </a>
+                                    </li>
+                                    <% } %>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Contact us</a>
+                                    </li>
+                                </ul>
+
+                                <div class="auth-buttons">
+                                    <button class="signup" onclick="location.href = 'register.jsp'">Sign Up</button>
+                                    <button class="signin" onclick="location.href = 'login.jsp'">Sign in</button>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
             </header>
         </div>
 
@@ -145,7 +177,7 @@
 
                                     <div class="form-group">
                                         <input class="form-control" id="lastname" type="text" name="txtLastName" value="${sessionScope.lastName}" placeholder="Lastname"> 
-                                         <font color="red">${requestScope.ERRORS.lastNameLenError}</font>
+                                        <font color="red">${requestScope.ERRORS.lastNameLenError}</font>
                                         <div class="error"></div>
                                     </div>  
 
@@ -173,7 +205,7 @@
                                     </div>
                                     <div class="form-group">
                                         <input class="form-control" id="password2" type="password" name="txtConfirmPassword" value="${sessionScope.confirmPassword}" placeholder="Confirm Password"> 
-                                          <font color="red">${requestScope.ERRORS.confirmNotMatch}</font>
+                                        <font color="red">${requestScope.ERRORS.confirmNotMatch}</font>
                                         <div class="error"></div>
                                     </div>
                                     <div class="form-group mb-0">
@@ -192,90 +224,90 @@
 
         <section class="info_section ">
             <div class="container">
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="info_logo">
-                    <a class="navbar-brand" href="HomePage.jsp">
-                      <span>
-                        DVS
-                      </span>
-                    </a>
-                    <p>
-                      dolor sit amet, consectetur magna aliqua. Ut enim ad minim veniam, quisdotempor incididunt r
-                    </p>
-                  </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="info_logo">
+                            <a class="navbar-brand" href="HomePage.jsp">
+                                <span>
+                                    DVS
+                                </span>
+                            </a>
+                            <p>
+                                dolor sit amet, consectetur magna aliqua. Ut enim ad minim veniam, quisdotempor incididunt r
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="info_links">
+                            <h5>
+                                Useful Link
+                            </h5>
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        About Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        Services
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="info_info">
+                            <h5>
+                                Contact Us
+                            </h5>
+                        </div>
+                        <div class="info_contact">
+                            <a href="" class="">
+                                <span>
+                                    Lorem ipsum dolor sit amet,
+                                </span>
+                            </a>
+                            <a href="" class="">
+                                <span>
+                                    Call : +01 1234567890
+                                </span>
+                            </a>
+                            <a href="" class="">
+                                <span>
+                                    demo@gmail.com
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="info_form ">
+                            <h5>
+                                Newsletter
+                            </h5>
+                            <form action="#">
+                                <input type="email" placeholder="Enter your email">
+                                <button>
+                                    Subscribe
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                  <div class="info_links">
-                    <h5>
-                      Useful Link
-                    </h5>
-                    <ul>
-                      <li>
-                          <a href="HomePage.jsp">
-                          Home
-                        </a>
-                      </li>
-                      <li>
-                          <a href="AboutUs.jsp">
-                          About Us
-                        </a>
-                      </li>
-                      <li>
-                          <a href="ValuationHome.jsp">
-                          Services
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="info_info">
-                    <h5>
-                      Contact Us
-                    </h5>
-                  </div>
-                  <div class="info_contact">
-                    <a href="" class="">
-                      <span>
-                        Lorem ipsum dolor sit amet,
-                      </span>
-                    </a>
-                    <a href="" class="">
-                      <span>
-                        Call : +01 1234567890
-                      </span>
-                    </a>
-                    <a href="" class="">
-                      <span>
-                        demo@gmail.com
-                      </span>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="info_form ">
-                    <h5>
-                      Newsletter
-                    </h5>
-                    <form action="#">
-                      <input type="email" placeholder="Enter your email">
-                      <button>
-                        Subscribe
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
             </div>
-          </section>
-        
-          <footer class="container-fluid footer_section">
+        </section>
+
+        <footer class="container-fluid footer_section">
             <p>
-              &copy; <span id="currentYear"></span> All Rights Reserved.
+                &copy; <span id="currentYear"></span> All Rights Reserved.
             </p>
-          </footer>
-          
+        </footer>
+
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src="js/custom.js"></script>

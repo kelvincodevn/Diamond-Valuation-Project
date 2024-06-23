@@ -36,10 +36,10 @@ public class ServiceTypeDAO {
                 rs = stm.executeQuery();
                 if (rs.next()) {
                     String serviceName = rs.getString("ServiceName");
-                    String ServiceDescription = rs.getString("ServiceDescription");
+                   // String ServiceDescription = rs.getString("ServiceDescription");
                     float servicePrice = rs.getFloat("ServicePrice");
                     int executionTime = rs.getInt("ExecutionTime");
-                    service = new ServiceTypeDTO(serviceTypeID, serviceName, ServiceDescription, servicePrice, executionTime);
+                    service = new ServiceTypeDTO(serviceTypeID, serviceName, servicePrice, executionTime);
                     return service;
                 }
                 return null;
@@ -59,46 +59,47 @@ public class ServiceTypeDAO {
         return null;
     }
 
-    public boolean addService(ServiceTypeDTO service) throws SQLException, ClassNotFoundException {
-        Connection con = null;
-        PreparedStatement stm = null;
-        boolean result = false;
-        try {
-            //1.get connection
-            con = DBUtil.getConnection();
-            if (con != null) {
-                //2.create SQL string
-                String sql = "Insert Into ServiceType ("
-                        + "ServiceTypeID, ServiceName, ServiceDescription, ServicePrice, ExecutionTime"
-                        + ") Values ("
-                        + "?, ?, ?, ?, ?"
-                        + ")";
-                //3.create stmt obj
-                stm = con.prepareStatement(sql);
-                stm.setString(1, service.getServiceTypeID());
-                stm.setString(2, service.getServiceName());
-                stm.setString(3, service.getServiceDescription());
-                stm.setFloat(4, service.getServicePrice());
-                stm.setInt(5, service.getExecutionTime());
-                //4.execute query
-                int effectRows = stm.executeUpdate();
-                //5.process result
-                if (effectRows > 0) {
-                    result = true;
-                }
-            }
-        } finally {
-
-            if (stm != null) {
-                stm.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
-        return result;
-
-    }
+    //think again that is it need to have or not
+//    public boolean addService(ServiceTypeDTO service) throws SQLException, ClassNotFoundException {
+//        Connection con = null;
+//        PreparedStatement stm = null;
+//        boolean result = false;
+//        try {
+//            //1.get connection
+//            con = DBUtil.getConnection();
+//            if (con != null) {
+//                //2.create SQL string
+//                String sql = "Insert Into ServiceType ("
+//                        + "ServiceTypeID, ServiceName, ServiceDescription, ServicePrice, ExecutionTime"
+//                        + ") Values ("
+//                        + "?, ?, ?, ?, ?"
+//                        + ")";
+//                //3.create stmt obj
+//                stm = con.prepareStatement(sql);
+//                stm.setString(1, service.getServiceTypeID());
+//                stm.setString(2, service.getServiceName());
+//                stm.setString(3, service.getServiceDescription());
+//                stm.setFloat(4, service.getServicePrice());
+//                stm.setInt(5, service.getExecutionTime());
+//                //4.execute query
+//                int effectRows = stm.executeUpdate();
+//                //5.process result
+//                if (effectRows > 0) {
+//                    result = true;
+//                }
+//            }
+//        } finally {
+//
+//            if (stm != null) {
+//                stm.close();
+//            }
+//            if (con != null) {
+//                con.close();
+//            }
+//        }
+//        return result;
+//
+//    }
 
     public boolean deleteService(String ID)
             throws SQLException, /*ClassNotFoundException,*/ NamingException, ClassNotFoundException {
@@ -138,44 +139,44 @@ public class ServiceTypeDAO {
         return result;
     }
 
-    public boolean updateService(ServiceTypeDTO service) throws SQLException, ClassNotFoundException {
-        Connection con = null;
-        PreparedStatement stm = null;
-        boolean result = false;
-        try {
-            //1.get connection
-            con = DBUtil.getConnection();
-            if (con != null) {
-                //2.create SQL string
-                String sql = "Update ServiceType "
-                        + "Set ServiceName = ?, ServiceDescription = ?, ServicePrice = ?, ExecutionTime = ?"
-                        + "Where ServiceTypeID = ?";
-                //3.create stmt obj
-                stm = con.prepareStatement(sql);
-                stm.setString(1, service.getServiceTypeID());
-                stm.setString(2, service.getServiceName());
-                stm.setString(3, service.getServiceDescription());
-                stm.setFloat(4, service.getServicePrice());
-                stm.setInt(5, service.getExecutionTime());
-                //4.execute query
-                int effectRows = stm.executeUpdate();
-                //5.process result
-                if (effectRows > 0) {
-                    result = true;
-                }
-            }
-        } finally {
-
-            if (stm != null) {
-                stm.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
-        return result;
-
-    }
+//    public boolean updateService(ServiceTypeDTO service) throws SQLException, ClassNotFoundException {
+//        Connection con = null;
+//        PreparedStatement stm = null;
+//        boolean result = false;
+//        try {
+//            //1.get connection
+//            con = DBUtil.getConnection();
+//            if (con != null) {
+//                //2.create SQL string
+//                String sql = "Update ServiceType "
+//                        + "Set ServiceName = ?, ServiceDescription = ?, ServicePrice = ?, ExecutionTime = ?"
+//                        + "Where ServiceTypeID = ?";
+//                //3.create stmt obj
+//                stm = con.prepareStatement(sql);
+//                stm.setString(1, service.getServiceTypeID());
+//                stm.setString(2, service.getServiceName());
+//                stm.setString(3, service.getServiceDescription());
+//                stm.setFloat(4, service.getServicePrice());
+//                stm.setInt(5, service.getExecutionTime());
+//                //4.execute query
+//                int effectRows = stm.executeUpdate();
+//                //5.process result
+//                if (effectRows > 0) {
+//                    result = true;
+//                }
+//            }
+//        } finally {
+//
+//            if (stm != null) {
+//                stm.close();
+//            }
+//            if (con != null) {
+//                con.close();
+//            }
+//        }
+//        return result;
+//
+//    }
 
     public List<ServiceTypeDTO> serviceList() throws SQLException, ClassNotFoundException {
         Connection con = null;
@@ -194,11 +195,11 @@ public class ServiceTypeDAO {
                 while (rs.next()) {
                     String serviceTypeID = rs.getString("ServiceTypeID");
                     String serviceName = rs.getString("ServiceName");
-                    String serviceDescription = rs.getString("ServiceDescription");
+                   // String serviceDescription = rs.getString("ServiceDescription");
                     float servicePrice = rs.getFloat("ServicePrice");
                     int executionTime = rs.getInt("ExecutionTime");
                     serviceList.add(new ServiceTypeDTO(serviceTypeID, serviceName,
-                             serviceDescription, servicePrice, executionTime));
+                              servicePrice, executionTime));
                 }
             }
         } finally {
