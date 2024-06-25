@@ -5,6 +5,7 @@
  */
 package group6.dao;
 
+import group6.entity.RequestCount;
 import group6.entity.ValuationRequestDTO;
 import group6.utils.DBUtil;
 import java.sql.Connection;
@@ -109,7 +110,7 @@ public class ValuationRequestDAO {
             con = DBUtil.getConnection();
             if (con != null) {
                 String query = "INSERT INTO ValuationRequest (RequestID, CustomerID, DiaID, Status, CreatedDate, DateUpdated, ServiceTypeID, StateID) "
-                        + "VALUES (?, ?, ?, '1', ?, ?, ?, 'S01' )";
+                        + "VALUES (?, ?, ?, 'Submitted', ?, ?, ?, 'S01' )";
                 stm = con.prepareStatement(query);
                 stm.setString(1, createRequestID());
                 stm.setString(2, customerID);
@@ -292,5 +293,130 @@ public class ValuationRequestDAO {
             }
         }
         return allRQ;
+    }
+
+    //--------------------------------------------------
+    // dung de ve bieu do
+
+    public List<RequestCount> getRequestCountByMonth(int year, int month) throws SQLException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<RequestCount> countByMonth = new ArrayList<>();
+        try {
+            con = DBUtil.getConnection();
+            if (con != null) {
+                String query = "SELECT ServiceTypeID, COUNT(*) AS RequestCount " +
+                           "FROM ValuationRequest " +
+                           "WHERE YEAR(CreatedDate) = ? " +
+                           "  AND MONTH(CreatedDate) = ? " +
+                           "  AND ServiceTypeID IN ('ST001', 'ST002', 'ST003') " +
+                           "GROUP BY ServiceTypeID";
+
+                stm = con.prepareStatement(query);
+                stm.setInt(1, year);
+                stm.setInt(2, month);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String serviceTypeID = rs.getString("ServiceTypeID");
+                int requestCount = rs.getInt("RequestCount");
+                
+                RequestCount dto = new RequestCount(serviceTypeID, requestCount);
+                countByMonth.add(dto);
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return countByMonth;
+    }
+    
+    public List<RequestCount> getRequestCountByYear(int year) throws SQLException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<RequestCount> countByMonth = new ArrayList<>();
+        try {
+            con = DBUtil.getConnection();
+            if (con != null) {
+                String query = "SELECT ServiceTypeID, COUNT(*) AS RequestCount " +
+                           "FROM ValuationRequest " +
+                           "WHERE YEAR(CreatedDate) = ? " +
+                           "  AND ServiceTypeID IN ('ST001', 'ST002', 'ST003') " +
+                           "GROUP BY ServiceTypeID";
+
+                stm = con.prepareStatement(query);
+                stm.setInt(1, year);
+
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String serviceTypeID = rs.getString("ServiceTypeID");
+                int requestCount = rs.getInt("RequestCount");
+                
+                RequestCount dto = new RequestCount(serviceTypeID, requestCount);
+                countByMonth.add(dto);
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return countByMonth;
+    }
+
+    
+    public List<RequestCount> getRequestCountAll() throws SQLException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<RequestCount> countByMonth = new ArrayList<>();
+        try {
+            con = DBUtil.getConnection();
+            if (con != null) {
+                String query = "SELECT ServiceTypeID, COUNT(*) AS RequestCount " +
+                           "FROM ValuationRequest " +
+                           "WHERE ServiceTypeID IN ('ST001', 'ST002', 'ST003') " +
+                           "GROUP BY ServiceTypeID";
+
+                stm = con.prepareStatement(query);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String serviceTypeID = rs.getString("ServiceTypeID");
+                int requestCount = rs.getInt("RequestCount");
+                
+                RequestCount dto = new RequestCount(serviceTypeID, requestCount);
+                countByMonth.add(dto);
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return countByMonth;
     }
 }

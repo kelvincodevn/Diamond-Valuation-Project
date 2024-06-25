@@ -112,6 +112,10 @@
         <servlet-name>createRequestServlet</servlet-name>
         <servlet-class>group6.controller.createRequestServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>viewChartServlet</servlet-name>
+        <servlet-class>group6.controller.viewChartServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -215,6 +219,10 @@
     <servlet-mapping>
         <servlet-name>createRequestServlet</servlet-name>
         <url-pattern>/createRequestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewChartServlet</servlet-name>
+        <url-pattern>/viewChartServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

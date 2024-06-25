@@ -48,6 +48,7 @@ public class MainController extends HttpServlet {
     private String VIEW_SERVICE_SERVLET = "ViewAllServiceServlet";
     private String ADD_SERVICE_SERVLET = "AddServiceServlet";
     private final String ONLINE_CHECKING = "OnlineCheckServlet";
+    private final String PIE_CHART = "viewChartServlet";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -105,6 +106,8 @@ public class MainController extends HttpServlet {
                 url = CREATE_NEW_REQUEST;
             }else if(btAction.equals("allRQ")){
                 url = VIEW_ALL_BY_CUSTOMER;
+            }else if(btAction.equals("Submit")){
+                url = PIE_CHART;
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
