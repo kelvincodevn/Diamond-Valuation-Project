@@ -110,7 +110,7 @@ public class ValuationRequestDAO {
             con = DBUtil.getConnection();
             if (con != null) {
                 String query = "INSERT INTO ValuationRequest (RequestID, CustomerID, DiaID, Status, CreatedDate, DateUpdated, ServiceTypeID, StateID) "
-                        + "VALUES (?, ?, ?, 'Submitted', ?, ?, ?, 'S01' )";
+                        + "VALUES (?, ?, ?, '1', ?, ?, ?, 'S01' )";
                 stm = con.prepareStatement(query);
                 stm.setString(1, createRequestID());
                 stm.setString(2, customerID);

@@ -36,9 +36,9 @@ function donutChart() {
     window.donutChart = Morris.Donut({
         element: 'donut-chart',
         data: [
-            { label: "Normal Room", value: 50 },
-            { label: "Ac Room", value: 25 },
-            { label: "Special Room", value: 5 },
+            { label: "Basic", value: 50 },
+            { label: "Advanced", value: 25 },
+            { label: "Experss", value: 25 },
             { label: "DoubleBed room", value: 10 },
             { label: "Video Room", value: 10 }
         ],
