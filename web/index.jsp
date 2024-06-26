@@ -254,7 +254,7 @@
                             <div class="card card-chart">
                                 <div class="card-header">
                                     <h4 class="card-title">Request</h4> </div>
-                                <div class="card-body">
+                                <div class="card-body" style="text-align: center;">
                                     <form id = "chartForm" action="viewChartServlet">    
                                         <select id="monthSelect" name="month" onchange="submit()">
                                             <option value="0"<c:if test="${param.month == '0'}">selected</c:if>selected>All</option>
@@ -278,44 +278,49 @@
                                             <option value="2024"<c:if test="${param.year == '2024'}">selected</c:if>>2024</option>
                                             <option value="2025"<c:if test="${param.year == '2025'}">selected</c:if>>2025</option>
                                             </select>
-                                        </form>
+                                            <h5> <font color ="red">${requestScope.MSG}
+                                                <c:if test="${requestScope.DATA==null}">
+                                                    <h5> <font color ="red">There haven't had any requests in this period</font></h5>
+                                                </font></h5>
+                                                </c:if>
+                                    </form>
 
-                                        <div class="card-body">
-                                            <div id="donut-chart"></div>
-                                        </div>
+                                    <div class="card-body">
+                                        <div id="donut-chart"></div>
+                                    </div>
 
-                                        <script>
-                                            function submit() {
-                                                document.getElementById('chartForm').submit();
-                                            }
-                                            function donutChart(data) {
-                                                Morris.Donut({
-                                                    element: 'donut-chart',
-                                                    data: data,
-                                                    backgroundColor: '#f2f5fa',
-                                                    labelColor: '#009688',
-                                                    colors: ['#0BA462', '#39B580', '#67C69D', '#95D7BB'],
-                                                    resize: true,
-                                                    redraw: true
-                                                });
-                                            }
-                                            $(document).ready(function() {
-                                                var chartData = ${requestScope.DATA};
-                                                donutChart(chartData);
+                                    <script>
+                                        function submit() {
+                                            document.getElementById('chartForm').submit();
+                                        }
+                                        function donutChart(data) {
+                                            Morris.Donut({
+                                                element: 'donut-chart',
+                                                data: data,
+                                                backgroundColor: '#f2f5fa',
+                                                labelColor: '#009688',
+                                                colors: ['#0BA462', '#39B580', '#67C69D', '#95D7BB'],
+                                                resize: true,
+                                                redraw: true
                                             });
-                                            //        $(document).ready(function() {
-                                            //            $.ajax({
-                                            //                url: 'viewChartServlet',
-                                            //                method: 'GET',
-                                            //                dataType: 'json',
-                                            //                success: function(data) {
-                                            //                    donutChart(data);
-                                            //                },
-                                            //                error: function(error) {
-                                            //                    console.log("Error fetching data: ", error);
-                                            //                }
-                                            //            });
-                                            //        });
+                                        }
+                                        $(document).ready(function () {
+                                            var chartData = ${requestScope.DATA};
+                                            donutChart(chartData);
+                                        });
+                                        //        $(document).ready(function() {
+                                        //            $.ajax({
+                                        //                url: 'viewChartServlet',
+                                        //                method: 'GET',
+                                        //                dataType: 'json',
+                                        //                success: function(data) {
+                                        //                    donutChart(data);
+                                        //                },
+                                        //                error: function(error) {
+                                        //                    console.log("Error fetching data: ", error);
+                                        //                }
+                                        //            });
+                                        //        });
                                     </script>
                                     <!--<div id="donut-chart"></div>-->
                                 </div>

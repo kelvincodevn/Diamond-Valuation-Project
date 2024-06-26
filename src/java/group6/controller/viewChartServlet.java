@@ -58,6 +58,7 @@ public class viewChartServlet extends HttpServlet {
 
             int month = Integer.parseInt(request.getParameter("month"));
             int year = Integer.parseInt(request.getParameter("year"));
+
             if (month == 0 && year == 0) {
                 list = dao.getRequestCountAll();
                 request.setAttribute("DATA", list.toString());
@@ -67,6 +68,9 @@ public class viewChartServlet extends HttpServlet {
             } else if (month != 0 && year != 0) {
                 list = dao.getRequestCountByMonth(year, month);
                 request.setAttribute("DATA", list.toString());
+            } else if (month != 0 && year == 0) {
+                String msg = "  Please select both Month and Year or only Year!";
+                request.setAttribute("MSG", msg);
             } else {
                 list = dao.getRequestCountAll();
                 request.setAttribute("DATA", list.toString());
@@ -74,16 +78,15 @@ public class viewChartServlet extends HttpServlet {
 
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(viewChartServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-//            data a = new data("ha", a1),
-//                    b = new data("b", b1),
-//                    c = new data("b", 20);
-//
-//            List<data> list = new ArrayList<>();
-//            list.add(a);
-//            list.add(b);
-//            list.add(c);
-         finally {
+        } //            data a = new data("ha", a1),
+        //                    b = new data("b", b1),
+        //                    c = new data("b", 20);
+        //
+        //            List<data> list = new ArrayList<>();
+        //            list.add(a);
+        //            list.add(b);
+        //            list.add(c);
+        finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
 
@@ -131,7 +134,6 @@ public class viewChartServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-   
 }
 
 //            int month = Integer.parseInt(request.getParameter("month"));
