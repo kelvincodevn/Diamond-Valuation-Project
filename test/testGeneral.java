@@ -21,24 +21,23 @@ import java.util.List;
 public class testGeneral {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException, ParseException {
-//        ValuationRequestDAO dao = new ValuationRequestDAO();
-//        System.out.println("All");
-//        List<RequestCount> list;
-//        list= dao.getRequestCountAll();
-//        for (RequestCount a : list) {
-//            System.out.println(a.toString());
-//        }
-//        System.out.println("Month");
-//        list = dao.getRequestCountByMonth(2022, 6);
-//        for (RequestCount a : list) {
-//            System.out.println(a.toString());
-//        }
-//        System.out.println("Year");
-//        list = dao.getRequestCountByYear(2023);
-//        for (RequestCount a : list) {
-//            System.out.println(a.toString());
-//        }
-    int a = 180* 3/10;
-        System.out.println(a);
+        ValuationRequestDAO dao = new ValuationRequestDAO();
+        System.out.println("All");
+        List<RequestCount> list;
+        list= dao.getRequestCountAll();
+        for (RequestCount a : list) {
+            System.out.println(a.toString());
+        }
+        System.out.println("Month");
+        list = dao.getRequestCountByMonth(2022, 6);
+        for (RequestCount a : list) {
+            System.out.println(a.toString());
+        }
+        System.out.println("Year");
+        list = dao.getRequestCountByYear(2023);
+        for (RequestCount a : list) {
+            System.out.println(a.toString());
+        }
+    
     }
 }

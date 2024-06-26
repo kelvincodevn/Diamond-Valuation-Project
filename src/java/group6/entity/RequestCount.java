@@ -37,7 +37,10 @@ public class RequestCount {
 
     @Override
     public String toString() {
-        return "RequestCount{" + "serviceTypeID=" + serviceTypeID + ", count=" + count + '}';
+        return "{ " +
+                "label: \"" + this.serviceTypeID + "\"" +
+                ", value: " + this.count +
+                " }";
     }
 
    

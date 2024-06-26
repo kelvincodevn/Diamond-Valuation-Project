@@ -1,11 +1,11 @@
 $(document).ready(function() {
     lineChart();
-    donutChart();
+//    donutChart();
     pieChart();
 
     $(window).resize(function() {
         window.lineChart.redraw();
-        window.donutChart.redraw();
+//        window.donutChart.redraw();
         window.pieChart.redraw();
     });
 });
@@ -32,23 +32,23 @@ function lineChart() {
     });
 }
 
-function donutChart() {
-    window.donutChart = Morris.Donut({
-        element: 'donut-chart',
-        data: [
-            { label: "Basic", value: 50 },
-            { label: "Advanced", value: 25 },
-            { label: "Experss", value: 25 },
-            { label: "DoubleBed room", value: 10 },
-            { label: "Video Room", value: 10 }
-        ],
-        backgroundColor: '#f2f5fa',
-        labelColor: '#009688',
-        colors: ['#0BA462', '#39B580', '#67C69D', '#95D7BB'],
-        resize: true,
-        redraw: true
-    });
-}
+//function donutChart() {
+//    window.donutChart = Morris.Donut({
+//        element: 'donut-chart',
+//        data: [
+//            { label: "Basic", value: 50 },
+//            { label: "Advanced", value: 25 },
+//            { label: "Experss", value: 25 },
+//            { label: "DoubleBed room", value: 10 },
+//            { label: "Video Room", value: 10 }
+//        ],
+//        backgroundColor: '#f2f5fa',
+//        labelColor: '#009688',
+//        colors: ['#0BA462', '#39B580', '#67C69D', '#95D7BB'],
+//        resize: true,
+//        redraw: true
+//    });
+//}
 
 function pieChart() {
     var paper = Raphael("pie-chart");
