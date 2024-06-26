@@ -55,19 +55,6 @@
             var chartData = ${requestScope.DATA};
             donutChart(chartData);
         });
-//        $(document).ready(function() {
-//            $.ajax({
-//                url: 'viewChartServlet',
-//                method: 'GET',
-//                dataType: 'json',
-//                success: function(data) {
-//                    donutChart(data);
-//                },
-//                error: function(error) {
-//                    console.log("Error fetching data: ", error);
-//                }
-//            });
-//        });
     </script>
 </body>
 </html>

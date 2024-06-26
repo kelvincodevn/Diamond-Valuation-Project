@@ -256,7 +256,7 @@
                                     <h4 class="card-title">Request</h4> </div>
                                 <div class="card-body">
                                     <form id = "chartForm" action="viewChartServlet">    
-                                        <select id="monthSelect" name="month" onchange="submitForm()">
+                                        <select id="monthSelect" name="month" onchange="submit()">
                                             <option value="0"<c:if test="${param.month == '0'}">selected</c:if>selected>All</option>
                                             <option value="1"<c:if test="${param.month == '1'}">selected</c:if>>January</option>
                                             <option value="2"<c:if test="${param.month == '2'}">selected</c:if>>February</option>
@@ -271,7 +271,7 @@
                                             <option value="11"<c:if test="${param.month == '11'}">selected</c:if>>November</option>
                                             <option value="12"<c:if test="${param.month == '12'}">selected</c:if>>December</option>
                                             </select>
-                                            <select id="yearSelect" name ="year" onchange="submitForm()">
+                                            <select id="yearSelect" name ="year" onchange="submit()">
                                                 <option value="0"<c:if test="${param.year == '0'}">selected</c:if>selected>All</option>
                                             <option value="2022"<c:if test="${param.year == '2022'}">selected</c:if>>2022</option>
                                             <option value="2023"<c:if test="${param.year == '2023'}">selected</c:if>>2023</option>
@@ -285,7 +285,7 @@
                                         </div>
 
                                         <script>
-                                            function submitForm() {
+                                            function submit() {
                                                 document.getElementById('chartForm').submit();
                                             }
                                             function donutChart(data) {
@@ -299,7 +299,7 @@
                                                     redraw: true
                                                 });
                                             }
-                                            $(document).ready(function () {
+                                            $(document).ready(function() {
                                                 var chartData = ${requestScope.DATA};
                                                 donutChart(chartData);
                                             });
