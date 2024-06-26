@@ -43,6 +43,7 @@ public class viewChartServlet extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String url = "index.jsp";
+//        String url = "newjspTest.jsp";
         ValuationRequestDAO dao = new ValuationRequestDAO();
         List<RequestCount> list;
 //        JSONArray chartData = new JSONArray();
@@ -130,41 +131,7 @@ public class viewChartServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public class data {
-
-        private String label;
-        private int value;
-
-        // Constructor
-        public data(String label, int value) {
-            this.label = label;
-            this.value = value;
-        }
-
-        public String getLabel() {
-            return label;
-        }
-
-        public void setLabel(String label) {
-            this.label = label;
-        }
-
-        public int getValue() {
-            return value;
-        }
-
-        public void setValue(int value) {
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            return "{ "
-                    + "label: \"" + label + "\""
-                    + ", value: " + value
-                    + " }";
-        }
-    }
+   
 }
 
 //            int month = Integer.parseInt(request.getParameter("month"));
