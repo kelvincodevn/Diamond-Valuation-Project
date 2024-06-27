@@ -109,213 +109,7 @@
             <br>
             <hr>
             <br>
-            <form action="submitValuation" method="post" enctype="multipart/form-data">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="reportType">Report or Appraisal Type</label>
-                    <select name="reportType" id="reportType" class="form-control">
-                        <option value="">Select</option>
-                        <option value="Not Certified">Not Certified</option>
-                        <option value="AGS">AGS</option>
-                        <option value="GIA">GIA</option>
-                        <option value="IGI">IGI</option>
-                        <option value="Tiffany Certified">Tiffany Certified</option>
-                        <option value="EGL">EGL</option>
-                        <option value="Jewelers Appraisal">Jewelers Appraisal</option>
-                        <option value="Insurance Appraisal">Insurance Appraisal</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="reportNumber">Report or Appraisal Number</label>
-                    <input type="text" name="reportNumber" id="reportNumber" class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-                <div>
-                <label for="uploadReport">Upload your Report or Appraisal</label>
-                <input type="file" name="uploadReport" id="uploadReport" class="form-control-file" accept=".jpg,.jpeg,.png,.pdf,.bmp">
-                </div>
-                <div>Accept file types: jpg, jpeg, png, pdf, bmp</div>
-                <br>
-                <div>Certificates and appraisals enable us to provide a higher and more accurate price estimate. If you have a diamond appraisal or grading report, please upload it.</div>
-            <br>
-            <hr>
-            <br>
-            <div class="form-group">
-                <label>Select the Shape of Your Diamond *</label>
-                <div class="form-row">
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="shape" id="shapeRound" value="Round" required>
-                            <img src="images/round.jpg" style="width: 100px; height: 100px">
-                            <label class="form-check-label" for="shapeRound">Round</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="shape" id="shapeOval" value="Oval">
-                            <img src="images/oval.jpg" style="width: 100px; height: 100px">
-                            <label class="form-check-label" for="shapeOval">Oval</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="shape" id="shapeHeart" value="Heart">
-                            <img src="images/heart.jpg" style="width: 100px; height: 100px">
-                            <label class="form-check-label" for="shapeHeart">Heart</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="shape" id="shapePrincess" value="Princess">
-                            <img src="images/princess.jpg" style="width: 100px; height: 100px">
-                            <label class="form-check-label" for="shapePrincess">Princess</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="shape" id="shapeCushion" value="Cushion">
-                            <img src="images/cushion.jpg" style="width: 100px; height: 100px">
-                            <label class="form-check-label" for="shapeCushion">Cushion</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="shape" id="shapeBaguette" value="Baguette">
-                            <img src="images/baguette.jpg" style="width: 100px; height: 100px">
-                            <label class="form-check-label" for="shapeBaguette">Baguette</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="shape" id="shapeEmerald" value="Emerald">
-                            <img src="images/emerald.jpg" style="width: 100px; height: 100px">
-                            <label class="form-check-label" for="shapeEmerald">Emerald</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="shape" id="shapeRadiant" value="Radiant">
-                            <img src="images/radiant.jpg" style="width: 100px; height: 100px">
-                            <label class="form-check-label" for="shapeRadiant">Radiant</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="shape" id="shapePear" value="Pear">
-                            <img src="images/pear.jpg" style="width: 100px; height: 100px">
-                            <label class="form-check-label" for="shapePear">Pear</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="shape" id="shapeMarquise" value="Marquise">
-                            <img src="images/marquise.jpg" style="width: 100px; height: 100px">
-                            <label class="form-check-label" for="shapeMarquise">Marquise</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                    <label for="caratWeight">Carat Weight of Diamond *</label>
-                    <input type="number" step="0.01" name="caratWeight" id="caratWeight" class="form-control" required>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="clarity">Clarity of Diamond *</label>
-                    <select name="clarity" id="clarity" class="form-control" required>
-                        <option value="">Select</option>
-                        <option value="Not Sure">Not Sure</option>
-                        <option value="FL">FL</option>
-                        <option value="IF">IF</option>
-                        <option value="VVS1">VVS1</option>
-                        <option value="VVS2">VVS2</option>
-                        <option value="VS1">VS1</option>
-                        <option value="VS2">VS2</option>
-                        <option value="SI1">SI1</option>
-                        <option value="SI2">SI2</option>
-                        <option value="SI3">SI3</option>
-                        <option value="I1">I1</option>
-                        <option value="I2">I2</option>
-                        <option value="I3">I3</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="color">Color of Diamond *</label>
-                    <select name="color" id="color" class="form-control" required>
-                        <option value="">Select</option>
-                        <option value="D">D</option>
-                        <option value="E">E</option>
-                        <option value="F">F</option>
-                        <option value="G">G</option>
-                        <option value="H">H</option>
-                        <option value="I">I</option>
-                        <option value="K">K</option>
-                        <option value="L">L</option>
-                        <option value="M">M</option>
-                        <option value="N">N</option>
-                        <option value="O">O</option>
-                        <option value="P">P</option>
-                        <option value="Fancy">Fancy</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="cut">Cut of Diamond *</label>
-                    <select name="cut" id="cut" class="form-control" required>
-                        <option value="">Select</option>
-                        <option value="Fair">Fair</option>
-                        <option value="Good">Good</option>
-                        <option value="VGood">Very Good</option>
-                        <option value="Excellent">Excellent</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="symmetry">Symmetry of Diamond *</label>
-                    <select name="symmetry" id="symmetry" class="form-control" required>
-                        <option value="">Select</option>
-                        <option value="Fair">Fair</option>
-                        <option value="Good">Good</option>
-                        <option value="VGood">Very Good</option>
-                        <option value="Excellent">Excellent</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="polish">Polish of Diamond *</label>
-                    <select name="polish" id="polish" class="form-control" required>
-                        <option value="">Select</option>
-                        <option value="Fair">Fair</option>
-                        <option value="Good">Good</option>
-                        <option value="VGood">Very Good</option>
-                        <option value="Excellent">Excellent</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="fluorescence">Fluorescence of Diamond *</label>
-                    <select name="fluorescence" id="fluorescence" class="form-control" required>
-                        <option value="">Select</option>
-                        <option value="Fair">Fair</option>
-                        <option value="Good">Good</option>
-                        <option value="VGood">Very Good</option>
-                        <option value="Excellent">Excellent</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="measurement">Measurement *</label>
-                <input type="text" name="measurement" id="measurement" class="form-control" pattern="\d+x\d+x\d+" title="Please enter a measurement in the format numberxnumberxnumber (e.g., 10x20x30)" required>
-                <p id="measurement-error" style="color: red; display: none;">Wrong input format. Please use the format numberxnumberxnumber (e.g., 10x20x30).</p>
-                <div>Enter in the format "number"x"number"x"number" (e.g., 10x20x30)</div>
-            </div>
-            <br>
-            <hr>
-            <br>
+            
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="firstName">First Name *</label>
@@ -336,10 +130,64 @@
                     <input type="tel" name="phone" id="phone" class="form-control" required>
                 </div>
             </div>
+            <hr>
+            <label for="service">Choose type of service </label>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card pricing-card" onclick="chooseService('Basic', this)">
+                        <div class="card-body">
+                            <h5 class="card-title">BASIC</h5>
+                            <h6 class="card-price">$100.0</h6>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>✔ Accurate Valuation</li>
+                                <li>✔ Contain all the critical information</li>
+                                <li>✔ Following the qualified process within 6 days</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card pricing-card" onclick="chooseService('Advanced', this)">
+                        <div class="card-body">
+                            <h5 class="card-title">ADVANCED</h5>
+                            <h6 class="card-price">$200.0</h6>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>✔ Accurate Valuation</li>
+                                <li>✔ Contain all the critical information</li>
+                                <li>✔ Provide information upon individual request</li>
+                                <li>✔ Following the qualified process within 4 days</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card pricing-card" onclick="chooseService('Express', this)">
+                        <div class="card-body">
+                            <h5 class="card-title">EXPRESS</h5>
+                            <h6 class="card-price">$150.0</h6>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>✔ Accurate Valuation</li>
+                                <li>✔ Contain all the critical information</li>
+                                <li>✔ Provide information upon individual request</li>
+                                <li>✔ Provide extra consulting</li>
+                                <li>✔ Following the qualified process within 36 hours</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <br>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <br>
         </div>
+        <br>
+        <br>
+        <br>
+        
     </div>
     
 <section class="info_section ">
@@ -431,6 +279,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="js/chooseService.js"></script>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/custom.js"></script>

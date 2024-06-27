@@ -1,0 +1,102 @@
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; /* Adjust the height of the header */
+    background-color: #fff;
+    z-index: 1000;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    margin-top: 100px; /* Ensure it's below the header */
+    margin-left: 240px; /* Ensure it doesn't overlap with the sidebar */
+    margin-right: 30px; /* Added right margin for consistency */
+    position: relative;
+    width: calc(100% - 270px); /* Adjust the width to fit in the remaining space */
+}
+
+.outer-box {
+    border: 2px solid; /* Example border */
+    padding: 20px; /* Padding around the content */
+    background-color: #f8f9fa; /* Background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+.nav-tabs {
+    border-bottom: none;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    color: #495057;
+    font-size: 16px;
+    margin-right: 5px;
+    padding: 10px 20px;
+}
+
+.nav-tabs .nav-link.active {
+    color: #007bff;
+    background-color: #e9f7ff;
+    border: 1px solid #007bff;
+    border-bottom: 0;
+    font-weight: bold;
+    border-radius: 5px 5px 0 0;
+}
+
+.tab-content {
+    border: 1px solid #007bff;
+    border-radius: 0 5px 5px 5px;
+    padding: 20px;
+    background-color: #ffffff;
+    margin-top: -1px;
+}
+
+.filter-section {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+.filter-section input,
+.filter-section select,
+.filter-section button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Adds space between the buttons */
+}
+
+
+
