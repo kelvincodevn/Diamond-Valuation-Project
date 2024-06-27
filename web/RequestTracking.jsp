@@ -192,8 +192,7 @@
                 </div>
             </div>
     
-        <div class="outer-box">
-            <div class="progress-container" style="padding-top: 100px">
+            <div class="progress-container" style="margin-top: 100px; border: 2px solid; padding: 20px;  border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
                 <div style="display: flex">
                     <a href="RequestList.jsp"><< Return to request list</a>
                     <div style="padding-left: 450px"><strong>REQUEST ID: 12345678910</strong></div>
@@ -260,7 +259,6 @@
                         %>
                     </div>
                 </div>
-        </div>
 </div>
 
 <script defer src="js/progressbar.js"></script>
