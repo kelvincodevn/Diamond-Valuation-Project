@@ -1,5 +1,7 @@
-﻿<!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 
@@ -8,6 +10,8 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <title>Diamond Valuation Dashboard </title>
@@ -242,9 +246,96 @@
                         <div class="col-md-12 col-lg-6">
                             <div class="card card-chart">
                                 <div class="card-header">
-                                    <h4 class="card-title">VISITORS</h4> </div>
+                                    <h4 class="card-title"></h4> </div>
                                 <div class="card-body">
-                                    <div id="line-chart"></div>
+                                    <style>
+                                        .date-input-container {
+                                            margin-bottom: 20px;
+                                        }
+                                        .date-input-container input {
+                                            margin-right: 30px;
+                                        }
+                                    </style>
+                                    
+                                        <% %>
+                                        <div> <canvas id="combined-chart" width="400" height="259"></canvas>
+                                            <script>
+                                                $(document).ready(function () {
+                                                    var ctx = document.getElementById('combined-chart').getContext('2d');
+                                                    var combinedChart = new Chart(ctx, {
+                                                        type: 'bar', // Define the chart type as bar
+                                                        data: {
+                                                            labels: ['2022', '2023', '2024', '2025' ],//, '2010', '2011', '2012'],
+                                                            datasets: [
+                                                                {
+                                                                    type: 'line', // Define this dataset as line
+                                                                    label: 'Revenue' + ' $',
+                                                                    borderColor: '#009688',
+                                                                    borderWidth: 3,
+                                                                    fill: false,
+                                                                    data: [100, 75, 50, 75], //, 50, 75, 100],
+                                                                    yAxisID: 'y-axis-2'
+                                                                },
+                                                                {
+                                                                    label: 'Part 1 of Series B',
+                                                                    backgroundColor: '#cdc6c6',
+                                                                    data: [40, 30, 20, 30],//, 20, 30, 40],
+                                                                    borderColor: 'white',
+                                                                    borderWidth: 2,
+                                                                    yAxisID: 'y-axis-1'
+                                                                },
+                                                                {
+                                                                    label: 'Part 2 of Series B',
+                                                                    backgroundColor: '#ff9800',
+                                                                    data: [30, 20, 10, 20],//, 10, 20, 30],
+                                                                    borderColor: 'white',
+                                                                    borderWidth: 2,
+                                                                    yAxisID: 'y-axis-1'
+                                                                },
+                                                                {
+                                                                    label: 'Part 3 of Series B',
+                                                                    backgroundColor: '#8bc34a',
+                                                                    data: [20, 15, 10, 15],//, 10, 15, 20],
+                                                                    borderColor: 'white',
+                                                                    borderWidth: 2,
+                                                                    yAxisID: 'y-axis-1'
+                                                                }
+                                                            ]
+                                                        },
+                                                        options: {
+                                                            responsive: true,
+                                                            scales: {
+                                                                x: {
+                                                                    stacked: true,
+                                                                    beginAtZero: true
+                                                                },
+                                                                'y-axis-1': {
+                                                                    type: 'linear',
+                                                                    position: 'left',
+                                                                    beginAtZero: true,
+                                                                    stacked: true,
+                                                                    title: {
+                                                                        display: true,
+                                                                        text: 'Number of request'
+                                                                    }
+                                                                },
+                                                                'y-axis-2': {
+                                                                    type: 'linear',
+                                                                    position: 'right',
+                                                                    beginAtZero: true,
+                                                                    grid: {
+                                                                        drawOnChartArea: false // Only want the grid lines for one axis to show up
+                                                                    },
+                                                                    title: {
+                                                                        display: true,
+                                                                        text: 'Revenue' + ' $'
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    });
+                                                });
+                                            </script></div>
                                 </div>
                             </div>
                         </div>
@@ -253,46 +344,27 @@
                         <div class="col-md-12 col-lg-6">
                             <div class="card card-chart">
                                 <div class="card-header">
-                                    <h4 class="card-title">Request</h4> </div>
-                                <div class="card-body" style="text-align: center;">
-                                    <form id = "chartForm" action="viewChartServlet">    
-                                        <select id="monthSelect" name="month" onchange="submit()">
-                                            <option value="0"<c:if test="${param.month == '0'}">selected</c:if>selected>All</option>
-                                            <option value="1"<c:if test="${param.month == '1'}">selected</c:if>>January</option>
-                                            <option value="2"<c:if test="${param.month == '2'}">selected</c:if>>February</option>
-                                            <option value="3"<c:if test="${param.month == '3'}">selected</c:if>>March</option>
-                                            <option value="4"<c:if test="${param.month == '4'}">selected</c:if>>April</option>
-                                            <option value="5"<c:if test="${param.month == '5'}">selected</c:if>>May</option>
-                                            <option value="6"<c:if test="${param.month == '6'}">selected</c:if>>June</option>
-                                            <option value="7"<c:if test="${param.month == '7'}">selected</c:if>>July</option>
-                                            <option value="8"<c:if test="${param.month == '8'}">selected</c:if>>August</option>
-                                            <option value="9"<c:if test="${param.month == '7'}">selected</c:if>>September</option>
-                                            <option value="10"<c:if test="${param.month == '10'}">selected</c:if>>October</option>
-                                            <option value="11"<c:if test="${param.month == '11'}">selected</c:if>>November</option>
-                                            <option value="12"<c:if test="${param.month == '12'}">selected</c:if>>December</option>
-                                            </select>
-                                            <select id="yearSelect" name ="year" onchange="submit()">
-                                                <option value="0"<c:if test="${param.year == '0'}">selected</c:if>selected>All</option>
-                                            <option value="2022"<c:if test="${param.year == '2022'}">selected</c:if>>2022</option>
-                                            <option value="2023"<c:if test="${param.year == '2023'}">selected</c:if>>2023</option>
-                                            <option value="2024"<c:if test="${param.year == '2024'}">selected</c:if>>2024</option>
-                                            <option value="2025"<c:if test="${param.year == '2025'}">selected</c:if>>2025</option>
-                                            </select>
-                                            <h5> <font color ="red">${requestScope.MSG}
-                                                <c:if test="${requestScope.DATA==null}">
-                                                    <h5> <font color ="red">There haven't had any requests in this period</font></h5>
-                                                </font></h5>
-                                                </c:if>
-                                    </form>
+                                    <h4 class="card-title">
+                                <form id = "chartForm" action="viewChartServlet">    
+                                        From: <input type="month" id="from-date-input" name="from" 
 
+                                                    />
+                                        To: <input type="month" id="to-date-input" name="to" 
+
+                                                    />
+                                        <input type="submit" value="View" name="btAction" />
+                                    </form> 
+                                    </h4>
+                                </div>
+                                <div class="card-body" style="text-align: center;">
+                                    
                                     <div class="card-body">
+                                        <h3 color = " ">Service Type Distribution from ${param.from} to ${param.to}</h3>
                                         <div id="donut-chart"></div>
                                     </div>
 
                                     <script>
-                                        function submit() {
-                                            document.getElementById('chartForm').submit();
-                                        }
+                                       
                                         function donutChart(data) {
                                             Morris.Donut({
                                                 element: 'donut-chart',
@@ -308,19 +380,7 @@
                                             var chartData = ${requestScope.DATA};
                                             donutChart(chartData);
                                         });
-                                        //        $(document).ready(function() {
-                                        //            $.ajax({
-                                        //                url: 'viewChartServlet',
-                                        //                method: 'GET',
-                                        //                dataType: 'json',
-                                        //                success: function(data) {
-                                        //                    donutChart(data);
-                                        //                },
-                                        //                error: function(error) {
-                                        //                    console.log("Error fetching data: ", error);
-                                        //                }
-                                        //            });
-                                        //        });
+
                                     </script>
                                     <!--<div id="donut-chart"></div>-->
                                 </div>

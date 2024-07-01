@@ -1,12 +1,11 @@
 
 import group6.dao.ValuationRequestDAO;
 import group6.entity.RequestCount;
-import group6.entity.ValuationRequestDTO;
+
 import java.sql.SQLException;
-import java.sql.Timestamp;
+
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 /*
@@ -24,20 +23,25 @@ public class testGeneral {
         ValuationRequestDAO dao = new ValuationRequestDAO();
         System.out.println("All");
         List<RequestCount> list;
-        list= dao.getRequestCountAll();
+        list= dao.getRequestCount("2023-01","2025-01");
         for (RequestCount a : list) {
             System.out.println(a.toString());
         }
-        System.out.println("Month");
-        list = dao.getRequestCountByMonth(2022, 6);
+        System.out.println("2");
+        
+        list = dao.getRequestCount2(2023);
         for (RequestCount a : list) {
-            System.out.println(a.toString());
+            System.out.println(a.testRs());
         }
-        System.out.println("Year");
-        list = dao.getRequestCountByYear(2023);
-        for (RequestCount a : list) {
-            System.out.println(a.toString());
-        }
-    
+//        System.out.println("Month");
+//        list = dao.getRequestCountByMonth(2022, 6);
+//        for (RequestCount a : list) {
+//            System.out.println(a.toString());
+//        }
+//        System.out.println("Year");
+//        list = dao.getRequestCountByYear(2023);
+//        for (RequestCount a : list) {
+//            System.out.println(a.toString());
+//        }
     }
 }

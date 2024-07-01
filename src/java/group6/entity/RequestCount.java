@@ -13,12 +13,40 @@ public class RequestCount {
     
     private String serviceTypeID;
     private int count;
+    private int time;
+    private double price;
 
     public RequestCount(String serviceTypeID, int count) {
         this.serviceTypeID = serviceTypeID;
         this.count = count;
     }
 
+    public RequestCount(String serviceTypeID, int count, int time, double price) {
+        this.serviceTypeID = serviceTypeID;
+        this.count = count;
+        this.time = time;
+        this.price = price;
+    }
+    
+    
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    
+    
     public String getServiceTypeID() {
         return serviceTypeID;
     }
@@ -43,7 +71,9 @@ public class RequestCount {
                 " }";
     }
 
-   
+   public String testRs(){
+       return String.valueOf(this.time);
+   }
 }
 
 

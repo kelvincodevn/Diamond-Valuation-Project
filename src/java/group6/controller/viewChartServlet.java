@@ -43,36 +43,21 @@ public class viewChartServlet extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String url = "index.jsp";
-//        String url = "newjspTest.jsp";
+
         ValuationRequestDAO dao = new ValuationRequestDAO();
         List<RequestCount> list;
-//        JSONArray chartData = new JSONArray();
+
         try {
-//            int a = 40;
-//            int b = 30;
-//            int c = 100;
-//            chartData.put(new JSONObject().put("label", "Basic").put("value", a));
-//            chartData.put(new JSONObject().put("label", "Advanced").put("value", b));
-//            chartData.put(new JSONObject().put("label", "Express").put("value", c));
-//            out.print(chartData.toString());
 
-            int month = Integer.parseInt(request.getParameter("month"));
-            int year = Integer.parseInt(request.getParameter("year"));
+            String fromDate = request.getParameter("from");
+            String toDate = request.getParameter("to");
 
-            if (month == 0 && year == 0) {
-                list = dao.getRequestCountAll();
+            if (fromDate != null && toDate != null) {
+                list = dao.getRequestCount(fromDate,toDate);
                 request.setAttribute("DATA", list.toString());
-            } else if (month == 0 && year != 0) {
-                list = dao.getRequestCountByYear(year);
-                request.setAttribute("DATA", list);
-            } else if (month != 0 && year != 0) {
-                list = dao.getRequestCountByMonth(year, month);
-                request.setAttribute("DATA", list.toString());
-            } else if (month != 0 && year == 0) {
-                String msg = "  Please select both Month and Year or only Year!";
-                request.setAttribute("MSG", msg);
+
             } else {
-                list = dao.getRequestCountAll();
+                list = dao.getRequestCount(fromDate,toDate);
                 request.setAttribute("DATA", list.toString());
             }
 
