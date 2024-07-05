@@ -37,7 +37,9 @@ public class MainController extends HttpServlet {
     private String EDIT_STAFF_SERVLET = "EditStaffServlet";
     private String LOAD_STAFF_SERVLET = "LoadStaffServlet";
     private String VIEW_PRICING_SERVLET = "ViewPricingServlet";
-    private String CHECK_DIAMOND_SERVLET = "CheckDiamondServlet";
+//    private String CHECK_DIAMOND_SERVLET = "CheckDiamondServlet";
+        private String CHECK_DIAMOND_SERVLET = "DiamondPriceServlet";
+
      private final String ONLINE_VALUATION = "OnlineValuationServlet";
      private String CHECK_FOR_LOGIN_TO_REQUEST = "CheckRedirectServlet";
     private String VIEW_REQUEST_FORM_SERVLET = "ViewRequestFormServlet";

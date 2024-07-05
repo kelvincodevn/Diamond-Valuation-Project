@@ -1,7 +1,11 @@
+<%-- 
+    Document   : login
+    Created on : May 30, 2024, 7:45:05 AM
+    Author     : DELL
+--%>
+
 <%@page import="group6.dao.ErrorRegistration"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +19,6 @@
         <link rel="stylesheet" href="assets/css/feathericon.min.css">
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
         <link rel="stylesheet" href="assets/css/style.css"> </head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
@@ -23,7 +26,7 @@
     <link href="css/home-style.css" rel="stylesheet" />
     <link href="css/responsive.css" rel="stylesheet" />
     <!--    <link rel="stylesheet" href="css/diamond-check.css">-->
-    <link rel="stylesheet" href="css/profile-style.css">
+     <link rel="stylesheet" href="css/profile-style.css">
 </head>
 <style>
     .diamond-container {
@@ -138,7 +141,7 @@
                         <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
                             <ul class="navbar-nav  ">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="HomePage.jsp">Home </a>
+                                    <a class="nav-link" href="HomePage.jsp">Home <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="AboutUs.jsp"> About</a>
@@ -147,7 +150,7 @@
                                     <a class="nav-link" href="MainController?btAction=ViewPricing"> Services </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="DiamondCheck.jsp"> Diamond Check <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="DiamondCheck.jsp"> Diamond Check </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="Calculate.jsp"> Calculator </a>
@@ -220,9 +223,8 @@
             </div>
         </header>
     </div>
-    <!--MAIN CONTENT-->
-    <div class="container mt-5">
-        <div class="diamond-container">
+
+    <div class="diamond-container">
         <%
             String inputDiamondCheckError = "";
 
@@ -234,7 +236,7 @@
 
         <h1>Check any diamond's <span class="highlight">price & quality</span></h1>
         <p>Transact with confidence — get fair price, cut score, visual carat and more <a href="#">for free</a></p>
-        <form action="MainController" method="Get">
+        <form action="MainController" method="Post">
             <div class="search-bar">
                 <input type="text" name="ID" value="${param.ID}" id="certificateId" placeholder="Enter Certificate ID">
                 <button type="submit" name="btAction" value="CheckDiamond">Run free check</button>
@@ -243,145 +245,105 @@
                 String errorInput = (String) request.getAttribute("INVALID");
             %>    
             <font color="red"><p>${requestScope.INVALID}</p></font>
-             <c:if test="${not empty calculatedPrice}">
-            <h4>Estimated Price: $${calculatedPrice}</h4>
-        </c:if>
         </form>
     </div>
 
-       
-
-        <c:if test="${not empty error}">
-            <div class="alert alert-danger">${error}</div>
-        </c:if>
-            <!--prevent the table apear in the 1st time-->
-        <c:if test ="${not empty param.ID}">
-            <h2>Current Diamond Price Chart – Updated June 2024</h2>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Diamond Carat Weight</th>
-                        <th>Price (Per Carat, Round Brilliant Cut)</th>
-                        <th>Total Price</th>
-                        <th>Diamond Example</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="diamondPrice" items="${diamondPrices}">
-                        <tr>
-                            <td>${diamondPrice.caratWeight}</td>
-                            <td>${diamondPrice.pricePerCarat}</td>
-                            <td>${diamondPrice.totalPrice}</td>
-                            <td><a href="${diamondPrice.diamondLink}" target="_blank">Click here for more information</a></td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-
-        </c:if>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-</div>
-
-<section class="info_section ">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="info_logo">
-                    <a class="navbar-brand" href="HomePage.jsp">
-                        <span>
-                            DVS
-                        </span>
-                    </a>
-                    <p>
-                        dolor sit amet, consectetur magna aliqua. Ut enim ad minim veniam, quisdotempor incididunt r
-                    </p>
+    <section class="info_section ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="info_logo">
+                        <a class="navbar-brand" href="HomePage.jsp">
+                            <span>
+                                DVS
+                            </span>
+                        </a>
+                        <p>
+                            dolor sit amet, consectetur magna aliqua. Ut enim ad minim veniam, quisdotempor incididunt r
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="info_links">
-                    <h5>
-                        Useful Link
-                    </h5>
-                    <ul>
-                        <li>
-                            <a href="">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Services
-                            </a>
-                        </li>
-                    </ul>
+                <div class="col-md-3">
+                    <div class="info_links">
+                        <h5>
+                            Useful Link
+                        </h5>
+                        <ul>
+                            <li>
+                                <a href="">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    About Us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    Services
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="info_info">
-                    <h5>
-                        Contact Us
-                    </h5>
+                <div class="col-md-3">
+                    <div class="info_info">
+                        <h5>
+                            Contact Us
+                        </h5>
+                    </div>
+                    <div class="info_contact">
+                        <a href="" class="">
+                            <span>
+                                Lorem ipsum dolor sit amet,
+                            </span>
+                        </a>
+                        <a href="" class="">
+                            <span>
+                                Call : +01 1234567890
+                            </span>
+                        </a>
+                        <a href="" class="">
+                            <span>
+                                demo@gmail.com
+                            </span>
+                        </a>
+                    </div>
                 </div>
-                <div class="info_contact">
-                    <a href="" class="">
-                        <span>
-                            Lorem ipsum dolor sit amet,
-                        </span>
-                    </a>
-                    <a href="" class="">
-                        <span>
-                            Call : +01 1234567890
-                        </span>
-                    </a>
-                    <a href="" class="">
-                        <span>
-                            demo@gmail.com
-                        </span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="info_form ">
-                    <h5>
-                        Newsletter
-                    </h5>
-                    <form action="#">
-                        <input type="email" placeholder="Enter your email">
-                        <button>
-                            Subscribe
-                        </button>
-                    </form>
+                <div class="col-md-3">
+                    <div class="info_form ">
+                        <h5>
+                            Newsletter
+                        </h5>
+                        <form action="#">
+                            <input type="email" placeholder="Enter your email">
+                            <button>
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<footer class="container-fluid footer_section">
-    <p>
-        &copy; <span id="currentYear"></span> All Rights Reserved.
-    </p>
-</footer>
+    <footer class="container-fluid footer_section">
+        <p>
+            &copy; <span id="currentYear"></span> All Rights Reserved.
+        </p>
+    </footer>
 
-<script defer src="assets/js/validationLogin.js"></script>
-<script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/custom.js"></script>
-<script src="assets/js/jquery-3.5.1.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="assets/js/script.js"></script>
-<script src="js/diamond-check.js"></script>
+    <script defer src="assets/js/validationLogin.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="js/diamond-check.js"></script>
 </body>
 
 </html>

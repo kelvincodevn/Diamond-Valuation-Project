@@ -81,7 +81,7 @@ public class DiamondInfoDAO {
                     String origin = rs.getString("Origin");
                     float carat = rs.getFloat("Carat");
                     String measurements = rs.getString("Measurements");
-                    float weight = rs.getFloat("Weight");
+//                    float weight = rs.getFloat("Weight");
                     String color = rs.getString("Color");
                     String clarity = rs.getString("Clarity");
                     String cut = rs.getString("Cut");
@@ -90,7 +90,7 @@ public class DiamondInfoDAO {
                     String symmetry = rs.getString("Symmetry");
                     String flourescence = rs.getString("Flourescence");            
 
-                   diamond = new DiamondInfoDTO(diaID, shape, origin, carat, measurements, weight, color, clarity, cut, proportions, polish, symmetry, flourescence);
+                   diamond = new DiamondInfoDTO(diaID, shape, origin, carat, measurements, color, clarity, cut, proportions, polish, symmetry, flourescence);
                     return diamond;
                 }
                 return null;

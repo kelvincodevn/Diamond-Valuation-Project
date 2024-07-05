@@ -14,7 +14,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Diamond Valuation Dashboard </title> 
+        <title>Diamond Valuation Dashboard </title>
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.jpg">
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
@@ -125,7 +125,7 @@
                             <li> <a href="MainController?btAction=ViewRequestList"><i class="fas fa-suitcase"></i> <span>Request</span></a> </li>
                             <li> <a href="MainController?btAction=ViewCustomer"><i class="fas fa-user"></i> <span>Customers</span></a> </li>
                             <li> <a href="MainController?btAction=ViewStaff"><i class="fas fa-user"></i> <span>Employees</span></a> </li>
-                            <!--<li> <a href="MainController?btAction=ViewService"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>-->
+                            <li> <a href="MainController?btAction=ViewService"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
 
                             <li class="submenu"> <a href="#"><i class="fe fe-table"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">

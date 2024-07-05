@@ -37,9 +37,9 @@ public class CheckDiamondServlet extends HttpServlet {
         String certificateID = request.getParameter("ID");
         DiamondInfoDAO dao = new DiamondInfoDAO();
         DiamondInfoDTO diamond = new DiamondInfoDTO();
-        boolean checkErrors = false;
+        boolean checkErrors;
         String url = "";
-        String price = null;
+        String price;
         ErrorRegistration errors = new ErrorRegistration();
         String invalid = "";
         String message = null;

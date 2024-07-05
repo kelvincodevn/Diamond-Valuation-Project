@@ -15,7 +15,7 @@ public class DiamondInfoDTO {
     private String origin;
     private float carat;
     private String measurements;
-    private float weight;
+//    private float weight;
     private String color;
     private String clarity;
     private String cut;
@@ -27,13 +27,13 @@ public class DiamondInfoDTO {
     public DiamondInfoDTO() {
     }
 
-    public DiamondInfoDTO(String diaID, String shape, String origin, float carat, String measurements, float weight, String color, String clarity, String cut, String proportions, String polish, String symmetry, String flourescence) {
+    public DiamondInfoDTO(String diaID, String shape, String origin, float carat, String measurements, String color, String clarity, String cut, String proportions, String polish, String symmetry, String flourescence) {
         this.diaID = diaID;
         this.shape = shape;
         this.origin = origin;
         this.carat = carat;
         this.measurements = measurements;
-        this.weight = weight;
+//        this.weight = weight;
         this.color = color;
         this.clarity = clarity;
         this.cut = cut;
@@ -83,13 +83,7 @@ public class DiamondInfoDTO {
         this.measurements = measurements;
     }
 
-    public float getWeight() {
-        return weight;
-    }
 
-    public void setWeight(float weight) {
-        this.weight = weight;
-    }
 
     public String getColor() {
         return color;

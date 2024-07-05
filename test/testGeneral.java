@@ -1,4 +1,5 @@
 
+import group6.dao.DiamondInfoDAO;
 import group6.dao.ValuationRequestDAO;
 import group6.entity.RequestCount;
 
@@ -20,28 +21,7 @@ import java.util.List;
 public class testGeneral {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException, ParseException {
-        ValuationRequestDAO dao = new ValuationRequestDAO();
-        System.out.println("All");
-        List<RequestCount> list;
-        list= dao.getRequestCount("2023-01","2025-01");
-        for (RequestCount a : list) {
-            System.out.println(a.toString());
-        }
-        System.out.println("2");
-        
-        list = dao.getRequestCount2(2023);
-        for (RequestCount a : list) {
-            System.out.println(a.testRs());
-        }
-//        System.out.println("Month");
-//        list = dao.getRequestCountByMonth(2022, 6);
-//        for (RequestCount a : list) {
-//            System.out.println(a.toString());
-//        }
-//        System.out.println("Year");
-//        list = dao.getRequestCountByYear(2023);
-//        for (RequestCount a : list) {
-//            System.out.println(a.toString());
-//        }
+                DiamondInfoDAO dao = new DiamondInfoDAO();
+                System.out.println(dao.checkDiamond("1624830795").getCarat());
     }
 }
